@@ -1,3 +1,65 @@
 #footer {
+    padding: 100px 0 100px;
+    background-color: #000000;
+  color: #FFFFFF;
+
+  .main-text{
+    h2{
+      font-weight: 500;
+      font-size: 24.99px;
+      line-height: 100%;
+      color: #EE9026;
+      margin-bottom: 24px;
+    }
+    .foot-contact{
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 16px;
+      .icons{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .icon{
+          width: 24px;
+          height: 24px;
+          color: #777777;
+        }
+      }
+      .content{
+        span{
+          display: inline-block;
+          font-weight: 500;
+          font-size: 16px;
+          line-height: 100%;
+          color: #777777;
+          margin-bottom: 8px;
+        }
+        p{
+          font-weight: 400;
+          font-size: 16px;
+          line-height: 100%;
+        }
+      }
+    }
+  }
+  .services{
+    h3{
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 100%;
+      margin-bottom: 20px;
+    }
+    li{
+      margin-bottom: 16px;
+      a{
+        color: #FFFFFF;
+        transition: color 0.2s ease;
+        &:hover{
+          color: #EE9026;
+        }
+      }
+    }
+  }
 
 }
