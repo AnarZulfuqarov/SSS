@@ -1,0 +1,66 @@
+#services-card{
+    padding: 53px 27.5px;
+  border: 1px solid #B2B2B2;
+  position: relative;
+  transition: all 0.3s ease-in-out;
+  .card-number{
+    position: absolute;
+    border: 1px solid #B2B2B2;
+    padding: 11.5px 15.5px;
+    top: -28px;
+    left: 45px;
+    background-color: #FFFFFF;
+  }
+  img{
+    margin-bottom: 16px;
+  }
+  .content{
+    margin-bottom: 24px;
+    h2{
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 30px;
+      margin-bottom: 8px;
+    }
+    p{
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 26px;
+      color: #6E6E6E;
+    }
+  }
+  .more{
+    width: max-content;
+    position: relative;
+    border: 1px solid #B2B2B2;
+    border-radius: 25px;
+    padding: 12.5px 36px 12.5px 16px;
+    button{
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: -15px;
+      border-radius: 50%;
+      border: none;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #000000;
+      cursor: pointer;
+      color: #FFFFFF;
+      font-size: 18px;
+      transition: all 0.3s ease-in-out;
+    }
+  }
+  &:hover{
+    box-shadow: 0px 1px 9.8px 2px #FFC686;
+    border: 1px solid #EE9026;
+    .more{
+      button{
+        background-color: #EE9026;
+      }
+    }
+  }
+}
