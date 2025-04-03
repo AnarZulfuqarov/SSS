@@ -2,8 +2,7 @@ import {Outlet, useNavigate} from "react-router-dom";
 import Cookies from "js-cookie";
 import AdminLeftBar from "../AdminLeftBar/index.jsx";
 import {RiLogoutBoxLine} from "react-icons/ri";
-import profile from "../../../assets/image-pBWKwnIj.webp";
-
+import  image1 from "/src/assets/profile.webp"
 function AdminPage() {
     const navigate = useNavigate();
 
@@ -19,7 +18,7 @@ function AdminPage() {
                 <div className="adminTopBar">
                     <button onClick={handleLogout}><RiLogoutBoxLine/></button>
                     <p>Admin</p>
-                    <img src={profile} alt="profile"/>
+                    <img src={image1} alt="profile"/>
                 </div>
                 <div className="rightBottomBar">
                     <Outlet/>

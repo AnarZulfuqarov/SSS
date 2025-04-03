@@ -1,7 +1,7 @@
 import './App.css'
 import {createBrowserRouter} from "react-router";
-import {ROUTES} from "./routes/ROUTES.jsx";
 import {RouterProvider} from "react-router-dom";
+import ROUTES from "./routes/ROUTES.jsx";
 
 function App() {
     const routes = createBrowserRouter(ROUTES);

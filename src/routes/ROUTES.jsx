@@ -1,11 +1,11 @@
-import {createBrowserRouter} from "react-router-dom";
 import ProtectedRoute from "../ProtectedRoute.jsx";
 import MainPage from "../pages/index.jsx";
 import HomePage from "../pages/UserPages/HomePage/index.jsx";
 import AdminPage from "../components/AdminComponents/AdminPage/index.jsx";
+import NotFound from "../pages/UserPages/Not Found/NotFound.jsx";
 
 
-const router = createBrowserRouter([
+const router = [
     {
         path: '/',
         element: <MainPage/>,
@@ -14,28 +14,6 @@ const router = createBrowserRouter([
                 path: "/",
                 element: <HomePage/>
             },
-            // {
-            //     path: "/contact",
-            //     element: <Contact/>
-            // },
-            // {
-            //     path: "/blog",
-            //     element: <Blogs/>
-            // },
-            // {
-            //     path: "/about",
-            //     element: <About/>
-            // },
-            // {
-            //     path: "/services",
-            //     element: <Services/>
-            // },
-
-            // {
-            //     path: "/blogs/:blogId",
-            //     element: <BlogDetail/>
-            // },
-
         ]
     },
     {
@@ -44,46 +22,12 @@ const router = createBrowserRouter([
             <ProtectedRoute>
                 <AdminPage/>
             </ProtectedRoute>
-        ),
-        children: [
-            // {
-            //     path: "/admin/blog",
-            //     element: <AdminBlog/>,
-            // },
-            // {
-            //     path: "/admin/cities",
-            //     element: <AdminCity/>,
-            // },
-            // {
-            //     path: "/admin/countries",
-            //     element: <AdminCountry/>,
-            // },
-            // {
-            //     path: "/admin/customersViews",
-            //     element: <AdminCustomerView/>
-            // },
-            // {
-            //     path: "/admin/tours",
-            //     element: <AdminTour/>
-            // },
-            // {
-            //     path: "/admin/reserv",
-            //     element: <AdminReserved/>,
-            // },
-            // {
-            //     path: "/admin/contact",
-            //     element: <AdminContact/>,
-            // }
-        ]
-    },
-    {
-        path: "/login",
-        element: <AdminLogin/>
+        )
     },
     {
         path: "*",
         element: <NotFound/>
     }
-]);
+];
 
 export default router;
