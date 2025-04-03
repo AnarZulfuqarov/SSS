@@ -10,12 +10,12 @@ function App() {
     return (
         <>
             <RouterProvider router={routes}/>
-            <div className={"container"}>
-                <div className="row">
-                    <ServicesCard/>
-                    <ServicesCard/>
-                </div>
-            </div>
+            {/*<div className={"container"}>*/}
+            {/*    <div className="row">*/}
+            {/*        <ServicesCard/>*/}
+            {/*        <ServicesCard/>*/}
+            {/*    </div>*/}
+            {/*</div>*/}
         </>
     )
 }
