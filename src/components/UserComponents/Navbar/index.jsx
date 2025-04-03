@@ -7,21 +7,21 @@ function Navbar() {
             <div className="container">
                 <div className={"row"}>
                     <div className={"box col-3 col-md-6 col-sm-12 col-xs-12"}>
-                            Salam
+                            Salam1
                     </div>
                     <div className={"col-3 col-md-6 col-sm-12 col-xs-12"}>
                         <div className={"box"}>
-                            Salam
+                            Salam2
                         </div>
                     </div>
                     <div className={"col-3 col-md-6 col-sm-12 col-xs-12"}>
                         <div className={"box"}>
-                            Salam
+                            Salam3
                         </div>
                     </div>
                     <div className={"col-3 col-md-6 col-sm-12 col-xs-12"}>
                         <div className={"box"}>
-                            Salam
+                            Salam4
                         </div>
                     </div>
                 </div>
