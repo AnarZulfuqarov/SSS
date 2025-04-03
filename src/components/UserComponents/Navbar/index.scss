@@ -33,6 +33,11 @@
         font-weight: 500;
         font-size: 16px;
         line-height: 100%;
+        transition: all .2s ease;
+
+        &:hover {
+          color: #EE9026;
+        }
       }
 
       .selected {
@@ -55,9 +60,16 @@
         border: 1px solid #EE9026;
         padding: 8px;
         border-radius: 5px;
+        transition: all .2s ease;
 
         img {
           width: 24px;
+        }
+
+        &:hover {
+          background-color: #EE9026;
+          cursor: pointer;
+          color: white;
         }
       }
 
@@ -70,6 +82,18 @@
         align-items: center;
         justify-content: center;
         cursor: pointer;
+        transition: all .2s ease;
+        border: 1px solid transparent;
+
+        &:hover {
+          background-color: white;
+          cursor: pointer;
+          border: 1px solid #EE9026;
+
+          .icon {
+            color: #EE9026;
+          }
+        }
 
         .icon {
           color: white;
