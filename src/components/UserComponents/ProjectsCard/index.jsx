@@ -5,7 +5,7 @@ import {IoMdArrowUp} from "react-icons/io";
 function ProjectsCard() {
 
     return (
-        <section id="projectsCard" className={"col-4"}>
+        <section id="projectsCard" className={"col-4 col-md-4 col-sm-12 col-xs-12"}>
             <div className={"wrapper"}>
                 <img src={image1} alt={"Image"}/>
                 <div className={"title"}>
