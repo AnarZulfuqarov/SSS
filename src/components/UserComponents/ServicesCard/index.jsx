@@ -3,7 +3,7 @@ import image from "/src/assets/cement-bag_186840811.png"
 import {RiArrowRightUpLine} from "react-icons/ri";
 function ServicesCard() {
     return (
-        <div className={"col-3"}>
+        <div className={"col-3 col-md-6 col-sm-12 col-xs-12"}>
             <div id={"services-card"}>
                 <img src={image} alt=""/>
                 <div className={"card-number"}>01</div>
