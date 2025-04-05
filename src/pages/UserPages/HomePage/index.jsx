@@ -6,7 +6,6 @@ import ServicesCard from "../../../components/UserComponents/ServicesCard/index.
 function HomePage() {
     return (
         <section id={"homePage"}>
-            <Navbar/>
             <div className={"container"}>
                 <div className={"row"}>
                     <ProjectsCard/>
@@ -20,7 +19,6 @@ function HomePage() {
                     <ServicesCard/>
                 </div>
             </div>
-            <Footer/>
         </section>
     );
 }

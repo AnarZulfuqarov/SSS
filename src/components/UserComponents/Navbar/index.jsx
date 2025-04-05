@@ -60,7 +60,7 @@ function Navbar() {
                         <Link to="/services" className={`link ${pathname === '/services' ? 'selected' : ''}`}>
                             Xidmətlər
                         </Link>
-                        <Link to="/projects" className={`link ${pathname === '/projects' ? 'selected' : ''}`}>
+                        <Link to="/portfolio" className={`link ${pathname === '/portfolio' ? 'selected' : ''}`}>
                             Layihələrimiz
                         </Link>
                         <Link to="/about" className={`link ${pathname === '/about' ? 'selected' : ''}`}>

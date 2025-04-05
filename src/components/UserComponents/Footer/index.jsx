@@ -37,9 +37,10 @@ function Footer() {
                                 <div className={"services"}>
                                     <h3>Keçidlər</h3>
                                     <li><Link to={"/"}>Ana səhifə</Link></li>
-                                    <li><Link to={"/"}>Turlar</Link></li>
-                                    <li><Link to={"/"}>Ölkədaxili turlar</Link></li>
-                                    <li><Link to={"/"}>Əlaqə</Link></li>
+                                    <li><Link to={"/portfolio"}>Portfolio</Link></li>
+                                    <li><Link to={"/services"}>Xidmətlər</Link></li>
+                                    <li><Link to={"/"}>Haqqımızda</Link></li>
+                                    <li><Link to={"/contact"}>Əlaqə</Link></li>
                                 </div>
                             </div>
                             <div className={"col-4 col-md-12 col-sm-12 col-xs-12"}>

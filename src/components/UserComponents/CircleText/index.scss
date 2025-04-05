@@ -1,0 +1,33 @@
+.circle-text-wrapper {
+  position: relative;
+  width: 150px; /* Dairənin ümumi eni/hündürlüyü */
+  height: 150px;
+  margin: 50px auto; /* Ortada göstərmək üçün */
+}
+
+/* SVG-i konteynerin tam ölçüsünə uyğunlaşdırırıq və animasiya əlavə edirik */
+.circle-text-svg {
+  width: 100%;
+  height: 100%;
+  animation: spin 15s linear infinite;
+}
+
+/* Mərkəzdəki ox sabit qalır */
+.center-arrow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  color: #b27426; /* Oxun rəngi */
+  font-size: 30px; /* Oxun ölçüsü */
+}
+
+/* 360 dərəcə fırlanma animasiyası */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

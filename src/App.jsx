@@ -3,12 +3,14 @@ import {createBrowserRouter} from "react-router";
 import {RouterProvider} from "react-router-dom";
 import ROUTES from "./routes/ROUTES.jsx";
 import ServicesCard from "./components/UserComponents/ServicesCard/index.jsx";
+import {ToastContainer} from "react-toastify";
 
 function App() {
     const routes = createBrowserRouter(ROUTES);
 
     return (
         <>
+            <ToastContainer/>
             <RouterProvider router={routes}/>
             {/*<div className={"container"}>*/}
             {/*    <div className="row">*/}

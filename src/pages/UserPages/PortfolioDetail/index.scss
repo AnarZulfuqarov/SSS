@@ -1,0 +1,223 @@
+#detail-page{
+  .banner {
+    height: 400px;
+    background-position: center;
+    object-fit: cover;
+    text-align: center;
+    align-content: center;
+    color: white;
+    background-repeat: no-repeat;
+
+    .head {
+      border-bottom: 1px solid #B7B7B7;
+      width: 100%;
+
+      h1 {
+        font-weight: 800;
+        font-size: 48px;
+        line-height: 72px;
+        margin-bottom: 13px;
+      }
+    }
+
+    p {
+      margin-top: 22px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 24px;
+
+      .dot {
+        width: 12px;
+        height: 12px;
+        background-color: #EE9026;
+        border-radius: 50%;
+        margin: 0 8px 0 16px;
+      }
+
+      a {
+        color: white;
+        transition: all 0.3s ease-in-out;
+
+        &:hover {
+          color: #EE9026;
+        }
+      }
+    }
+  }
+  .detail{
+    padding: 90px 0;
+    .head{
+      margin-bottom: 120px;
+      .project-details {
+        border-radius: 8px;
+        font-family: 'Arial', sans-serif;
+        max-width: 500px; /* İstəyə görə genişliyi tənzimləyin */
+        margin: 0 auto;
+
+        .details-header {
+          display: flex;
+          align-items: center;
+          margin-bottom: 28px;
+          justify-content: end;
+        }
+
+        .details-header hr {
+          width: 20%;
+          border: none;
+          border-top: 1px solid #EE9026;
+          margin-right: 10px;
+        }
+
+        .details-header h3 {
+          font-weight: 600;
+          font-size: 20px;
+          line-height: 30px;
+          color: #EE9026;
+
+        }
+
+        .details-list {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+        }
+
+        .detail-item {
+          display: flex;
+          justify-content: space-between;
+          padding: 25px 15px;
+          border-bottom: 1px solid #eee;
+        }
+
+
+        .detail-label {
+          display: flex;
+          align-items: center;
+          font-weight: bold;
+          color: #555;
+        }
+
+        .dot {
+          display: inline-block;
+          width: 8px;
+          height: 8px;
+          background-color:#EE9026 ;
+          border-radius: 50%;
+          margin-right: 8px;
+        }
+
+        .detail-value {
+          color: #777;
+          text-align: right;
+        }
+
+      }
+      .head-left {
+        max-width: 600px; /* Sizin layout-a uyğun genişliyi tənzimləyin */
+        margin: 0 auto;   /* Ortada yerləşdirmək üçün */
+        font-family: "Arial", sans-serif;
+        color: #333;
+
+        .title-row {
+          display: flex;
+          align-items: center;
+          margin-bottom: 16px;
+        }
+
+        .title-row hr {
+          width: 25%;
+          margin-right: 8px;
+          border: none;
+          border-top: 1px solid #EE9026; /* Xəttin rəngi */
+        }
+
+        .title-row h4 {
+          font-weight: 600;
+          font-size: 20px;
+          line-height: 30px;
+          color: #EE9026; /* Sea Breeze rəngi */
+        }
+
+        h1 {
+          margin: 16px 0;
+          font-weight: 700;
+          font-size: 40px;
+          line-height: 60px;
+          vertical-align: middle;
+        }
+
+        p {
+          font-weight: 500;
+          font-size: 16px;
+          line-height: 30px;
+          color: #6E6E6E;
+        }
+      }
+    }
+    .main{
+      .header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 88px;
+        // Sol hissədəki sətir və kiçik mətn
+        .title-row {
+          display: flex;
+          align-items: center;
+          flex: 0.6;
+          hr {
+            width: 20%;
+            margin: 0 8px 0 0;
+            border: none;
+            border-top: 1px solid #EE9026; // Xəttin rəngi
+          }
+
+          .subtitle {
+            font-weight: 600;
+            font-size: 20px;
+            line-height: 30px;
+            color: #EE9026; // Mətndəki qızılı rəng
+          }
+        }
+
+        // Sağ hissədəki böyük başlıq
+        .main-title {
+          font-weight: 700;
+          font-size: 40px;
+          line-height: 60px;
+
+        }
+      }
+      .row{
+        margin-bottom: 70px;
+      }
+      .more{
+        width: max-content;
+        position: relative;
+        border: 1px solid #B2B2B2;
+        border-radius: 25px;
+        padding: 12.5px 36px 12.5px 16px;
+        button{
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          right: -15px;
+          border-radius: 50%;
+          border: none;
+          width: 40px;
+          height: 40px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background-color: #000000;
+          cursor: pointer;
+          color: #FFFFFF;
+          font-size: 18px;
+          transition: all 0.3s ease-in-out;
+        }
+      }
+    }
+  }
+}

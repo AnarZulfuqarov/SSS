@@ -1,0 +1,28 @@
+.pagination-container {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Düymələr arasında boşluq */
+  padding: 0 16px;
+}
+
+.pagination-btn {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  cursor: pointer;
+  outline: none;
+  font-size: 14px;
+}
+
+/* Aktiv səhifə düyməsi (qaranlıq fon, ağ yazı) */
+.pagination-btn.active {
+  background-color: #555;
+  color: #fff;
+}
+
+/* Sonuncu səhifədə olanda > düyməsi sönük görünür */
+.pagination-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

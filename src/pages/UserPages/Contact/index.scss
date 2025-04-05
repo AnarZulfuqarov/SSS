@@ -1,0 +1,148 @@
+#contact-page {
+  .banner {
+    height: 400px;
+    background-position: center;
+    object-fit: cover;
+    text-align: center;
+    align-content: center;
+    color: white;
+    background-repeat: no-repeat;
+
+    .head {
+      border-bottom: 1px solid #B7B7B7;
+      width: 100%;
+
+      h1 {
+        font-weight: 800;
+        font-size: 48px;
+        line-height: 72px;
+        margin-bottom: 13px;
+      }
+    }
+
+    p {
+      margin-top: 22px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 24px;
+
+      .dot {
+        width: 12px;
+        height: 12px;
+        background-color: #EE9026;
+        border-radius: 50%;
+        margin: 0 8px 0 16px;
+      }
+
+      a {
+        color: white;
+        transition: all 0.3s ease-in-out;
+
+        &:hover {
+          color: #EE9026;
+        }
+      }
+    }
+  }
+
+  .header {
+    padding: 90px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    h1 {
+      font-weight: 700;
+      font-size: 40px;
+      line-height: 72px;
+    }
+
+    .circle {
+      position: absolute;
+      bottom: -50%;
+      right: 0;
+    }
+  }
+
+  .contact {
+    padding: 130px 0 90px;
+    background-color: #F3F4F9;
+    margin-bottom: 110px;
+
+    .form-section {
+      padding: 37px 42px;
+      background-color: #FFFFFF;
+      align-items: end;
+
+      .form {
+        .form-head {
+          color: #EE9026;
+          margin-bottom: 24px;
+
+          hr {
+            width: 10%;
+            border: 1px solid #EE9026;
+          }
+
+          h2 {
+            font-weight: 700;
+            font-size: 20px;
+            line-height: 30px;
+            width: 60%;
+          }
+
+          display: flex;
+          align-items: center;
+          gap: 16px;
+        }
+
+        .form-body {
+          label {
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 30px;
+            margin-bottom: 10px;
+          }
+
+          input {
+            width: 100%;
+            height: 55px;
+            border-radius: 8px;
+            border: 1px solid #EBEBEB;
+            box-shadow: 2px 2px 3px 0px #D1D1D140;
+            padding: 17px 0 17px 22px;
+            outline: none;
+
+          }
+
+          textarea {
+            width: 100%;
+            border-radius: 8px;
+            border: 1px solid #EBEBEB;
+            box-shadow: 2px 2px 3px 0px #D1D1D140;
+            padding: 17px 22px 17px 22px;
+            outline: none;
+
+          }
+
+          button {
+            width: 100%;
+            padding: 14px 22px 14px 22px;
+            background-color: black;
+            color: white;
+            border: none;
+            border-radius: 18px;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 21px;
+          }
+        }
+      }
+
+    }
+  }
+}

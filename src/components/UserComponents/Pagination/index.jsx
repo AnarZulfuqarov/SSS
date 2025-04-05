@@ -1,0 +1,39 @@
+import "./index.scss";
+
+function Pagination({currentPage, totalPages, onPageChange}) {
+    // Səhifələrin siyahısını yaratmaq
+    const pages = [];
+    for (let i = 1; i <= totalPages; i++) {
+        pages.push(i);
+    }
+
+    // Növbəti səhifəyə keçmək üçün funksiyalar
+    const handleNext = () => {
+        if (currentPage < totalPages) {
+            onPageChange(currentPage + 1);
+        }
+    };
+
+    return (
+        <div className="pagination-container">
+            {pages.map((page) => (
+                <button
+                    key={page}
+                    className={`pagination-btn ${currentPage === page ? "active" : ""}`}
+                    onClick={() => onPageChange(page)}
+                >
+                    {page}
+                </button>
+            ))}
+            <button
+                className="pagination-btn"
+                onClick={handleNext}
+                disabled={currentPage === totalPages}
+            >
+                &gt;
+            </button>
+        </div>
+    );
+}
+
+export default Pagination;

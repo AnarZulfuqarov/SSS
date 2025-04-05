@@ -1,0 +1,43 @@
+.slider-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  aspect-ratio: 9/9.3;
+}
+
+.slider-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0,0,0,0.4);
+  color: #fff;
+  border: none;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  outline: none;
+  font-size: 24px;
+  line-height: 40px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Sol Ox Düyməsi */
+.slider-btn-left {
+  left: 2px;
+  border-radius:50%; /* Dairəvi künclər (istəyə görə) */
+}
+
+/* Sağ Ox Düyməsi */
+.slider-btn-right {
+  right: 2px;
+  border-radius: 50%;
+}

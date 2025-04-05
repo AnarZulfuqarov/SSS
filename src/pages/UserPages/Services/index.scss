@@ -1,0 +1,130 @@
+#services-page {
+  .banner {
+    height: 400px;
+    background-position: center;
+    object-fit: cover;
+    text-align: center;
+    align-content: center;
+    color: white;
+    background-repeat: no-repeat;
+
+    .head {
+      border-bottom: 1px solid #B7B7B7;
+      width: 100%;
+
+      h1 {
+        font-weight: 800;
+        font-size: 48px;
+        line-height: 72px;
+        margin-bottom: 13px;
+      }
+    }
+
+    p {
+      margin-top: 22px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 24px;
+
+      .dot {
+        width: 12px;
+        height: 12px;
+        background-color: #EE9026;
+        border-radius: 50%;
+        margin: 0 8px 0 16px;
+      }
+
+      a {
+        color: white;
+        transition: all 0.3s ease-in-out;
+
+        &:hover {
+          color: #EE9026;
+        }
+      }
+    }
+  }
+
+  .services {
+    padding: 90px 0;
+
+    .head {
+      padding: 0 16px;
+      display: flex;
+      margin-bottom: 140px;
+      justify-content: space-between;
+
+      .head-left {
+        width: 25%;
+        height: 130px;
+
+        hr {
+          width: 30%;
+          border: 1px solid #EE9026;
+        }
+
+        h4 {
+          font-weight: 600;
+          font-size: 20px;
+          line-height: 30px;
+          color: #EE9026;
+        }
+
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .head-center {
+        width: 40%;
+
+        h1 {
+          font-weight: 700;
+          font-size: 40px;
+          line-height: 60px;
+          margin-bottom: 22px;
+        }
+
+        p {
+          width: 90%;
+          font-weight: 500;
+          font-size: 16px;
+          line-height: 26px;
+          color: #6E6E6E;
+        }
+
+      }
+
+      .head-right {
+        width: 25%;
+
+        h1 {
+          font-weight: 800;
+          font-size: 100.67px;
+          line-height: 113.25px;
+          margin-bottom: 16px;
+          color: #EE9026;
+        }
+
+        p {
+
+          font-weight: 700;
+          font-size: 24px;
+          line-height: 30px;
+          margin-bottom: 18px;
+        }
+
+        div:nth-child(1) {
+          border-bottom: 1px solid #BABABA;
+        }
+      }
+    }
+
+    .row {
+      row-gap: 80px;
+    }
+  }
+}

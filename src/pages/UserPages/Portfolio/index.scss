@@ -1,0 +1,95 @@
+#portfolio-page {
+  .banner {
+    height: 400px;
+    background-position: center;
+    object-fit: cover;
+    text-align: center;
+    align-content: center;
+    color: white;
+    background-repeat: no-repeat;
+
+    .head {
+      border-bottom: 1px solid #B7B7B7;
+      width: 100%;
+
+      h1 {
+        font-weight: 800;
+        font-size: 48px;
+        line-height: 72px;
+        margin-bottom: 13px;
+      }
+    }
+
+    p {
+      margin-top: 22px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 24px;
+
+      .dot {
+        width: 12px;
+        height: 12px;
+        background-color: #EE9026;
+        border-radius: 50%;
+        margin: 0 8px 0 16px;
+      }
+
+      a {
+        color: white;
+        transition: all 0.3s ease-in-out;
+
+        &:hover {
+          color: #EE9026;
+        }
+      }
+    }
+  }
+
+  .portfolio {
+    padding: 90px 0;
+
+    .row {
+      margin-bottom: 48px;
+    }
+
+    .head {
+      padding: 0 16px;
+      display: flex;
+      align-items: center;
+      margin-bottom: 80px;
+
+      .head-left {
+        flex: 0.5;
+
+        hr {
+          width: 30%;
+          border: 1px solid #EE9026;
+        }
+
+        h4 {
+          font-weight: 600;
+          font-size: 20px;
+          line-height: 30px;
+          color: #EE9026;
+        }
+
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .head-right {
+        h1 {
+          font-weight: 700;
+          font-size: 40px;
+          line-height: 60px;
+          width: 80%;
+        }
+
+      }
+    }
+  }
+}
