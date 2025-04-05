@@ -2,10 +2,15 @@ import './App.css'
 import {createBrowserRouter} from "react-router";
 import {RouterProvider} from "react-router-dom";
 import ROUTES from "./routes/ROUTES.jsx";
-import ServicesCard from "./components/UserComponents/ServicesCard/index.jsx";
 import {ToastContainer} from "react-toastify";
+import Cookies from "js-cookie";
 
 function App() {
+    const token = Cookies.get("sssTourToken");
+
+    if (!token) {
+        Cookies.set("sssTourToken", "null");
+    }
     const routes = createBrowserRouter(ROUTES);
 
     return (

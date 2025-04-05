@@ -3,6 +3,7 @@ import Cookies from "js-cookie";
 import AdminLeftBar from "../AdminLeftBar/index.jsx";
 import {RiLogoutBoxLine} from "react-icons/ri";
 import  image1 from "/src/assets/profile.webp"
+import './index.scss'
 function AdminPage() {
     const navigate = useNavigate();
 

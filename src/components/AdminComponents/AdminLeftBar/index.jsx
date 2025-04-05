@@ -1,9 +1,9 @@
 import './index.scss'
 // import logo from "../../../assets/LogoEsasRed.png"
 import { NavLink, useLocation } from "react-router-dom";
-import {TbLogs, TbReservedLine} from "react-icons/tb";
+import {TbBrandCashapp, TbLogs, TbReservedLine} from "react-icons/tb";
 import { FaRegCommentDots } from "react-icons/fa";
-import { MdOutlineAccountBalance, MdOutlineTour } from "react-icons/md";
+import {MdOutlineAccountBalance, MdOutlineMiscellaneousServices, MdOutlineTour} from "react-icons/md";
 import { PiCityLight } from "react-icons/pi";
 
 function AdminLeftBar() {
@@ -12,48 +12,25 @@ function AdminLeftBar() {
     return (
         <section id="adminLeftBar">
             {/*<img src={logo} alt="logo" />*/}
-            <li className={location.pathname === "/admin/blog" ? "selected" : ""}>
+            <li className={location.pathname === "/admin/portfolio" ? "selected" : ""}>
                 <TbLogs className="icon" />
-                <NavLink to="/admin/blog">
-                    Bloqlar
+                <NavLink to="/admin/portfolio">
+                    Portfolio
                 </NavLink>
             </li>
-            <li className={location.pathname === "/admin/cities" ? "selected" : ""}>
-                <PiCityLight className="icon" />
-                <NavLink to="/admin/cities">
-                    Şəhərlər
+            <li className={location.pathname === "/admin/services" ? "selected" : ""}>
+                <MdOutlineMiscellaneousServices  className="icon" />
+                <NavLink to="/admin/services">
+                    Xidmətlər
                 </NavLink>
             </li>
-            <li className={location.pathname === "/admin/countries" ? "selected" : ""}>
-                <MdOutlineAccountBalance className="icon" />
-                <NavLink to="/admin/countries">
-                    Ölkələr
+            <li className={location.pathname === "/admin/brand" ? "selected" : ""}>
+                <TbBrandCashapp className="icon" />
+                <NavLink to="/admin/brand">
+                    Brandlər
                 </NavLink>
             </li>
-            <li className={location.pathname === "/admin/customersViews" ? "selected" : ""}>
-                <FaRegCommentDots className="icon" />
-                <NavLink to="/admin/customersViews">
-                    İstifadəçi Rəyləri
-                </NavLink>
-            </li>
-            <li className={location.pathname === "/admin/tours" ? "selected" : ""}>
-                <MdOutlineTour className="icon" />
-                <NavLink to="/admin/tours">
-                    Turlar
-                </NavLink>
-            </li>
-            <li className={location.pathname === "/admin/reserv" ? "selected" : ""}>
-                <TbReservedLine className="icon" />
-                <NavLink to="/admin/reserv">
-                    Rezervasiyalar
-                </NavLink>
-            </li>
-            <li className={location.pathname === "/admin/contact" ? "selected" : ""}>
-                <TbReservedLine className="icon" />
-                <NavLink to="/admin/contact">
-                    Əlaqələr
-                </NavLink>
-            </li>
+
         </section>
     );
 }
