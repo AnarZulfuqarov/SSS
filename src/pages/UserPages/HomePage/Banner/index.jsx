@@ -59,7 +59,7 @@ const BannerHome = () => {
                     <CircleTextWhite/>
                     <h1>Dəqiqlik, Keyfiyyət və Təcrübə – Tikintidə Güvənli Ünvanınız</h1>
                 </div>
-                <hr/>
+                <div className={"hr"}></div>
 
                 <div className="pagination-dots">
                     {slidesData.map((_, index) => (
