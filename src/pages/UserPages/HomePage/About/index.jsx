@@ -21,7 +21,7 @@ function AboutHome() {
                             <h4>Beynəlxalq Sertifikatlarla Təsdiqlənmiş Keyfiyyət və Yüzlərlə Uğurlu Layihə ilə Sübut Olunmuş Təcrübə</h4>
                             <p>Şirkətimiz beynəlxalq standartlara cavab verən sertifikatları ilə peşəkarlığını və yüksək keyfiyyətini hər zaman təsdiq edir. Fəaliyyət göstərdiyimiz müddət ərzində uğurla tamamladığımız çoxsaylı layihələr, müştərilərimizin məmnuniyyətini və bizə olan güvənini artıran ən əsas amillərdir. Təcrübəli mütəxəssislərimiz və əldə etdiyimiz sertifikatlar sayəsində, hər bir layihəmizdə təhlükəsizlik, keyfiyyət və dəqiqlik prinsiplərinə sadiq qalaraq, inşaat sektorunda nümunəvi bir mövqe qazanmışıq.</p>
                             <div className={"more"}>
-                                Daha ətraflı
+                                Daha ətraflı bax
                                 <button><RiArrowRightUpLine /></button>
                             </div>
                         </div>

@@ -1,0 +1,126 @@
+#whyChoose{
+
+  .head {
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 80px;
+
+    .head-left {
+      flex: 0.8;
+
+      hr {
+        width: 15%;
+        border: 1px solid #EE9026;
+      }
+
+      h4 {
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 30px;
+        color: #EE9026;
+      }
+
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .head-right {
+      h1 {
+        font-weight: 700;
+        font-size: 40px;
+        line-height: 60px;
+        width: 80%;
+      }
+
+    }
+  }
+  .whyChoose{
+    position: relative;
+    padding: 160px 0;
+    .back{
+      position: absolute;
+      height: 100%;
+      width: 65%;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      background-color: #F3F4F9;
+      z-index: -1;
+    }
+    .image{
+      width: 100%;
+      height: 100%;
+      img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+
+  .text{
+    padding: 0 25px;
+    h2{
+      font-weight: 700;
+      font-size: 32px;
+      line-height: 72px;
+      margin-bottom: 8px;
+    }
+    p{
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 26px;
+      margin-bottom: 30px;
+    }
+    .row{
+    }
+    .col-6 {
+      width: 50%;
+      box-sizing: border-box;
+      padding: 0;
+    }
+
+    .left-list {
+      padding-right: 10px;
+    }
+
+    .right-list {
+      padding-left: 10px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+
+        position: relative;
+        padding: 15.5px 26px;
+        border-bottom: 1px solid #C3C3C3;
+        border-top: 1px solid #C3C3C3;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 26px;
+
+
+        &::before {
+          content: "";
+          position: absolute;
+          left: 10px;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background-color: #EE9026;
+        }
+      }
+    }
+  }
+
+  }
+
+}
