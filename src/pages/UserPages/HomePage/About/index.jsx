@@ -2,6 +2,7 @@ import './index.scss'
 import {RiArrowRightUpLine} from "react-icons/ri";
 import city from "/src/assets/city.png"
 import certificate from "/src/assets/certificate.png"
+
 function AboutHome() {
     return (
         <div id={"aboutHome"}>
@@ -16,17 +17,23 @@ function AboutHome() {
                     </div>
                 </div>
                 <div className={"row"}>
-                    <div className={"col-6"}>
+                    <div className={"col-6 col-md-6 col-sm-12 col-xs-12"}>
                         <div className={"text"}>
-                            <h4>Beynəlxalq Sertifikatlarla Təsdiqlənmiş Keyfiyyət və Yüzlərlə Uğurlu Layihə ilə Sübut Olunmuş Təcrübə</h4>
-                            <p>Şirkətimiz beynəlxalq standartlara cavab verən sertifikatları ilə peşəkarlığını və yüksək keyfiyyətini hər zaman təsdiq edir. Fəaliyyət göstərdiyimiz müddət ərzində uğurla tamamladığımız çoxsaylı layihələr, müştərilərimizin məmnuniyyətini və bizə olan güvənini artıran ən əsas amillərdir. Təcrübəli mütəxəssislərimiz və əldə etdiyimiz sertifikatlar sayəsində, hər bir layihəmizdə təhlükəsizlik, keyfiyyət və dəqiqlik prinsiplərinə sadiq qalaraq, inşaat sektorunda nümunəvi bir mövqe qazanmışıq.</p>
+                            <h4>Beynəlxalq Sertifikatlarla Təsdiqlənmiş Keyfiyyət və Yüzlərlə Uğurlu Layihə ilə Sübut
+                                Olunmuş Təcrübə</h4>
+                            <p>Şirkətimiz beynəlxalq standartlara cavab verən sertifikatları ilə peşəkarlığını və yüksək
+                                keyfiyyətini hər zaman təsdiq edir. Fəaliyyət göstərdiyimiz müddət ərzində uğurla
+                                tamamladığımız çoxsaylı layihələr, müştərilərimizin məmnuniyyətini və bizə olan güvənini
+                                artıran ən əsas amillərdir. Təcrübəli mütəxəssislərimiz və əldə etdiyimiz sertifikatlar
+                                sayəsində, hər bir layihəmizdə təhlükəsizlik, keyfiyyət və dəqiqlik prinsiplərinə sadiq
+                                qalaraq, inşaat sektorunda nümunəvi bir mövqe qazanmışıq.</p>
                             <div className={"more"}>
                                 Daha ətraflı bax
-                                <button><RiArrowRightUpLine /></button>
+                                <button><RiArrowRightUpLine/></button>
                             </div>
                         </div>
                     </div>
-                    <div className={"col-6"}>
+                    <div className={"zakir col-6 col-md-6 col-sm-12 col-xs-12"}>
                         <div className={"image"}>
                             <div className={"content"}>
                                 <div className={"black box"}>

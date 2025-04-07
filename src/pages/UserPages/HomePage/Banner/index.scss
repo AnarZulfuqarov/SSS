@@ -2,6 +2,13 @@
   position: relative;
   overflow: hidden;
   height: 620px;
+
+  .hr {
+    height: 1px;
+    background-color: white;
+    margin: 0 16px;
+  }
+
   .slide {
     position: absolute;
 
@@ -25,12 +32,15 @@
     padding: 90px 0;
     transform: translate(-50%, -50%);
     z-index: 3;
-    width: 1320px;
+    max-width: 1320px;
+    width: 100%;
+    margin: 0 auto;
 
     .banner-content {
-
+      padding: 0 16px;
       color: #fff;
-      h1{
+
+      h1 {
         font-weight: 800;
         font-size: 48px;
         line-height: 72px;
@@ -39,14 +49,16 @@
       }
 
     }
-    .more{
+
+    .more {
       width: max-content;
       position: relative;
       border: 1px solid #B2B2B2;
       color: white;
       border-radius: 25px;
       padding: 12.5px 36px 12.5px 16px;
-      button{
+
+      button {
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
@@ -65,7 +77,8 @@
         transition: all 0.3s ease-in-out;
       }
     }
-    .bannerfoot{
+
+    .bannerfoot {
       color: white;
       width: 45%;
       margin-left: auto;
@@ -74,12 +87,16 @@
       gap: 30px;
       margin-top: 57px;
       align-items: center;
-      p{
+      padding-left: 16px;
+      padding-right: 16px;
+
+      p {
         font-weight: 600;
         font-size: 16px;
         line-height: 100%;
       }
     }
+
     .pagination-dots {
       position: absolute;
       left: 0;
@@ -87,6 +104,7 @@
       display: flex;
       justify-content: center;
       gap: 5px;
+      padding-left: 16px;
 
       .dot {
         width: 10px;
@@ -98,6 +116,27 @@
 
         &.active {
           background-color: #000000;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 992px) {
+    .container {
+      .banner-content {
+        h1 {
+          font-size: 30px;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 400px) {
+    .container {
+      .banner-content {
+        h1 {
+          font-size: 20px;
+          line-height: 48px;
         }
       }
     }

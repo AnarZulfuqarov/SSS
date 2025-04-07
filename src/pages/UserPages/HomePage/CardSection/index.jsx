@@ -28,7 +28,9 @@ const cardsData = [
 
 const CardsContainer = () => {
     return (
-        <div className="cards-container">
+        <div className="row" style={{
+            overflow: "hidden",
+        }}>
             {cardsData.map((card, index) => (
                 <Card
                     key={index}

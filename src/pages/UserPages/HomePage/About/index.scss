@@ -82,12 +82,15 @@
       }
     }
   }
-  .image{
+
+  .image {
     height: 100%;
+    aspect-ratio: 16/9;
     background-image: url("https://s3-alpha-sig.figma.com/img/0bd9/6c15/379f8245c3c50bc47879c9c12d03822a?Expires=1745193600&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=YxEAZ6ua~HV8P~nrcQmy4wKIw5TbqSVNb1aTFAe94ZVjv2IKQBax1DQlkPLbdgSeeHnehSr-PHY73sy-0BlAJqG4MIHx~8t3Zaz3adEPWfRAJgmuh5oT6bDH~bOrBtbrFvWZNhlS4Yg9xDFJWX7i~TSm5f4edMM6WuBTmYkEN~zHLT4nXwqhRGLCcNvuqv22~tHPbHYb59olmQ-~Rxdu1m3~jR~0mjdtmTG4Rhk60yDsI8-vzW8uU7-xPqaluzpWSoyk9qK1~gaAuN~5pLsSobp7H0uxQDJeMW2vfu8RgHcNVhMvNG~JhKDJuzjvNOvnZBeUaVyel7J9kvRAp1zRKw__");
     background-size: cover;
     position: relative;
-    .content{
+
+    .content {
       display: flex;
       align-items: center;
       justify-content: end;
@@ -95,28 +98,95 @@
       right: 40px;
       top: -35%;
       gap: 20px;
-      .box{
+
+      .box {
         padding: 28.5px 46px 28.5px 24px;
         color: white;
         width: 180px;
-        h3{
+
+        h3 {
           font-weight: 800;
           font-size: 48px;
           line-height: 72px;
           margin-bottom: 16px;
         }
-        p{
+
+        p {
           font-weight: 500;
           font-size: 15px;
           line-height: 24px;
         }
       }
-      .black{
+
+      .black {
         background-color: #1C1C1C;
       }
-      .orange{
+
+      .orange {
         background-color: #EE9026;
       }
+    }
+  }
+
+  @media screen and (max-width: 992px) {
+    .row {
+      row-gap: 80px;
+    }
+    .image {
+      .content {
+        gap: 10px;
+        right: 10px;
+
+        .box {
+          width: 110px;
+          padding: 10px;
+
+          img {
+            width: 25px;
+          }
+
+          h3 {
+            font-size: 20px;
+            line-height: 25px;
+          }
+
+          p {
+            font-size: 12px;
+            line-height: 15px;
+          }
+        }
+
+        .black {
+        }
+
+        .orange {
+        }
+      }
+    }
+
+    .head {
+      flex-direction: column;
+      align-items: start;
+      margin-bottom: 50px;
+
+      .head-left {
+        width: 100%;
+      }
+
+      .head-right {
+        width: 100%;
+
+        h1 {
+          font-size: 20px;
+          line-height: 40px;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 400px) {
+    .row {
+      row-gap: 60px;
     }
   }
 }
