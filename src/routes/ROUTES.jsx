@@ -7,7 +7,7 @@ import Contact from "../pages/UserPages/Contact/index.jsx";
 import Portfolio from "../pages/UserPages/Portfolio/index.jsx";
 import Services from "../pages/UserPages/Services/index.jsx";
 import PortfolioDetail from "../pages/UserPages/PortfolioDetail/index.jsx";
-import AdminBrand from "../pages/AdminPages/AdminBrand/index.jsx";
+import AdminBrand from "../pages/AdminPages/AdminContact/index.jsx";
 
 
 const router = [
@@ -42,7 +42,7 @@ const router = [
         element: <AdminPage/>,
         children: [
             {
-                path: "/admin/brand",
+                path: "/admin/contact",
                 element: <AdminBrand/>
             },
             {

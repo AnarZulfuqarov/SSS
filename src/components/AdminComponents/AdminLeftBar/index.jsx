@@ -5,6 +5,7 @@ import {TbBrandCashapp, TbLogs, TbReservedLine} from "react-icons/tb";
 import { FaRegCommentDots } from "react-icons/fa";
 import {MdOutlineAccountBalance, MdOutlineMiscellaneousServices, MdOutlineTour} from "react-icons/md";
 import { PiCityLight } from "react-icons/pi";
+import {RiContactsBook2Fill} from "react-icons/ri";
 
 function AdminLeftBar() {
     const location = useLocation();
@@ -24,10 +25,10 @@ function AdminLeftBar() {
                     Xidmətlər
                 </NavLink>
             </li>
-            <li className={location.pathname === "/admin/brand" ? "selected" : ""}>
-                <TbBrandCashapp className="icon" />
-                <NavLink to="/admin/brand">
-                    Brandlər
+            <li className={location.pathname === "/admin/contact" ? "selected" : ""}>
+                <RiContactsBook2Fill className="icon" />
+                <NavLink to="/admin/contact">
+                    Əlaqə
                 </NavLink>
             </li>
 

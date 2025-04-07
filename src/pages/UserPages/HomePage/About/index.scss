@@ -1,0 +1,122 @@
+#aboutHome {
+  padding: 80px 0 160px;
+
+  .head {
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 180px;
+
+    .head-left {
+      flex: 0.5;
+
+      hr {
+        width: 30%;
+        border: 1px solid #EE9026;
+      }
+
+      h4 {
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 30px;
+        color: #EE9026;
+      }
+
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .head-right {
+      h1 {
+        font-weight: 700;
+        font-size: 40px;
+        line-height: 60px;
+        width: 80%;
+      }
+
+    }
+  }
+
+  .text {
+    h4 {
+      font-weight: 600;
+      font-size: 22px;
+      line-height: 31px;
+      margin-bottom: 16px;
+      width: 85%;
+    }
+
+    p {
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 26px;
+      color: #6E6E6E;
+      margin-bottom: 32px;
+    }
+
+    .more {
+      width: max-content;
+      position: relative;
+      border: 1px solid #B2B2B2;
+      border-radius: 25px;
+      padding: 12.5px 36px 12.5px 16px;
+
+      button {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: -15px;
+        border-radius: 50%;
+        border: none;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #000000;
+        cursor: pointer;
+        color: #FFFFFF;
+        font-size: 18px;
+        transition: all 0.3s ease-in-out;
+      }
+    }
+  }
+  .image{
+    height: 100%;
+    background-image: url("https://s3-alpha-sig.figma.com/img/0bd9/6c15/379f8245c3c50bc47879c9c12d03822a?Expires=1745193600&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=YxEAZ6ua~HV8P~nrcQmy4wKIw5TbqSVNb1aTFAe94ZVjv2IKQBax1DQlkPLbdgSeeHnehSr-PHY73sy-0BlAJqG4MIHx~8t3Zaz3adEPWfRAJgmuh5oT6bDH~bOrBtbrFvWZNhlS4Yg9xDFJWX7i~TSm5f4edMM6WuBTmYkEN~zHLT4nXwqhRGLCcNvuqv22~tHPbHYb59olmQ-~Rxdu1m3~jR~0mjdtmTG4Rhk60yDsI8-vzW8uU7-xPqaluzpWSoyk9qK1~gaAuN~5pLsSobp7H0uxQDJeMW2vfu8RgHcNVhMvNG~JhKDJuzjvNOvnZBeUaVyel7J9kvRAp1zRKw__");
+    background-size: cover;
+    position: relative;
+    .content{
+      display: flex;
+      align-items: center;
+      justify-content: end;
+      position: absolute;
+      right: 40px;
+      top: -35%;
+      gap: 20px;
+      .box{
+        padding: 28.5px 46px 28.5px 24px;
+        color: white;
+        width: 180px;
+        h3{
+          font-weight: 800;
+          font-size: 48px;
+          line-height: 72px;
+          margin-bottom: 16px;
+        }
+        p{
+          font-weight: 500;
+          font-size: 15px;
+          line-height: 24px;
+        }
+      }
+      .black{
+        background-color: #1C1C1C;
+      }
+      .orange{
+        background-color: #EE9026;
+      }
+    }
+  }
+}

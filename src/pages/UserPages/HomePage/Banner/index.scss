@@ -1,0 +1,105 @@
+.banner-slider {
+  position: relative;
+  overflow: hidden;
+  height: 620px;
+  .slide {
+    position: absolute;
+
+    top: 0;
+    left: 100%;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: all 0.5s ease-in-out;
+
+    &.active {
+      left: 0;
+      opacity: 1;
+    }
+  }
+
+  .container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    padding: 90px 0;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    width: 1320px;
+
+    .banner-content {
+
+      color: #fff;
+      h1{
+        font-weight: 800;
+        font-size: 48px;
+        line-height: 72px;
+        width: 80%;
+        margin-bottom: 35px;
+      }
+
+    }
+    .more{
+      width: max-content;
+      position: relative;
+      border: 1px solid #B2B2B2;
+      color: white;
+      border-radius: 25px;
+      padding: 12.5px 36px 12.5px 16px;
+      button{
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: -15px;
+        border-radius: 50%;
+        border: none;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #EE9026;
+        cursor: pointer;
+        color: #FFFFFF;
+        font-size: 18px;
+        transition: all 0.3s ease-in-out;
+      }
+    }
+    .bannerfoot{
+      color: white;
+      width: 45%;
+      margin-left: auto;
+      display: flex;
+      justify-content: end;
+      gap: 30px;
+      margin-top: 57px;
+      align-items: center;
+      p{
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 100%;
+      }
+    }
+    .pagination-dots {
+      position: absolute;
+      left: 0;
+      bottom: 23%;
+      display: flex;
+      justify-content: center;
+      gap: 5px;
+
+      .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.5);
+        cursor: pointer;
+        transition: background-color 0.3s;
+
+        &.active {
+          background-color: #000000;
+        }
+      }
+    }
+  }
+}
