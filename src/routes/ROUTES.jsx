@@ -8,6 +8,7 @@ import Portfolio from "../pages/UserPages/Portfolio/index.jsx";
 import Services from "../pages/UserPages/Services/index.jsx";
 import PortfolioDetail from "../pages/UserPages/PortfolioDetail/index.jsx";
 import AdminBrand from "../pages/AdminPages/AdminContact/index.jsx";
+import AboutUs from "../pages/UserPages/AboutUs/index.jsx";
 
 
 const router = [
@@ -34,6 +35,10 @@ const router = [
             {
                 path: "/portfolio/:id",
                 element: <PortfolioDetail/>
+            },
+            {
+                path: "/about",
+                element: <AboutUs/>
             }
         ]
     },
