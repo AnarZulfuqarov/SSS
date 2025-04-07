@@ -28,18 +28,20 @@ const cardsData = [
 
 const CardsContainer = () => {
     return (
-        <div className="row" style={{
-            overflow: "hidden",
-        }}>
-            {cardsData.map((card, index) => (
-                <Card
-                    key={index}
-                    image={card.image}
-                    title={card.title}
-                    link={card.link}
-                />
-            ))}
-        </div>
+        <section id={"cardsContainer"}>
+            <div className="row" style={{
+                overflow: "hidden",
+            }}>
+                {cardsData.map((card, index) => (
+                    <Card
+                        key={index}
+                        image={card.image}
+                        title={card.title}
+                        link={card.link}
+                    />
+                ))}
+            </div>
+        </section>
     );
 };
 

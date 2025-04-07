@@ -1,0 +1,42 @@
+.HomePage{
+  .brand{
+    background-color: #F4F5FA;
+    padding: 70px 0 80px;
+    .head {
+      padding: 0 16px;
+      display: flex;
+      align-items: center;
+      margin-bottom: 60px;
+
+      .head-left {
+        flex: 0.8;
+
+        hr {
+          width: 15%;
+          border: 1px solid #EE9026;
+        }
+
+        h4 {
+          font-weight: 600;
+          font-size: 20px;
+          line-height: 30px;
+          color: #EE9026;
+        }
+
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .head-right {
+        h1 {
+          font-weight: 700;
+          font-size: 40px;
+          line-height: 60px;
+          width: 80%;
+        }
+
+      }
+    }
+  }
+}

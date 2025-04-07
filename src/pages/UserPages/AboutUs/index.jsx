@@ -4,8 +4,25 @@ import image from "/src/assets/aboutUsImage1.jpeg"
 import {Link} from "react-router-dom";
 import CircleText from "../../../components/UserComponents/CircleText/index.jsx";
 import Sponsor from "../../../components/UserComponents/Sponsor/index.jsx";
+import CardCertificate from "../../../components/UserComponents/Cards/index.jsx";
+import {useState} from "react";
+import Pagination from "../../../components/UserComponents/Pagination/index.jsx";
 
 function AboutUs() {
+    const cardsData = [
+        { id: 1, image: banner, number: '01', text: 'Sertifikat' },
+        { id: 2, image: image, number: '02', text: 'Sertifikat' },
+        { id: 3, image: banner, number: '03', text: 'Sertifikat' },
+        { id: 4, image: image, number: '04', text: 'Sertifikat' },
+        // İstədiyiniz qədər əlavə kart məlumatı...
+    ];
+    const [currentPage, setCurrentPage] = useState(1);
+    const totalPages = 5; // Müvəqqəti 5 səhifə
+
+    const handlePageChange = (page) => {
+        console.log("Səhifə dəyişdi:", page);
+        setCurrentPage(page);
+    };
     return (
         <div id={"aboutUs"}>
             <div
@@ -60,6 +77,24 @@ function AboutUs() {
                             <div className={"head-right"}>
                                 <h1>Keyfiyyəti Təsdiqləyən Sertifikatlar</h1>
                             </div>
+                        </div>
+                        <div className={"row"} style={{padding:"0 16px"}}>
+                            {cardsData.map((card,index) => (
+                                <CardCertificate
+                                    key={card.id}
+                                    index={index}
+                                    image={card.image}
+                                    number={card.number}
+                                    text={card.text}
+                                />
+                            ))}
+                        </div>
+                        <div style={{display:"flex",justifyContent:"end",marginTop:"30px"}}>
+                            <Pagination
+                                currentPage={currentPage}
+                                totalPages={totalPages}
+                                onPageChange={handlePageChange}
+                            />
                         </div>
                     </div>
                 </div>
