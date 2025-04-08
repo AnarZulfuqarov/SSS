@@ -6,10 +6,10 @@ import {ToastContainer} from "react-toastify";
 import Cookies from "js-cookie";
 
 function App() {
-    const token = Cookies.get("sssTourToken");
+    const token = Cookies.get("sssToken");
 
     if (!token) {
-        Cookies.set("sssTourToken", "null");
+        Cookies.set("sssToken", "null");
     }
     const routes = createBrowserRouter(ROUTES);
 

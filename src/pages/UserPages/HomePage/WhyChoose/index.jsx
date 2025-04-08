@@ -1,5 +1,6 @@
 import "./index.scss"
 import why from '/src/assets/why.jpeg'
+import kran from "/src/assets/kran.png"
 function WhyChoose() {
     return (
         <div id={"whyChoose"}>
@@ -12,6 +13,7 @@ function WhyChoose() {
                     <div className={"head-right"}>
                         <h1>Bizimlə Daha Etibarlı, Daha Keyfiyyətli</h1>
                     </div>
+                    <img src={kran} alt="kran" />
                 </div>
             </div>
             <div className={"whyChoose"}>

@@ -8,7 +8,7 @@ function AdminPage() {
     const navigate = useNavigate();
 
     const handleLogout = () => {
-        Cookies.remove('premierTourToken');
+        Cookies.remove('sssToken');
         navigate('/');
     };
 

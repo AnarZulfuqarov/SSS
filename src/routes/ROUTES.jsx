@@ -1,4 +1,3 @@
-// import ProtectedRoute from "../ProtectedRoute.jsx";
 import MainPage from "../pages/index.jsx";
 import HomePage from "../pages/UserPages/HomePage/index.jsx";
 import AdminPage from "../components/AdminComponents/AdminPage/index.jsx";
@@ -9,6 +8,10 @@ import Services from "../pages/UserPages/Services/index.jsx";
 import PortfolioDetail from "../pages/UserPages/PortfolioDetail/index.jsx";
 import AdminBrand from "../pages/AdminPages/AdminContact/index.jsx";
 import AboutUs from "../pages/UserPages/AboutUs/index.jsx";
+import AdminLogin from "../pages/AdminPages/AdminLogin/index.jsx";
+import ProtectedRoute from "../ProtectedRoute.jsx";
+import AdminPortfolio from "../pages/AdminPages/AdminPortfolio/index.jsx";
+import AdminServices from "../pages/AdminPages/AdminServices/index.jsx";
 
 
 const router = [
@@ -44,7 +47,11 @@ const router = [
     },
     {
         path: "/admin",
-        element: <AdminPage/>,
+        element: (
+            <ProtectedRoute>
+                <AdminPage/>
+            </ProtectedRoute>
+        ),
         children: [
             {
                 path: "/admin/contact",
@@ -52,13 +59,17 @@ const router = [
             },
             {
                 path: "/admin/portfolio",
-                element: <AdminBrand/>
+                element: <AdminPortfolio/>
             },
             {
                 path: "/admin/services",
-                element: <AdminBrand/>
+                element: <AdminServices/>
             }
         ]
+    },
+    {
+      path: "/login",
+      element: <AdminLogin/>
     },
     {
         path: "*",

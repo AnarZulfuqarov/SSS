@@ -2,8 +2,10 @@ import './index.scss'
 import {RiArrowRightUpLine} from "react-icons/ri";
 import city from "/src/assets/city.png"
 import certificate from "/src/assets/certificate.png"
+import {useNavigate} from "react-router-dom";
 
 function AboutHome() {
+    const navigate = useNavigate();
     return (
         <div id={"aboutHome"}>
             <div className={"container"}>
@@ -29,7 +31,7 @@ function AboutHome() {
                                 qalaraq, inşaat sektorunda nümunəvi bir mövqe qazanmışıq.</p>
                             <div className={"more"}>
                                 Daha ətraflı bax
-                                <button><RiArrowRightUpLine/></button>
+                                <button onClick={()=>navigate('/about')}><RiArrowRightUpLine/></button>
                             </div>
                         </div>
                     </div>

@@ -4,6 +4,7 @@ import "./index.scss"
 import ProjectCardPage from "../../../components/UserComponents/ProjectsCard-Page/index.jsx";
 import Pagination from "../../../components/UserComponents/Pagination/index.jsx";
 import {useState} from "react";
+import {useGetAllProjectQuery} from "../../../services/userApi.jsx";
 
 function Porfolio() {
     const [currentPage, setCurrentPage] = useState(1);
@@ -13,6 +14,9 @@ function Porfolio() {
         console.log("Səhifə dəyişdi:", page);
         setCurrentPage(page);
     };
+    const {data:getAllProject} = useGetAllProjectQuery()
+    const projects = getAllProject?.data;
+    console.log(projects);
     return (
         <div id={"portfolio-page"}>
             <div className={"banner"}
@@ -38,12 +42,9 @@ function Porfolio() {
                         </div>
                     </div>
                     <div className={"row"}>
-                        <ProjectCardPage/>
-                        <ProjectCardPage/>
-                        <ProjectCardPage/>
-                        <ProjectCardPage/>
-                        <ProjectCardPage/>
-                        <ProjectCardPage/>
+                        {projects && projects.map((project) => (
+                            <ProjectCardPage key={project.id} project={project} />
+                        )) }
                     </div>
                     <div>
                         <Pagination

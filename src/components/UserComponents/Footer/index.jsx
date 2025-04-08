@@ -17,7 +17,7 @@ function Footer() {
                                 </div>
                                 <div className={"content"}>
                                     <span>Bizə zəng edin</span>
-                                    <p>+994 55 675 44 55</p>
+                                    <p><a href={"tel:994552999555"}>+994 55 299 95 55</a></p>
                                 </div>
                             </div>
                             <div className={"foot-contact"}>
@@ -25,8 +25,8 @@ function Footer() {
                                     <FiMail className={"icon"}/>
                                 </div>
                                 <div className={"content"}>
-                                    <span>Bizə zəng edin</span>
-                                    <p>Premiertour@gmail.com</p>
+                                    <span>Bizə mail yazın</span>
+                                    <p><a href={"mailto:info.sssinsaat@gmail.com"}>info.sssinsaat@gmail.com</a></p>
                                 </div>
                             </div>
                         </div>
@@ -55,8 +55,8 @@ function Footer() {
                             <div className={"col-4 col-md-12 col-sm-12 col-xs-12"}>
                                 <div className={"services"}>
                                     <h3>Əlaqə məlumatları</h3>
-                                    <li><a href={"tel:994706543498"}>+994 70 654 34 98</a></li>
-                                    <li><a href={"mailto:premiertour@gmail.com"}>Premiertour@gmail.com</a></li>
+                                    <li><a href={"tel:994552999555"}>+994 55 299 95 55</a></li>
+                                    <li><a href={"mailto:info.sssinsaat@gmail.com"}>info.sssinsaat@gmail.com</a></li>
                                 </div>
                             </div>
                         </div>

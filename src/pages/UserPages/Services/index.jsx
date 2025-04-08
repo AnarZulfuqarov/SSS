@@ -3,8 +3,11 @@ import banner from "../../../assets/ServicesBanner.jpeg";
 import {Link} from "react-router-dom";
 import "./index.scss"
 import ServicesCard from "../../../components/UserComponents/ServicesCard/index.jsx";
+import {useGetAllServicesQuery} from "../../../services/userApi.jsx";
 
 function Services() {
+    const {data:getAllServices} = useGetAllServicesQuery()
+    const services = getAllServices?.data
     return (
         <div id={"services-page"}>
             <div className={"banner"}
@@ -47,14 +50,10 @@ function Services() {
                         </div>
                     </div>
                     <div className={"row"}>
-                        <ServicesCard/>
-                        <ServicesCard/>
-                        <ServicesCard/>
-                        <ServicesCard/>
-                        <ServicesCard/>
-                        <ServicesCard/>
-                        <ServicesCard/>
-                        <ServicesCard/>
+                        {services && services.map((service,index) => (
+                            <ServicesCard key={service.id} service={service} index={index}/>
+                        ))}
+
                     </div>
                 </div>
             </div>

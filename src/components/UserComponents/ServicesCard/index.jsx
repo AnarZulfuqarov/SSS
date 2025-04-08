@@ -1,23 +1,28 @@
-import "./index.scss"
-import image from "/src/assets/cement-bag_186840811.png"
-import {RiArrowRightUpLine} from "react-icons/ri";
-function ServicesCard() {
+import "./index.scss";
+import { SERVICE_CARD_IMAGES } from "../../../contants.js";
+
+function ServicesCard({ service, index }) {
     return (
         <div className={"col-3 col-md-6 col-sm-12 col-xs-12"}>
             <div id={"services-card"}>
-                <img src={image} alt=""/>
-                <div className={"card-number"}>01</div>
-                <div className={"content"}>
-                    <h2>Metal konstruksiya</h2>
-                    <p>Möhkəmlik, davamlılıq və dəqiqlik ilə fərqlənən metal konstruksiya işlərimiz, sənaye və mülki tikinti sahəsində etibarlı həllər təqdim edir.</p>
+                <img
+                    src={SERVICE_CARD_IMAGES + service.cardImage}
+                    alt={service.title}
+                />
+                <div className={"card-number"}>
+                    {index !== undefined
+                        ? index < 9
+                            ? `0${index + 1}`
+                            : index + 1
+                        : "01"}
                 </div>
-                <div className={"more"}>
-                    Daha ətraflı
-                    <button><RiArrowRightUpLine /></button>
+                <div className={"content"}>
+                    <h2>{service.title}</h2>
+                    <p>{service.subTitle}</p>
                 </div>
             </div>
         </div>
     );
 }
 
-export default ServicesCard
+export default ServicesCard;

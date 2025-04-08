@@ -4,8 +4,11 @@ import ServicesCard from "../../../../components/UserComponents/ServicesCard/ind
 import {RiArrowRightUpLine} from "react-icons/ri";
 import {useNavigate} from "react-router-dom";
 import ServicesCardHome from "../../../../components/UserComponents/ServicesCardHome/index.jsx";
+import {useGetAllServicesQuery} from "../../../../services/userApi.jsx";
 function ServiceHome() {
     const navigate = useNavigate();
+    const {data:getAllServices} = useGetAllServicesQuery()
+    const services = getAllServices?.data
     return (
         <div id={"serviceHome"}>
             <div className={"container"}>
@@ -19,10 +22,10 @@ function ServiceHome() {
                     </div>
                 </div>
                 <div className={"row"}>
-                    <ServicesCardHome/>
-                    <ServicesCardHome/>
-                    <ServicesCardHome/>
-                    <ServicesCardHome/>
+                    {services && services.map((service, index) => (
+                        <ServicesCardHome key={service.id} service={service} index={index}/>
+                    ))}
+
                 </div>
                 <div>
                     <div className={"more"}>

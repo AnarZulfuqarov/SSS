@@ -79,9 +79,10 @@
   overflow: auto;
 
   img {
-    width: 100%;
-    height: auto;
+    width: 375px;
     display: block;
+    aspect-ratio: 10/15;
+    object-fit: cover;
   }
 }
 
