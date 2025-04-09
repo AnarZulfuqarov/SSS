@@ -1,13 +1,15 @@
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import './index.scss';
 import banner from '/src/assets/ServicesBanner.jpeg';
 import bannerC from '/src/assets/ContactBanner.jpeg';
 import bannerD from '/src/assets/DetailBanner.jpeg';
-import {RiArrowRightUpLine} from "react-icons/ri";
+import { RiArrowRightUpLine } from "react-icons/ri";
 import CircleTextWhite from "../../../../components/UserComponents/CircleTextWhite/index.jsx";
-import {useNavigate} from "react-router-dom";
-import {LiaStarSolid} from "react-icons/lia";
-import {VscWorkspaceTrusted} from "react-icons/vsc";
+import { useNavigate } from "react-router-dom";
+import { VscWorkspaceTrusted } from "react-icons/vsc";
+import AOS from "aos";                 // AOS idxal edilir
+import "aos/dist/aos.css";            // AOS stil faylı idxal olunur
+import { useTranslation } from "react-i18next";
 
 const slidesData = [
     {
@@ -28,9 +30,11 @@ const slidesData = [
 ];
 
 const BannerHome = () => {
+    const { t } = useTranslation();
     const [currentSlide, setCurrentSlide] = useState(0);
     const totalSlides = slidesData.length;
     const navigate = useNavigate();
+
     useEffect(() => {
         const interval = setInterval(() => {
             setCurrentSlide((prev) => (prev + 1) % totalSlides);
@@ -56,8 +60,8 @@ const BannerHome = () => {
 
             <div className="container">
                 <div className="banner-content">
-                    <CircleTextWhite/>
-                    <h1>Dəqiqlik, Keyfiyyət və Təcrübə – Tikintidə Güvənli Ünvanınız</h1>
+                    <CircleTextWhite />
+                    <h1>{t("bannerHome.headline")}</h1>
                 </div>
                 <div className={"hr"}></div>
 
@@ -71,18 +75,28 @@ const BannerHome = () => {
                     ))}
                 </div>
                 <div className={"bannerfoot"}>
-                    <div style={{display:"flex",gap:"10px",alignItems:"center",justifyContent:"center"}}>
-                        <VscWorkspaceTrusted  style={{color:"#76FF37",width:"24px",height:"24px"}}/>
+                    <div style={{ display: "flex", gap: "10px", alignItems: "center", justifyContent: "center" }}>
+                        <VscWorkspaceTrusted style={{ color: "#76FF37", width: "24px", height: "24px" }} />
                         <div>
-                            <div style={{width:"80%",color: '#EE9026',display: 'flex',alignItems:"center", justifyContent: 'space-between',gap:"5px",marginBottom:"5px"}}>
-                                <LiaStarSolid/><LiaStarSolid/><LiaStarSolid/><LiaStarSolid/><LiaStarSolid/>
+                            <div style={{
+                                width: "80%",
+                                color: '#EE9026',
+                                display: 'flex',
+                                alignItems: "center",
+                                justifyContent: 'space-between',
+                                gap: "5px",
+                                marginBottom: "5px"
+                            }}>
+                                {/* Burada ulduzlar və ya digər dekorativ elementlər yerləşə bilər */}
                             </div>
-                            <p>18 illik təcrübə</p>
+                            <p>{t("bannerHome.experience")}</p>
                         </div>
                     </div>
                     <div className={"more"}>
-                        Layihələrimizə bax
-                        <button onClick={() => navigate("/portfolio")}><RiArrowRightUpLine/></button>
+                        {t("bannerHome.moreButton")}
+                        <button onClick={() => navigate("/portfolio")}>
+                            <RiArrowRightUpLine />
+                        </button>
                     </div>
                 </div>
             </div>

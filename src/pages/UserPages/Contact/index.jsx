@@ -8,8 +8,10 @@ import AOS from "aos";                 // AOS idxal edilir
 import "aos/dist/aos.css";
 import showToast from "../../../components/ToastMessage.js";
 import { ToastContainer } from "react-toastify";
+import { useTranslation } from "react-i18next";
 
 function Contact() {
+    const { t } = useTranslation();
     const [postContact] = usePostContactMutation();
 
     // Form state-ləri
@@ -40,7 +42,7 @@ function Contact() {
 
         try {
             await postContact(formData).unwrap();
-            showToast("Əlaqə uğurlu oldu!", "success");
+            showToast(t("contact.form.successMessage"), "success");
             // Form reset edirik
             setFirstName("");
             setLastName("");
@@ -49,7 +51,7 @@ function Contact() {
             setNote("");
         } catch (error) {
             console.error("Mesaj göndərilərkən xəta baş verdi:", error);
-            showToast("Mesaj göndərilərkən xəta baş verdi!", "error");
+            showToast(t("contact.form.errorMessage"), "error");
         }
     };
 
@@ -64,18 +66,18 @@ function Contact() {
             >
                 <div className={'container'} data-aos="fade-up">
                     <div className={"head"} data-aos="fade-up">
-                        <h1>Əlaqə</h1>
+                        <h1>{t("contact.bannerTitle")}</h1>
                     </div>
                     <p data-aos="fade-up" data-aos-delay="100">
-                        <Link to={"/"}>Ana səhifə</Link>
+                        <Link to={"/"}>{t("menu.home")}</Link>
                         <div className={"dot"}></div>
-                        <Link to={"/contact"}>Əlaqə</Link>
+                        <Link to={"/contact"}>{t("contact.bannerTitle")}</Link>
                     </p>
                 </div>
             </div>
             <div className={"container"}>
                 <div className={"header"} data-aos="zoom-in">
-                    <h1>Suallarınız Var? Biz buradayıq!</h1>
+                    <h1>{t("contact.headerTitle")}</h1>
                     <div className={"circle"} data-aos="zoom-in" data-aos-delay="100">
                         <CircleText />
                     </div>
@@ -88,47 +90,47 @@ function Contact() {
                             <div className={"form"} data-aos="fade-right">
                                 <div className={"form-head"}>
                                     <hr />
-                                    <h2>Formu dolduraraq bizimlə əlaqə saxlayın</h2>
+                                    <h2>{t("contact.form.headTitle")}</h2>
                                 </div>
                                 <div className={"form-body"}>
                                     <form onSubmit={handleSubmit}>
                                         <div className={"row"}>
                                             <div className={"col-6 col-md-12 col-sm-12 col-xs-12"}>
-                                                <label>Ad</label> <br />
+                                                <label>{t("contact.form.labels.firstName")}</label> <br />
                                                 <input
-                                                    placeholder="Adınızı daxil edin"
+                                                    placeholder={t("contact.form.placeholders.firstName")}
                                                     value={name}
                                                     onChange={(e) => setFirstName(e.target.value)}
                                                 />
                                             </div>
                                             <div className={"col-6 col-md-12 col-sm-12 col-xs-12"}>
-                                                <label>Soyad</label> <br />
+                                                <label>{t("contact.form.labels.lastName")}</label> <br />
                                                 <input
-                                                    placeholder="Soyadınızı daxil edin"
+                                                    placeholder={t("contact.form.placeholders.lastName")}
                                                     value={surname}
                                                     onChange={(e) => setLastName(e.target.value)}
                                                 />
                                             </div>
                                             <div className={"col-12"}>
-                                                <label>Email</label> <br />
+                                                <label>{t("contact.form.labels.email")}</label> <br />
                                                 <input
                                                     type="email"
-                                                    placeholder="sssogluinsaat@gmail.com"
+                                                    placeholder={t("contact.form.placeholders.email")}
                                                     value={email}
                                                     onChange={(e) => setEmail(e.target.value)}
                                                 />
                                             </div>
                                             <div className={"col-12"}>
-                                                <label>Nömrə</label> <br />
+                                                <label>{t("contact.form.labels.phone")}</label> <br />
                                                 <input
                                                     type="tel"
-                                                    placeholder="+994 55 643 25 88"
+                                                    placeholder={t("contact.form.placeholders.phone")}
                                                     value={phoneNumber}
                                                     onChange={(e) => setPhone(e.target.value)}
                                                 />
                                             </div>
                                             <div className={"col-12"}>
-                                                <label>Qeyd</label> <br />
+                                                <label>{t("contact.form.labels.note")}</label> <br />
                                                 <textarea
                                                     rows={5}
                                                     value={description}
@@ -136,7 +138,7 @@ function Contact() {
                                                 />
                                             </div>
                                             <div className={"col-12"}>
-                                                <button type="submit">Göndər</button>
+                                                <button type="submit">{t("contact.form.submitButton")}</button>
                                             </div>
                                         </div>
                                     </form>

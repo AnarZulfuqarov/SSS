@@ -1,4 +1,4 @@
-import './index.scss';
+import "./index.scss";
 import { RiArrowRightUpLine } from "react-icons/ri";
 import city from "/src/assets/city.png";
 import certificate from "/src/assets/certificate.png";
@@ -6,8 +6,10 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import AOS from "aos";                 // AOS idxal edilir
 import "aos/dist/aos.css";            // AOS stil faylı idxal olunur
+import { useTranslation } from "react-i18next";
 
 function AboutHome() {
+    const { t } = useTranslation();
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -23,29 +25,19 @@ function AboutHome() {
                 <div className={"head"}>
                     <div className={"head-left"} data-aos="fade-right">
                         <hr />
-                        <h4>Biz kimik?</h4>
+                        <h4>{t("aboutHome.head.left")}</h4>
                     </div>
                     <div className={"head-right"} data-aos="fade-left" data-aos-delay="100">
-                        <h1>Peşəkarlıq və Keyfiyyətin Ünvanı</h1>
+                        <h1>{t("aboutHome.head.right")}</h1>
                     </div>
                 </div>
                 <div className={"row"}>
                     <div className={"col-6 col-md-6 col-sm-12 col-xs-12"} data-aos="fade-right">
                         <div className={"text"}>
-                            <h4>
-                                Beynəlxalq Sertifikatlarla Təsdiqlənmiş Keyfiyyət və Yüzlərlə Uğurlu Layihə ilə Sübut
-                                Olunmuş Təcrübə
-                            </h4>
-                            <p>
-                                Şirkətimiz beynəlxalq standartlara cavab verən sertifikatları ilə peşəkarlığını və yüksək
-                                keyfiyyətini hər zaman təsdiq edir. Fəaliyyət göstərdiyimiz müddət ərzində uğurla
-                                tamamladığımız çoxsaylı layihələr, müştərilərimizin məmnuniyyətini və bizə olan güvənini
-                                artıran ən əsas amillərdir. Təcrübəli mütəxəssislərimiz və əldə etdiyimiz sertifikatlar
-                                sayəsində, hər bir layihəmizdə təhlükəsizlik, keyfiyyət və dəqiqlik prinsiplərinə sadiq
-                                qalaraq, inşaat sektorunda nümunəvi bir mövqe qazanmışıq.
-                            </p>
+                            <h4>{t("aboutHome.text.title")}</h4>
+                            <p>{t("aboutHome.text.description")}</p>
                             <div className={"more"} data-aos="fade-up" data-aos-delay="200">
-                                Daha ətraflı bax
+                                {t("aboutHome.more.buttonText")}
                                 <button onClick={() => navigate('/about')}>
                                     <RiArrowRightUpLine />
                                 </button>
@@ -56,14 +48,14 @@ function AboutHome() {
                         <div className={"image"}>
                             <div className={"content"}>
                                 <div className={"black box"} data-aos="zoom-in">
-                                    <img src={city} alt="Şəhər təsviri" />
+                                    <img src={city} alt={t("aboutHome.box.cityAlt")} />
                                     <h3>100<sup>+</sup></h3>
-                                    <p>Tamamlanmış layihə</p>
+                                    <p>{t("aboutHome.box.projectCount")}</p>
                                 </div>
                                 <div className={"orange box"} data-aos="zoom-in" data-aos-delay="100">
-                                    <img src={certificate} alt="Sertifikat təsviri" />
+                                    <img src={certificate} alt={t("aboutHome.box.certificateAlt")} />
                                     <h3>50<sup>+</sup></h3>
-                                    <p>Qazanılmış sertifikat</p>
+                                    <p>{t("aboutHome.box.certificateCount")}</p>
                                 </div>
                             </div>
                         </div>

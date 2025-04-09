@@ -7,8 +7,10 @@ import { FiMenu, FiX } from "react-icons/fi";
 import image2 from "/src/assets/az.png";
 import image3 from "/src/assets/en.png";
 import image4 from "/src/assets/ru.png";
+import { useTranslation } from "react-i18next";
 
 function Navbar() {
+    const { t, i18n } = useTranslation();
     const navigate = useNavigate();
     const { pathname } = useLocation();
     const [langDropdown, setLangDropdown] = useState(false);
@@ -16,9 +18,9 @@ function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const flagMapping = {
-        'AZ': image2,
-        'EN': image3,
-        'RU': image4
+        'az': image2,
+        'en': image3,
+        'ru': image4
     };
 
     const dropdownRef = useRef(null);
@@ -31,11 +33,23 @@ function Navbar() {
     const handleLanguageSelect = (lang) => {
         setSelectedLanguage(lang);
         setLangDropdown(false);
+        // Dili i18n və localStorage vasitəsilə yenilə
+        i18n.changeLanguage(lang);
+        localStorage.setItem("appLanguage", lang);
     };
 
     const toggleMenu = () => {
         setIsMenuOpen(prev => !prev);
     };
+
+    // Komponent yükləndikdə saxlanılmış dili yoxla və təyin et
+    useEffect(() => {
+        const storedLang = localStorage.getItem("appLanguage");
+        if (storedLang) {
+            setSelectedLanguage(storedLang);
+            i18n.changeLanguage(storedLang);
+        }
+    }, [i18n]);
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -65,20 +79,21 @@ function Navbar() {
                         <img src={image1} alt="Logo" onClick={() => navigate('/')} />
                     </div>
                     <div className="links">
+                        {/* Menyu elementləri üçün i18n istifadə olunur */}
                         <Link to="/" className={`link ${pathname === '/' ? 'selected' : ''}`}>
-                            Ana səhifə
+                            {t('menu.home')}
                         </Link>
                         <Link to="/services" className={`link ${pathname === '/services' ? 'selected' : ''}`}>
-                            Xidmətlər
+                            {t('menu.services')}
                         </Link>
                         <Link to="/portfolio" className={`link ${pathname === '/portfolio' ? 'selected' : ''}`}>
-                            Layihələrimiz
+                            {t('menu.portfolio')}
                         </Link>
                         <Link to="/about" className={`link ${pathname === '/about' ? 'selected' : ''}`}>
-                            Haqqımızda
+                            {t('menu.about')}
                         </Link>
                         <Link to="/contact" className={`link ${pathname === '/contact' ? 'selected' : ''}`}>
-                            Əlaqə
+                            {t('menu.contact')}
                         </Link>
                     </div>
                     <div className="location-wrapper">
@@ -91,15 +106,15 @@ function Navbar() {
                         </div>
                         <div className={`language-dropdown ${langDropdown ? 'open' : ''}`} ref={dropdownRef}>
                             <ul>
-                                <li onClick={() => handleLanguageSelect('AZ')}>
+                                <li onClick={() => handleLanguageSelect('az')}>
                                     <img src={image2} alt="AZ Bayrağı" />
                                     <span className="span">AZ</span>
                                 </li>
-                                <li onClick={() => handleLanguageSelect('EN')}>
+                                <li onClick={() => handleLanguageSelect('en')}>
                                     <img src={image3} alt="EN Bayrağı" />
                                     <span className="span">EN</span>
                                 </li>
-                                <li onClick={() => handleLanguageSelect('RU')}>
+                                <li onClick={() => handleLanguageSelect('ru')}>
                                     <img src={image4} alt="RU Bayrağı" />
                                     <span className="span">RU</span>
                                 </li>
@@ -115,11 +130,21 @@ function Navbar() {
             {/* Fullscreen overlay olaraq açılan mobil menyu */}
             {isMenuOpen && (
                 <div className="mobile-menu">
-                    <Link to="/" className={`mobile-link ${pathname === '/' ? 'selected' : ''}`}>Ana səhifə</Link>
-                    <Link to="/services" className={`mobile-link ${pathname === '/services' ? 'selected' : ''}`}>Xidmətlər</Link>
-                    <Link to="/portfolio" className={`mobile-link ${pathname === '/portfolio' ? 'selected' : ''}`}>Layihələrimiz</Link>
-                    <Link to="/about" className={`mobile-link ${pathname === '/about' ? 'selected' : ''}`}>Haqqımızda</Link>
-                    <Link to="/contact" className={`mobile-link ${pathname === '/contact' ? 'selected' : ''}`}>Əlaqə</Link>
+                    <Link to="/" className={`mobile-link ${pathname === '/' ? 'selected' : ''}`}>
+                        {t('menu.home')}
+                    </Link>
+                    <Link to="/services" className={`mobile-link ${pathname === '/services' ? 'selected' : ''}`}>
+                        {t('menu.services')}
+                    </Link>
+                    <Link to="/portfolio" className={`mobile-link ${pathname === '/portfolio' ? 'selected' : ''}`}>
+                        {t('menu.portfolio')}
+                    </Link>
+                    <Link to="/about" className={`mobile-link ${pathname === '/about' ? 'selected' : ''}`}>
+                        {t('menu.about')}
+                    </Link>
+                    <Link to="/contact" className={`mobile-link ${pathname === '/contact' ? 'selected' : ''}`}>
+                        {t('menu.contact')}
+                    </Link>
                 </div>
             )}
         </section>

@@ -1,0 +1,164 @@
+{
+  "menu": {
+    "home": "Home",
+    "services": "Services",
+    "portfolio": "Portfolio",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "footer": {
+    "company": "SSS Constraction",
+    "call": "Call Us",
+    "mail": "Email Us",
+    "navigation": "Navigation",
+    "termsTitle": "Terms and Conditions",
+    "terms": {
+      "item1": "Reservation and Payments",
+      "item2": "Cancellations and Refunds",
+      "item3": "Travel Insurance",
+      "item4": "Customer Liability"
+    },
+    "contactInfo": "Contact Information"
+  },
+  "about": {
+    "bannerTitle": "About Us",
+    "section1": {
+      "title": "Our Journey Built on Trust and Quality",
+      "description": "Our company operates in the construction and design sector, characterized by reliability and quality. The successful projects we have completed and our satisfied customers are our greatest indicators. We approach every task with responsibility, offering robust solutions with modern technologies and experience."
+    },
+    "cardSection": {
+      "subTitle": "Trust and Quality",
+      "title": "Certificates Validating Our Quality",
+      "card": {
+        "certificate": "Certificate"
+      }
+    },
+    "partnersTitle": "Who are our partners?"
+  },
+  "contact": {
+    "bannerTitle": "Contact",
+    "headerTitle": "Got Questions? We're Here!",
+    "form": {
+      "headTitle": "Fill out the form to get in touch with us",
+      "labels": {
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "email": "Email",
+        "phone": "Phone",
+        "note": "Message"
+      },
+      "placeholders": {
+        "firstName": "Enter your first name",
+        "lastName": "Enter your last name",
+        "email": "youremail@example.com",
+        "phone": "+1 234 567 8900"
+      },
+      "submitButton": "Submit",
+      "successMessage": "Contact successful!",
+      "errorMessage": "An error occurred while sending the message!"
+    }
+  },
+  "notFound": {
+    "message": "Opps! Page Not Found",
+    "homeButton": "BACK TO HOME"
+  },
+  "portfolio": {
+    "bannerTitle": "Our Projects",
+    "head": {
+      "left": "Our Achievements",
+      "right": "Projects Successfully Completed"
+    }
+  },
+  "portfolioDetail": {
+    "bannerFallback": "Project Title",
+    "breadcrumb": "Our Projects",
+    "projectFallback": "Project",
+    "details": {
+      "header": "Details",
+      "projectNameFallback": "Project Name",
+      "label": {
+        "projectName": "Project Name",
+        "repairYear": "Repair Year",
+        "client": "Client",
+        "projectManager": "Project Manager",
+        "contractor": "Contractor"
+      }
+    },
+    "introTitle": "Get to Know Us Closer",
+    "introDescription": "Our company operates in the construction and design industry and is recognized for its reliability and quality. Our successfully completed projects and satisfied clients speak volumes about our work. We approach every project responsibly, delivering sustainable solutions with modern technologies and our expertise.",
+    "main": {
+      "subtitle": "Trust & Quality",
+      "title": "Explore Our Other Projects",
+      "moreButton": "View More"
+    }
+  },
+  "services": {
+    "bannerTitle": "Our Services",
+    "head": {
+      "left": "What We Do",
+      "center": {
+        "title": "Our Specialized Service Areas",
+        "description": "We cover the entire construction and design process with a broad range of services. With a personalized approach to each project, we deliver solutions that combine functionality, aesthetics, and durability. Explore our key service areas below to choose the right solution for your needs."
+      },
+      "right": {
+        "experienceValue": "18+",
+        "experience": "Years of Experience",
+        "satisfactionValue": "98%",
+        "satisfaction": "Satisfied Clients"
+      }
+    }
+  },
+  "aboutHome": {
+    "head": {
+      "left": "Who We Are?",
+      "right": "The Address of Professionalism and Quality"
+    },
+    "text": {
+      "title": "Proven Experience with Internationally Accredited Quality and Hundreds of Successful Projects",
+      "description": "Our company continually confirms its professionalism and high quality with internationally recognized certifications. The numerous projects we have successfully completed, along with our satisfied clients, are the key factors that build trust. With our experienced experts and acquired certificates, we strictly adhere to safety, quality, and precision in every project, earning a benchmark position in the construction sector."
+    },
+    "more": {
+      "buttonText": "See More Details"
+    },
+    "box": {
+      "projectCount": "Completed Projects",
+      "certificateCount": "Certificates Awarded",
+      "cityAlt": "City view",
+      "certificateAlt": "Certificate view"
+    }
+  },
+  "bannerHome": {
+    "headline": "Precision, Quality and Experience – Your Trusted Address in Construction",
+    "experience": "18 Years Experience",
+    "moreButton": "View Our Projects"
+  },
+  "serviceHome": {
+    "head": {
+      "left": "What We Offer?",
+      "right": "Our Services"
+    },
+    "moreButton": "View All",
+    "backAlt": "Back"
+  },
+  "whyChoose": {
+    "head": {
+      "left": "Why Choose Us?",
+      "right": "More Reliable, More Quality with Us",
+      "kranAlt": "Crane image"
+    },
+    "imageAlt": "Why choose image",
+    "text": {
+      "title": "Our Assurance for Your Projects",
+      "description": "We approach every project not merely as a task, but as a commitment of responsibility and trust. With customer satisfaction as our top priority, we promise a smooth, transparent, and reliable collaboration."
+    },
+    "list": {
+      "item1": "On-Time Delivery",
+      "item2": "High Quality",
+      "item3": "Professional Team",
+      "item4": "Latest Technology",
+      "item5": "Trusted Partnership",
+      "item6": "Excellent Customer Service"
+    }
+  },
+
+}

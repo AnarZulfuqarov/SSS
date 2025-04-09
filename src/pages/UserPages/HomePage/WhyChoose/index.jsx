@@ -4,8 +4,11 @@ import why from '/src/assets/why.jpeg';
 import kran from "/src/assets/kran.png";
 import AOS from "aos";                 // AOS idxal edilir
 import "aos/dist/aos.css";            // AOS stil faylı idxal olunur
+import { useTranslation } from "react-i18next";
 
 function WhyChoose() {
+    const { t } = useTranslation();
+
     useEffect(() => {
         AOS.init({
             duration: 1000,  // Animasiya müddəti (ms)
@@ -19,12 +22,12 @@ function WhyChoose() {
                 <div className={"head"}>
                     <div className={"head-left"} data-aos="fade-right">
                         <hr />
-                        <h4>Biz niyə seçməlisiz?</h4>
+                        <h4>{t("whyChoose.head.left")}</h4>
                     </div>
                     <div className={"head-right"} data-aos="fade-left" data-aos-delay="100">
-                        <h1>Bizimlə Daha Etibarlı, Daha Keyfiyyətli</h1>
+                        <h1>{t("whyChoose.head.right")}</h1>
                     </div>
-                    <img src={kran} alt="kran" data-aos="zoom-in" data-aos-delay="200" />
+                    <img src={kran} alt={t("whyChoose.head.kranAlt")} data-aos="zoom-in" data-aos-delay="200" />
                 </div>
             </div>
             <div className={"whyChoose"}>
@@ -32,28 +35,26 @@ function WhyChoose() {
                     <div className={"row"}>
                         <div className={"col-6 col-md-12 col-sm-12 col-xs-12"} data-aos="fade-right">
                             <div className={"image"}>
-                                <img src={why} alt="why" />
+                                <img src={why} alt={t("whyChoose.imageAlt")} />
                             </div>
                         </div>
                         <div className={"col-6 col-md-12 col-sm-12 col-xs-12"} data-aos="fade-left">
                             <div className={"text"}>
-                                <h2>Layihələriniz Üçün Təminatımız</h2>
-                                <p>
-                                    Biz hər bir layihəyə yalnız bir iş kimi deyil, məsuliyyət və etibar layihəsi kimi yanaşırıq. Müştəri məmnuniyyətini əsas prioritet kimi qəbul edərək, sizə problemsiz, şəffaf və etibarlı bir əməkdaşlıq vəd edirik.
-                                </p>
+                                <h2>{t("whyChoose.text.title")}</h2>
+                                <p>{t("whyChoose.text.description")}</p>
                                 <div className="row" data-aos="fade-up" data-aos-delay="150">
                                     <div className="col-6 left-list">
                                         <ul>
-                                            <li>Vaxtında Təslim</li>
-                                            <li>Vaxtında Təslim</li>
-                                            <li>Vaxtında Təslim</li>
+                                            <li>{t("whyChoose.list.item1")}</li>
+                                            <li>{t("whyChoose.list.item2")}</li>
+                                            <li>{t("whyChoose.list.item3")}</li>
                                         </ul>
                                     </div>
                                     <div className="col-6 right-list">
                                         <ul>
-                                            <li>Vaxtında Təslim</li>
-                                            <li>Vaxtında Təslim</li>
-                                            <li>Vaxtında Təslim</li>
+                                            <li>{t("whyChoose.list.item4")}</li>
+                                            <li>{t("whyChoose.list.item5")}</li>
+                                            <li>{t("whyChoose.list.item6")}</li>
                                         </ul>
                                     </div>
                                 </div>

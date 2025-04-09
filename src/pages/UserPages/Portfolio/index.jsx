@@ -7,8 +7,10 @@ import Pagination from "../../../components/UserComponents/Pagination/index.jsx"
 import { useGetAllProjectQuery } from "../../../services/userApi.jsx";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { useTranslation } from "react-i18next";
 
 function Porfolio() {
+    const { t } = useTranslation();
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 6; // Hər səhifədə göstəriləcək layihələrin sayı
 
@@ -49,12 +51,12 @@ function Porfolio() {
             >
                 <div className={'container'}>
                     <div className={"head"} data-aos="fade-up">
-                        <h1>Layihələrimiz</h1>
+                        <h1>{t("portfolio.bannerTitle")}</h1>
                     </div>
                     <p data-aos="fade-up" data-aos-delay="100">
-                        <Link to={"/"}>Ana səhifə</Link>
+                        <Link to={"/"}>{t("menu.home")}</Link>
                         <div className={"dot"}></div>
-                        <Link to={"/portfolio"}>Layihələrimiz</Link>
+                        <Link to={"/portfolio"}>{t("portfolio.bannerTitle")}</Link>
                     </p>
                 </div>
             </div>
@@ -63,10 +65,10 @@ function Porfolio() {
                     <div className={"head"}>
                         <div className={"head-left"} data-aos="fade-right">
                             <hr/>
-                            <h4>Uğurlarımız</h4>
+                            <h4>{t("portfolio.head.left")}</h4>
                         </div>
                         <div className={"head-right"} data-aos="fade-left">
-                            <h1>Uğurla Tamamladığımız Layihələr</h1>
+                            <h1>{t("portfolio.head.right")}</h1>
                         </div>
                     </div>
                     <div className={"row"}>

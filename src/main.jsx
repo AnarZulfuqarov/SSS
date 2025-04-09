@@ -3,7 +3,7 @@ import './index.scss'
 import App from './App.jsx'
 import {Provider} from "react-redux";
 import {store} from "./services/store.jsx";
-
+import i18n from "./i18n.js"
 createRoot(document.getElementById('root')).render(
     <Provider store={store}>
         <App/>

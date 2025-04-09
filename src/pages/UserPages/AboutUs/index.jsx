@@ -9,14 +9,18 @@ import CardCertificate from "../../../components/UserComponents/Cards/index.jsx"
 import Pagination from "../../../components/UserComponents/Pagination/index.jsx";
 import AOS from "aos";                // AOS idxal edilir
 import "aos/dist/aos.css";           // AOS stil faylı idxal olunur
+import { useTranslation } from "react-i18next";
 
 function AboutUs() {
+    const { t } = useTranslation();
+
+    // Kartların məlumatları, burada "text" sahəsi artıq tərcümə vasitəsi ilə göstəriləcək
     const cardsData = [
-        { id: 1, image: banner, number: '01', text: 'Sertifikat' },
-        { id: 2, image: image, number: '02', text: 'Sertifikat' },
-        { id: 3, image: banner, number: '03', text: 'Sertifikat' },
-        { id: 4, image: image, number: '04', text: 'Sertifikat' },
-        { id: 4, image: image, number: '05', text: 'Sertifikat' },
+        { id: 1, image: banner, number: '01' },
+        { id: 2, image: image, number: '02' },
+        { id: 3, image: banner, number: '03' },
+        { id: 4, image: image, number: '04' },
+        { id: 5, image: image, number: '05' }
         // İstədiyiniz qədər əlavə kart məlumatı əlavə oluna bilər...
     ];
 
@@ -53,12 +57,12 @@ function AboutUs() {
             >
                 <div className={'container'} data-aos="fade-up">
                     <div className={"head"} data-aos="fade-up" data-aos-delay="50">
-                        <h1>Haqqımızda</h1>
+                        <h1>{t('about.bannerTitle')}</h1>
                     </div>
                     <p data-aos="fade-up" data-aos-delay="100">
-                        <Link to={"/"}>Ana səhifə</Link>
+                        <Link to={"/"}>{t('menu.home')}</Link>
                         <div className={"dot"}></div>
-                        <Link to={"/about"}>Haqqımızda</Link>
+                        <Link to={"/about"}>{t('about.bannerTitle')}</Link>
                     </p>
                 </div>
             </div>
@@ -69,17 +73,14 @@ function AboutUs() {
                         <div className={"row"}>
                             <div className={"col-6 col-md-12 col-sm-12 col-xs-12"} data-aos="fade-right">
                                 <div className={"image"}>
-                                    <img src={image} alt="Haqqımızda Şəkili" />
+                                    <img src={image} alt={t('about.bannerTitle')} />
                                 </div>
                             </div>
                             <div className={"col-6 col-md-12 col-sm-12 col-xs-12"} data-aos="fade-left">
                                 <div className={"text"}>
-                                    <h2>Tikintidə Etibara və Keyfiyyətə Söykənən Yolçuluğumuz</h2>
+                                    <h2>{t('about.section1.title')}</h2>
                                     <p>
-                                        Şirkətimiz tikinti və layihələndirmə sahəsində fəaliyyət göstərən, etibarlılığı və
-                                        keyfiyyəti ilə seçilən peşəkar komandadır. Uğurla tamamladığımız layihələr və məmnun
-                                        müştərilərimiz bizim üçün ən böyük göstəricidir. Hər bir işə məsuliyyətlə yanaşır,
-                                        modern texnologiyalar və təcrübə ilə dayanıqlı həllər təqdim edirik.
+                                        {t('about.section1.description')}
                                     </p>
                                 </div>
                             </div>
@@ -96,10 +97,10 @@ function AboutUs() {
                         <div className={"head"} data-aos="fade-up">
                             <div className={"head-left"} data-aos="fade-right">
                                 <hr/>
-                                <h4>Etibar və Keyfiyyət</h4>
+                                <h4>{t('about.cardSection.subTitle')}</h4>
                             </div>
                             <div className={"head-right"} data-aos="fade-left">
-                                <h1>Keyfiyyəti Təsdiqləyən Sertifikatlar</h1>
+                                <h1>{t('about.cardSection.title')}</h1>
                             </div>
                         </div>
                         <div className={"row"} style={{ padding:"0 16px" }}>
@@ -109,7 +110,7 @@ function AboutUs() {
                                     index={index}
                                     image={card.image}
                                     number={card.number}
-                                    text={card.text}
+                                    text={t('about.cardSection.card.certificate')}
                                     data-aos="zoom-in"
                                     data-aos-delay={index * 100}
                                 />
@@ -131,7 +132,7 @@ function AboutUs() {
                     <div className={"head"} data-aos="fade-up">
                         <div className={"head-left"} data-aos="fade-right">
                             <hr/>
-                            <h4>Tərəfdaşlarımız kimlərdir?</h4>
+                            <h4>{t('about.partnersTitle')}</h4>
                         </div>
                     </div>
                 </div>

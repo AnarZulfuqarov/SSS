@@ -1,0 +1,164 @@
+{
+  "menu": {
+    "home": "Ana səhifə",
+    "services": "Xidmətlər",
+    "portfolio": "Layihələrimiz",
+    "about": "Haqqımızda",
+    "contact": "Əlaqə"
+  },
+  "footer": {
+    "company": "SSS Constraction",
+    "call": "Bizə zəng edin",
+    "mail": "Bizə mail yazın",
+    "navigation": "Keçidlər",
+    "termsTitle": "Şərtlər və Qaydalar",
+    "terms": {
+      "item1": "Rezervasiya və ödənişlər",
+      "item2": "Ləğv etmə və Geri Ödənişlər",
+      "item3": "Səyahət Sığortası",
+      "item4": "Müştəri Məsuliyyəti"
+    },
+    "contactInfo": "Əlaqə məlumatları"
+  },
+  "about": {
+    "bannerTitle": "Haqqımızda",
+    "section1": {
+      "title": "Tikintidə Etibara və Keyfiyyətə Söykənən Yolçuluğumuz",
+      "description": "Şirkətimiz tikinti və layihələndirmə sahəsində fəaliyyət göstərən, etibarlılığı və keyfiyyəti ilə seçilən peşəkar komandadır. Uğurla tamamladığımız layihələr və məmnun müştərilərimiz bizim üçün ən böyük göstəricidir. Hər bir işə məsuliyyətlə yanaşır, modern texnologiyalar və təcrübə ilə dayanıqlı həllər təqdim edirik."
+    },
+    "cardSection": {
+      "subTitle": "Etibar və Keyfiyyət",
+      "title": "Keyfiyyəti Təsdiqləyən Sertifikatlar",
+      "card": {
+        "certificate": "Sertifikat"
+      }
+    },
+    "partnersTitle": "Tərəfdaşlarımız kimlərdir?"
+  },
+  "contact": {
+    "bannerTitle": "Əlaqə",
+    "headerTitle": "Suallarınız Var? Biz buradayıq!",
+    "form": {
+      "headTitle": "Formu dolduraraq bizimlə əlaqə saxlayın",
+      "labels": {
+        "firstName": "Ad",
+        "lastName": "Soyad",
+        "email": "Email",
+        "phone": "Nömrə",
+        "note": "Qeyd"
+      },
+      "placeholders": {
+        "firstName": "Adınızı daxil edin",
+        "lastName": "Soyadınızı daxil edin",
+        "email": "sssogluinsaat@gmail.com",
+        "phone": "+994 55 643 25 88"
+      },
+      "submitButton": "Göndər",
+      "successMessage": "Əlaqə uğurlu oldu!",
+      "errorMessage": "Mesaj göndərilərkən xəta baş verdi!"
+    }
+  },
+  "notFound": {
+    "message": "Opps! Səhifə tapılmadı",
+    "homeButton": "ANA SƏHİFƏYƏ QAYIT"
+  },
+  "portfolio": {
+    "bannerTitle": "Layihələrimiz",
+    "head": {
+      "left": "Uğurlarımız",
+      "right": "Uğurla Tamamladığımız Layihələr"
+    }
+  },
+  "portfolioDetail": {
+    "bannerFallback": "Layihə Başlığı",
+    "breadcrumb": "Layihələrimiz",
+    "projectFallback": "Layihə",
+    "details": {
+      "header": "Ətraflı",
+      "projectNameFallback": "Layihə Adı",
+      "label": {
+        "projectName": "Layihənin adı",
+        "repairYear": "Təmir ili",
+        "client": "Müştəri",
+        "projectManager": "Layihə meneceri",
+        "contractor": "Kontraktor"
+      }
+    },
+    "introTitle": "Bizi Daha Yaxından Tanıyın",
+    "introDescription": "Şirkətimiz tikinti və layihələndirmə sahəsində fəaliyyəti göstərən, etibarlılığı və keyfiyyəti ilə seçilən peşəkar komandadır. Uğurla tamamladığımız layihələr və məmnun müştərilərimiz bizim üçün ən böyük göstəricidir. Biz hər işə məsuliyyətlə yanaşır, modern texnologiyalar və təcrübə ilə dayanıqlı həllər təqdim edirik.",
+    "main": {
+      "subtitle": "Etibar və Keyfiyyət",
+      "title": "Digər Layihələrimizə keçid edin",
+      "moreButton": "Daha çoxuna bax"
+    }
+  },
+  "services": {
+    "bannerTitle": "Xidmətlərimiz",
+    "head": {
+      "left": "Biz nə edirik?",
+      "center": {
+        "title": "İxtisaslaşdığımız Xidmət Sahələri",
+        "description": "Fəaliyyət sahəmizi əhatə edən geniş xidmət spektri ilə tikinti və layihələndirmə proseslərini tam şəkildə əhatə edirik. Hər bir layihəyə fərdi yanaşma sərgiləyərək, funksionallıq, estetik və dayanıqlılığı bir araya gətirən həllər təqdim edirik. Aşağıda sizə təqdim etdiyimiz əsas xidmət istiqamətləri ilə tanış olaraq, ehtiyaclarınıza uyğun doğru həlli seçə bilərsiniz."
+      },
+      "right": {
+        "experienceValue": "18+",
+        "experience": "İllik təcrübə",
+        "satisfactionValue": "98%",
+        "satisfaction": "Razı müştəri"
+      }
+    }
+  },
+  "aboutHome": {
+    "head": {
+      "left": "Biz kimik?",
+      "right": "Peşəkarlıq və Keyfiyyətin Ünvanı"
+    },
+    "text": {
+      "title": "Beynəlxalq Sertifikatlarla Təsdiqlənmiş Keyfiyyət və Yüzlərlə Uğurlu Layihə ilə Sübut Olunmuş Təcrübə",
+      "description": "Şirkətimiz beynəlxalq standartlara cavab verən sertifikatları ilə peşəkarlığını və yüksək keyfiyyətini hər zaman təsdiq edir. Fəaliyyət göstərdiyimiz müddət ərzində uğurla tamamladığımız çoxsaylı layihələr, müştərilərimizin məmnuniyyətini və bizə olan güvənini artıran ən əsas amillərdir. Təcrübəli mütəxəssislərimiz və əldə etdiyimiz sertifikatlar sayəsində, hər bir layihəmizdə təhlükəsizlik, keyfiyyət və dəqiqlik prinsiplərinə sadiq qalaraq, inşaat sektorunda nümunəvi bir mövqe qazanmışıq."
+    },
+    "more": {
+      "buttonText": "Daha ətraflı bax"
+    },
+    "box": {
+      "projectCount": "Tamamlanmış layihə",
+      "certificateCount": "Qazanılmış sertifikat",
+      "cityAlt": "Şəhər təsviri",
+      "certificateAlt": "Sertifikat təsviri"
+    }
+  },
+  "bannerHome": {
+    "headline": "Dəqiqlik, Keyfiyyət və Təcrübə – Tikintidə Güvənli Ünvanınız",
+    "experience": "18 illik təcrübə",
+    "moreButton": "Layihələrimizə bax"
+  },
+  "serviceHome": {
+    "head": {
+      "left": "Bizim Nə Təklif Edirik?",
+      "right": "Xidmətlərimiz"
+    },
+    "moreButton": "Hamısına bax",
+    "backAlt": "Geri"
+  },
+  "whyChoose": {
+    "head": {
+      "left": "Biz niyə seçməlisiz?",
+      "right": "Bizimlə Daha Etibarlı, Daha Keyfiyyətli",
+      "kranAlt": "Kran şəkli"
+    },
+    "imageAlt": "Niyə seçməlisiniz şəkli",
+    "text": {
+      "title": "Layihələriniz Üçün Təminatımız",
+      "description": "Biz hər bir layihəyə yalnız bir iş kimi deyil, məsuliyyət və etibar layihəsi kimi yanaşırıq. Müştəri məmnuniyyətini əsas prioritet kimi qəbul edərək, sizə problemsiz, şəffaf və etibarlı bir əməkdaşlıq vəd edirik."
+    },
+    "list": {
+      "item1": "Vaxtında Təslim",
+      "item2": "Yüksək Keyfiyyət",
+      "item3": "Peşəkar Komanda",
+      "item4": "Ən Son Texnologiya",
+      "item5": "Güvənli Əməkdaşlıq",
+      "item6": "Əla Müştəri Xidməti"
+    }
+  },
+
+}
