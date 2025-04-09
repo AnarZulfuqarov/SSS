@@ -58,7 +58,6 @@
         display: flex;
         align-items: center;
         gap: 10px;
-        border: 1px solid #EE9026;
         padding: 8px;
         border-radius: 5px;
         transition: all 0.2s ease;
@@ -88,7 +87,6 @@
 
         &:hover {
           background-color: white;
-          cursor: pointer;
           border: 1px solid #EE9026;
 
           .icon {
@@ -158,8 +156,7 @@
         margin-right: 8px;
       }
 
-      // Burger menyu ikonu mobil görünüş üçün
-      // və z-index dəyərini artıraraq overlay üzərində qalmasını təmin edirik
+      // Burger menu icon for mobile view
       .burger-menu {
         display: none;
         cursor: pointer;
@@ -169,7 +166,7 @@
     }
   }
 
-  // Fullscreen overlay kimi açılan mobil menyu stilizasiyası
+  // Fullscreen overlay for mobile menu
   .mobile-menu {
     position: fixed;
     top: 0;
@@ -177,9 +174,6 @@
     width: 100%;
     height: 100vh;
     background-color: white;
-    /* Overlay-in z-index-i navbar-ın burger ikonundan aşağı
-       olacaqsa bağlamaq mümkün olmur,
-       ona görə aşağıdakı dəyəri daha aşağı (məsələn 100) təyin edirik. */
     z-index: 100;
     display: flex;
     flex-direction: column;
@@ -208,7 +202,7 @@
       }
     }
 
-    // Növbə ilə animasiya üçün gecikmə tətbiqi
+    // Animation delay for each mobile link
     .mobile-link:nth-child(1) {
       animation-delay: 0.3s;
     }
@@ -243,6 +237,160 @@
           display: block;
         }
       }
+    }
+  }
+
+  // --- Sidebar Overlay & Container ---
+  .sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.3); // dark overlay
+    z-index:99999;
+    display: flex;
+    justify-content: flex-end; // align sidebar to the right
+  }
+
+  .sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 450px; // default width for larger screens
+    height: 100vh;
+    background: #fff;
+    box-shadow: -2px 0 8px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    transform: translateX(100%); // initially off-screen to the right
+    opacity: 0; // hidden initially
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    z-index: 99999;
+
+    // Slide-in animation
+    &.active {
+      animation: slideIn 0.3s ease forwards;
+    }
+
+    // --- Header (Title + Close Button) ---
+    .sidebar-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+
+      h2 {
+        margin: 0;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 700;
+      }
+
+      .close-btn {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 1.2rem;
+      }
+    }
+
+    // --- Main Content Section ---
+    .sidebar-content {
+      flex: 1; // allows the content to scroll if needed
+      overflow-y: auto;
+
+      h3 {
+        font-size: 20px;
+        margin-top: 0;
+        margin-bottom: 8px;
+        font-weight: 600;
+      }
+
+      p {
+        margin: 0 0 16px;
+        color: #666;
+        line-height: 1.4;
+        font-size: 14px;
+      }
+
+      .sidebar-image {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        margin-bottom: 16px;
+        object-fit: cover;
+      }
+
+      address {
+        margin: 16px 0;
+        font-style: normal; // remove italic default style
+        line-height: 1.4;
+
+        p {
+          margin: 4px 0;
+          font-size: 14px;
+          color: #333;
+        }
+      }
+
+      iframe {
+        border: 0;
+        width: 100%;
+        height: 300px;
+      }
+    }
+
+    // --- Footer (Social Icons) ---
+    .sidebar-footer {
+      display: flex;
+      gap: 16px;
+      border-top: 1px solid #eee;
+      padding-top: 16px;
+      align-items: center;
+
+      a {
+        color: #333;
+        font-size: 18px;
+        text-decoration: none;
+        transition: color 0.2s ease;
+
+        &:hover {
+          color: #EE9026;
+        }
+      }
+    }
+  }
+
+  @keyframes slideIn {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  // --- RESPONSIVE SIDEBAR ---
+  // Adjust sidebar width on mid-sized screens
+  @media screen and (max-width: 768px) {
+    .sidebar {
+      width: 80%;
+      /* Optionally, reduce the padding if needed on smaller screens */
+      padding: 16px;
+    }
+  }
+
+  // Full-width sidebar for very small devices (e.g. mobile phones)
+  @media screen and (max-width: 576px) {
+    .sidebar {
+      width: 100%;
+      /* If needed, you can adjust the height or padding here */
+      padding: 12px;
     }
   }
 }
