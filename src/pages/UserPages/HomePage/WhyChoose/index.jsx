@@ -30,12 +30,12 @@ function WhyChoose() {
             <div className={"whyChoose"}>
                 <div className={"container"}>
                     <div className={"row"}>
-                        <div className={"col-6"} data-aos="fade-right">
+                        <div className={"col-6 col-md-12 col-sm-12 col-xs-12"} data-aos="fade-right">
                             <div className={"image"}>
                                 <img src={why} alt="why" />
                             </div>
                         </div>
-                        <div className={"col-6"} data-aos="fade-left">
+                        <div className={"col-6 col-md-12 col-sm-12 col-xs-12"} data-aos="fade-left">
                             <div className={"text"}>
                                 <h2>Layihələriniz Üçün Təminatımız</h2>
                                 <p>

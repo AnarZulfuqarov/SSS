@@ -1,4 +1,4 @@
-#detail-page{
+#detail-page {
   .banner {
     height: 400px;
     background-position: center;
@@ -47,14 +47,17 @@
       }
     }
   }
-  .detail{
+
+  .detail {
     padding: 90px 0;
-    .head{
+
+    .head {
       margin-bottom: 120px;
+
       .project-details {
         border-radius: 8px;
         font-family: 'Arial', sans-serif;
-        max-width: 500px; /* İstəyə görə genişliyi tənzimləyin */
+        max-width: 500px;
         margin: 0 auto;
 
         .details-header {
@@ -76,7 +79,6 @@
           font-size: 20px;
           line-height: 30px;
           color: #EE9026;
-
         }
 
         .details-list {
@@ -92,7 +94,6 @@
           border-bottom: 1px solid #eee;
         }
 
-
         .detail-label {
           display: flex;
           align-items: center;
@@ -104,7 +105,7 @@
           display: inline-block;
           width: 8px;
           height: 8px;
-          background-color:#EE9026 ;
+          background-color: #EE9026;
           border-radius: 50%;
           margin-right: 8px;
         }
@@ -113,11 +114,11 @@
           color: #777;
           text-align: right;
         }
-
       }
+
       .head-left {
-        max-width: 600px; /* Sizin layout-a uyğun genişliyi tənzimləyin */
-        margin: 0 auto;   /* Ortada yerləşdirmək üçün */
+        max-width: 600px;
+        margin: 0 auto;
         font-family: "Arial", sans-serif;
         color: #333;
 
@@ -131,14 +132,14 @@
           width: 25%;
           margin-right: 8px;
           border: none;
-          border-top: 1px solid #EE9026; /* Xəttin rəngi */
+          border-top: 1px solid #EE9026;
         }
 
         .title-row h4 {
           font-weight: 600;
           font-size: 20px;
           line-height: 30px;
-          color: #EE9026; /* Sea Breeze rəngi */
+          color: #EE9026;
         }
 
         h1 {
@@ -157,12 +158,13 @@
         }
       }
     }
-    .main{
+
+    .main {
       .header {
         display: flex;
         align-items: center;
         margin-bottom: 88px;
-        // Sol hissədəki sətir və kiçik mətn
+
         .title-row {
           display: flex;
           align-items: center;
@@ -171,35 +173,36 @@
             width: 20%;
             margin: 0 8px 0 0;
             border: none;
-            border-top: 1px solid #EE9026; // Xəttin rəngi
+            border-top: 1px solid #EE9026;
           }
 
           .subtitle {
             font-weight: 600;
             font-size: 20px;
             line-height: 30px;
-            color: #EE9026; // Mətndəki qızılı rəng
+            color: #EE9026;
           }
         }
 
-        // Sağ hissədəki böyük başlıq
         .main-title {
           font-weight: 700;
           font-size: 40px;
           line-height: 60px;
-
         }
       }
-      .row{
+
+      .row {
         margin-bottom: 70px;
       }
-      .more{
+
+      .more {
         width: max-content;
         position: relative;
         border: 1px solid #B2B2B2;
         border-radius: 25px;
         padding: 12.5px 36px 12.5px 16px;
-        button{
+
+        button {
           position: absolute;
           top: 50%;
           transform: translateY(-50%);
@@ -216,6 +219,182 @@
           color: #FFFFFF;
           font-size: 18px;
           transition: all 0.3s ease-in-out;
+        }
+      }
+    }
+  }
+}
+
+/* --- Tablet və orta ölçülü cihazlar üçün --- */
+@media (max-width: 768px) {
+  #detail-page {
+    .banner {
+      height: 250px;
+
+      .head {
+        h1 {
+          font-size: 32px;
+          line-height: 48px;
+        }
+      }
+
+      p {
+        font-size: 14px;
+
+        .dot {
+          margin: 0 4px;
+        }
+      }
+    }
+
+    .detail {
+      padding: 70px 0;
+
+      .head {
+        margin-bottom: 80px;
+
+        .head-left {
+          h1 {
+            font-size: 32px;
+            line-height: 48px;
+          }
+          p {
+            font-size: 14px;
+          }
+        }
+      }
+
+      .main {
+        .header {
+          flex-direction: column;
+          text-align: center;
+          margin-bottom: 60px;
+
+          .title-row {
+            flex: none;
+            hr {
+              width: 30%;
+            }
+            .subtitle {
+              font-size: 18px;
+            }
+          }
+
+          .main-title {
+            font-size: 32px;
+            line-height: 48px;
+          }
+        }
+
+        .row {
+          margin-bottom: 50px;
+        }
+
+        .more {
+          padding: 10px 28px;
+
+          button {
+            width: 35px;
+            height: 35px;
+            font-size: 16px;
+            right: -12px;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* --- Mobil cihazlar üçün --- */
+@media (max-width: 480px) {
+  #detail-page {
+    .banner {
+      height: 200px;
+
+      .head {
+        h1 {
+          font-size: 28px;
+          line-height: 40px;
+        }
+      }
+
+      p {
+        font-size: 12px;
+      }
+    }
+
+    .detail {
+      padding: 50px 0;
+
+      .head {
+        margin-bottom: 60px;
+
+        .head-left {
+          h1 {
+            font-size: 28px;
+            line-height: 40px;
+          }
+          p {
+            font-size: 12px;
+          }
+        }
+
+        .project-details {
+          max-width: 100%;
+          padding: 0 10px;
+
+          .details-header hr {
+            width: 30%;
+          }
+
+          .details-header h3 {
+            font-size: 18px;
+          }
+
+          .detail-item {
+            padding: 15px 10px;
+          }
+
+          .detail-label {
+            font-size: 14px;
+          }
+
+          .detail-value {
+            font-size: 14px;
+          }
+        }
+      }
+
+      .main {
+        .header {
+          margin-bottom: 40px;
+          .title-row {
+            hr {
+              width: 35%;
+            }
+            .subtitle {
+              font-size: 16px;
+            }
+          }
+          .main-title {
+            font-size: 28px;
+            line-height: 40px;
+          }
+        }
+
+        .row {
+          margin-bottom: 40px;
+        }
+
+        .more {
+          padding: 8px 20px;
+
+          button {
+            width: 30px;
+            height: 30px;
+            font-size: 14px;
+            right: -10px;
+          }
         }
       }
     }

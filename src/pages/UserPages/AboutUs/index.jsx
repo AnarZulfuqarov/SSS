@@ -16,15 +16,23 @@ function AboutUs() {
         { id: 2, image: image, number: '02', text: 'Sertifikat' },
         { id: 3, image: banner, number: '03', text: 'Sertifikat' },
         { id: 4, image: image, number: '04', text: 'Sertifikat' },
-        // İstədiyiniz qədər əlavə kart məlumatı...
+        { id: 4, image: image, number: '05', text: 'Sertifikat' },
+        // İstədiyiniz qədər əlavə kart məlumatı əlavə oluna bilər...
     ];
+
     const [currentPage, setCurrentPage] = useState(1);
-    const totalPages = 5; // Müvəqqəti 5 səhifə
+    const itemsPerPage = 4; // Hər səhifədə görünəcək kartların sayı
+    const totalPages = Math.ceil(cardsData.length / itemsPerPage);
 
     const handlePageChange = (page) => {
         console.log("Səhifə dəyişdi:", page);
         setCurrentPage(page);
     };
+
+    // Cari səhifə üçün göstəriləcək kartların alt-massivi
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const paginatedCards = cardsData.slice(startIndex, endIndex);
 
     // AOS initializasiyası
     useEffect(() => {
@@ -59,12 +67,12 @@ function AboutUs() {
                 <div className={"section1"}>
                     <div className={"container"}>
                         <div className={"row"}>
-                            <div className={"col-6"} data-aos="fade-right">
+                            <div className={"col-6 col-md-12 col-sm-12 col-xs-12"} data-aos="fade-right">
                                 <div className={"image"}>
                                     <img src={image} alt="Haqqımızda Şəkili" />
                                 </div>
                             </div>
-                            <div className={"col-6"} data-aos="fade-left">
+                            <div className={"col-6 col-md-12 col-sm-12 col-xs-12"} data-aos="fade-left">
                                 <div className={"text"}>
                                     <h2>Tikintidə Etibara və Keyfiyyətə Söykənən Yolçuluğumuz</h2>
                                     <p>
@@ -95,7 +103,7 @@ function AboutUs() {
                             </div>
                         </div>
                         <div className={"row"} style={{ padding:"0 16px" }}>
-                            {cardsData.map((card, index) => (
+                            {paginatedCards.map((card, index) => (
                                 <CardCertificate
                                     key={card.id}
                                     index={index}

@@ -55,7 +55,7 @@ function PortfolioDetail() {
                 <div className="detail">
                     <div className="head">
                         <div className="row">
-                            <div className="col-4">
+                            <div className="col-4 col-md-12 col-sm-12 col-xs-12">
                                 <div className="head-left" data-aos="fade-right">
                                     <div className="title-row">
                                         <hr />
@@ -71,12 +71,12 @@ function PortfolioDetail() {
                                     </p>
                                 </div>
                             </div>
-                            <div className="col-4">
+                            <div className="col-4 col-md-12 col-sm-12 col-xs-12">
                                 <div className="head-center" data-aos="zoom-in">
                                     <Slider />
                                 </div>
                             </div>
-                            <div className="col-4">
+                            <div className="col-4 col-md-12 col-sm-12 col-xs-12">
                                 <div className="project-details" data-aos="fade-left">
                                     <div className="details-header">
                                         <hr />

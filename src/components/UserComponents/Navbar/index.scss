@@ -33,7 +33,7 @@
         font-weight: 500;
         font-size: 16px;
         line-height: 100%;
-        transition: all .2s ease;
+        transition: all 0.2s ease;
 
         &:hover {
           color: #EE9026;
@@ -50,7 +50,7 @@
       display: flex;
       align-items: center;
       gap: 16px;
-      max-width: 140px;
+      max-width: 180px;
       width: 100%;
 
       .selectedLanguage {
@@ -60,7 +60,7 @@
         border: 1px solid #EE9026;
         padding: 8px;
         border-radius: 5px;
-        transition: all .2s ease;
+        transition: all 0.2s ease;
 
         img {
           width: 24px;
@@ -82,7 +82,7 @@
         align-items: center;
         justify-content: center;
         cursor: pointer;
-        transition: all .2s ease;
+        transition: all 0.2s ease;
         border: 1px solid transparent;
 
         &:hover {
@@ -156,6 +156,79 @@
         height: 20px;
         margin-right: 8px;
       }
+
+      // Burger menyu ikonu mobil görünüş üçün
+      // və z-index dəyərini artıraraq overlay üzərində qalmasını təmin edirik
+      .burger-menu {
+        display: none;
+        cursor: pointer;
+        position: relative;
+        z-index: 101;
+      }
+    }
+  }
+
+  // Fullscreen overlay kimi açılan mobil menyu stilizasiyası
+  .mobile-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: white;
+    /* Overlay-in z-index-i navbar-ın burger ikonundan aşağı
+       olacaqsa bağlamaq mümkün olmur,
+       ona görə aşağıdakı dəyəri daha aşağı (məsələn 100) təyin edirik. */
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    text-align: center;
+
+    .mobile-link {
+      text-decoration: none;
+      color: black;
+      font-family: Mona Sans, sans-serif;
+      font-size: 24px;
+      font-weight: 500;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: waveIn 0.5s forwards;
+      transition: color 0.2s ease;
+
+      &:hover {
+        color: #EE9026;
+      }
+
+      &.selected {
+        color: #EE9026;
+      }
+    }
+
+    // Növbə ilə animasiya üçün gecikmə tətbiqi
+    .mobile-link:nth-child(1) {
+      animation-delay: 0.3s;
+    }
+    .mobile-link:nth-child(2) {
+      animation-delay: 0.6s;
+    }
+    .mobile-link:nth-child(3) {
+      animation-delay: 0.9s;
+    }
+    .mobile-link:nth-child(4) {
+      animation-delay: 1.2s;
+    }
+    .mobile-link:nth-child(5) {
+      animation-delay: 1.5s;
+    }
+  }
+
+  @keyframes waveIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
   }
 
@@ -163,6 +236,11 @@
     nav {
       .links {
         display: none;
+      }
+      .location-wrapper {
+        .burger-menu {
+          display: block;
+        }
       }
     }
   }

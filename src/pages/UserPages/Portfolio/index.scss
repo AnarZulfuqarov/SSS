@@ -88,7 +88,102 @@
           line-height: 60px;
           width: 80%;
         }
+      }
+    }
+  }
+}
 
+/* Tablet və orta ölçülü cihazlar üçün */
+@media (max-width: 768px) {
+  #portfolio-page {
+    .banner {
+      height: 250px;
+
+      .head {
+        h1 {
+          font-size: 32px;
+          line-height: 48px;
+        }
+      }
+
+      p {
+        font-size: 14px;
+
+        .dot {
+          margin: 0 4px;
+        }
+      }
+    }
+
+    .portfolio {
+      padding: 60px 0;
+
+      .head {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin-bottom: 60px;
+
+        .head-left,
+        .head-right {
+          width: 100%;
+          margin-bottom: 20px;
+        }
+
+        .head-right {
+          h1 {
+            font-size: 32px;
+            width: 100%;
+          }
+        }
+      }
+
+      .row {
+        margin-bottom: 30px;
+      }
+    }
+  }
+}
+
+/* Mobil cihazlar üçün */
+@media (max-width: 480px) {
+  #portfolio-page {
+    .banner {
+      height: 200px;
+
+      .head {
+        h1 {
+          font-size: 28px;
+          line-height: 40px;
+        }
+      }
+
+      p {
+        font-size: 12px;
+      }
+    }
+
+    .portfolio {
+      padding: 40px 0;
+
+      .head {
+        .head-left {
+          hr {
+            width: 40%;
+          }
+
+          h4 {
+            font-size: 18px;
+          }
+        }
+
+        .head-right {
+          h1 {
+            font-size: 28px;
+            line-height: 40px;
+            width: 100%;
+          }
+        }
       }
     }
   }

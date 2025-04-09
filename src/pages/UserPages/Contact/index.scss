@@ -82,6 +82,9 @@
         .form-head {
           color: #EE9026;
           margin-bottom: 24px;
+          display: flex;
+          align-items: center;
+          gap: 16px;
 
           hr {
             width: 10%;
@@ -94,10 +97,6 @@
             line-height: 30px;
             width: 60%;
           }
-
-          display: flex;
-          align-items: center;
-          gap: 16px;
         }
 
         .form-body {
@@ -116,7 +115,6 @@
             box-shadow: 2px 2px 3px 0px #D1D1D140;
             padding: 17px 0 17px 22px;
             outline: none;
-
           }
 
           textarea {
@@ -126,12 +124,11 @@
             box-shadow: 2px 2px 3px 0px #D1D1D140;
             padding: 17px 22px 17px 22px;
             outline: none;
-
           }
 
           button {
             width: 100%;
-            padding: 14px 22px 14px 22px;
+            padding: 14px 22px;
             background-color: black;
             color: white;
             border: none;
@@ -142,7 +139,157 @@
           }
         }
       }
+    }
+  }
+}
 
+/* Tablet və orta ölçülü cihazlar üçün */
+@media (max-width: 768px) {
+  #contact-page {
+    .banner {
+      height: 250px;
+
+      .head {
+        h1 {
+          font-size: 32px;
+          line-height: 48px;
+        }
+      }
+
+      p {
+        font-size: 14px;
+
+        .dot {
+          margin: 0 4px;
+        }
+      }
+    }
+
+    .header {
+      padding: 70px 0;
+      h1 {
+        font-size: 32px;
+        line-height: 56px;
+      }
+      .circle {
+        /* Düzəlişlərə ehtiyac varsa burada tətbiq edin */
+        bottom: -60%;
+      }
+    }
+
+    .contact {
+      padding: 90px 0 70px;
+      margin-bottom: 60px;
+
+      .form-section {
+        padding: 20px 30px;
+
+        .form {
+          .form-head {
+            flex-direction: column;
+            text-align: center;
+            gap: 12px;
+
+            hr {
+              width: 30%;
+            }
+
+            h2 {
+              width: 100%;
+              font-size: 18px;
+            }
+          }
+
+          .form-body {
+            label {
+              font-size: 14px;
+            }
+
+            input,
+            textarea {
+              padding: 12px 16px;
+            }
+
+            button {
+              padding: 12px 16px;
+              font-size: 14px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Mobil cihazlar üçün */
+@media (max-width: 480px) {
+  #contact-page {
+    .banner {
+      height: 200px;
+
+      .head {
+        h1 {
+          font-size: 28px;
+          line-height: 40px;
+        }
+      }
+
+      p {
+        font-size: 12px;
+      }
+    }
+
+    .header {
+      padding: 50px 0;
+      h1 {
+        font-size: 28px;
+        line-height: 42px;
+      }
+      .circle {
+        bottom: -60%;
+      }
+    }
+
+    .contact {
+      padding: 70px 0 50px;
+      margin-bottom: 40px;
+
+      .form-section {
+        padding: 15px 20px;
+
+        .form {
+          .form-head {
+            flex-direction: column;
+            text-align: center;
+            gap: 10px;
+
+            hr {
+              width: 40%;
+            }
+
+            h2 {
+              font-size: 16px;
+              width: 100%;
+            }
+          }
+
+          .form-body {
+            label {
+              font-size: 12px;
+            }
+
+            input,
+            textarea {
+              padding: 10px 14px;
+            }
+
+            button {
+              padding: 10px 14px;
+              font-size: 14px;
+            }
+          }
+        }
+      }
     }
   }
 }

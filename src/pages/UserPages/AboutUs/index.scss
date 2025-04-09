@@ -1,4 +1,4 @@
-#aboutUs{
+#aboutUs {
   .banner {
     height: 400px;
     background-position: center;
@@ -47,42 +47,40 @@
       }
     }
   }
-  .aboutUs{
+  .aboutUs {
     padding: 140px 0 100px;
-
-
   }
-  .section1{
+  .section1 {
     padding: 70px 0 90px;
     position: relative;
-    .row{
+    .row {
       align-items: center;
     }
-    .text{
+    .text {
       padding: 0 32px;
-      h2{
+      h2 {
         font-weight: 700;
         font-size: 32px;
         line-height: 48px;
         margin-bottom: 24px;
       }
-      p{
+      p {
         font-weight: 500;
         font-size: 16px;
         line-height: 26px;
         color: #6E6E6E;
       }
     }
-    .image{
+    .image {
       width: 100%;
       height: 100%;
-      img{
+      img {
         width: 100%;
         height: 100%;
         object-fit: cover;
       }
     }
-    .back{
+    .back {
       position: absolute;
       height: 100%;
       width: 65%;
@@ -92,14 +90,14 @@
       background-color: #F3F4F9;
       z-index: -1;
     }
-    .circleText{
+    .circleText {
       position: absolute;
       top: -22%;
       right: 15%;
     }
   }
-  .card-section{
-    padding-top: 130px ;
+  .card-section {
+    padding-top: 130px;
     .head {
       padding: 0 16px;
       display: flex;
@@ -133,11 +131,10 @@
           line-height: 60px;
           width: 80%;
         }
-
       }
     }
   }
-  .brand{
+  .brand {
     background-color: #F4F5FA;
     padding: 70px 0 80px;
     .head {
@@ -173,7 +170,196 @@
           line-height: 60px;
           width: 80%;
         }
+      }
+    }
+  }
+}
 
+/* Tablet və orta ölçülü cihazlar üçün */
+@media (max-width: 768px) {
+  #aboutUs {
+    .banner {
+      height: 250px;
+      background-size: cover;
+
+      .head {
+        h1 {
+          font-size: 32px;
+          line-height: 48px;
+        }
+      }
+      p {
+        font-size: 14px;
+        .dot {
+          margin: 0 4px;
+        }
+      }
+    }
+
+    .section1 {
+      padding: 50px 0 70px;
+      .row {
+        flex-direction: column;
+      }
+      .text {
+        padding: 0 16px;
+        h2 {
+          font-size: 28px;
+          line-height: 42px;
+        }
+        p {
+          font-size: 14px;
+        }
+      }
+      .circleText {
+        position: static;
+        margin-top: 20px;
+      }
+      .back {
+        width: 100%;
+        position: relative;
+        height: auto;
+        background-color: #F3F4F9;
+        margin-top: 20px;
+      }
+    }
+
+    .card-section {
+      padding-top: 80px;
+      .head {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+        .head-left, .head-right {
+          width: 100%;
+        }
+        .head-left {
+          hr {
+            width: 30%;
+          }
+          h4 {
+            font-size: 18px;
+          }
+        }
+        .head-right {
+          h1 {
+            font-size: 32px;
+            width: 100%;
+          }
+        }
+      }
+    }
+
+    .brand {
+      padding: 50px 0 60px;
+      .head {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+        .head-left, .head-right {
+          width: 100%;
+        }
+        .head-left {
+          hr {
+            width: 30%;
+          }
+          h4 {
+            font-size: 18px;
+          }
+        }
+        .head-right {
+          h1 {
+            font-size: 32px;
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Mobil cihazlar üçün */
+@media (max-width: 480px) {
+  #aboutUs {
+    .banner {
+      height: 200px;
+
+      .head {
+        h1 {
+          font-size: 28px;
+          line-height: 40px;
+        }
+      }
+      p {
+        font-size: 12px;
+      }
+    }
+
+    .section1 {
+      padding: 40px 0 50px;
+      .text {
+        padding: 0 8px;
+        h2 {
+          font-size: 24px;
+          line-height: 36px;
+        }
+        p {
+          font-size: 12px;
+        }
+      }
+      .circleText {
+        position: absolute;
+        top:-175px;
+        right: 0;
+      }
+      .back {
+        display: none;
+      }
+    }
+
+    .card-section {
+      padding-top: 60px;
+      .head {
+        flex-direction: column;
+        text-align: center;
+        gap: 16px;
+        .head-left {
+          hr {
+            width: 40%;
+          }
+          h4 {
+            font-size: 16px;
+          }
+        }
+        .head-right {
+          h1 {
+            font-size: 28px;
+            width: 100%;
+          }
+        }
+      }
+    }
+
+    .brand {
+      padding: 40px 0 50px;
+      .head {
+        flex-direction: column;
+        text-align: center;
+        gap: 16px;
+        .head-left {
+          hr {
+            width: 40%;
+          }
+          h4 {
+            font-size: 16px;
+          }
+        }
+        .head-right {
+          h1 {
+            font-size: 28px;
+            width: 100%;
+          }
+        }
       }
     }
   }

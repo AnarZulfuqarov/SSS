@@ -5,17 +5,17 @@ import "./index.scss";
 import ProjectCardPage from "../../../components/UserComponents/ProjectsCard-Page/index.jsx";
 import Pagination from "../../../components/UserComponents/Pagination/index.jsx";
 import { useGetAllProjectQuery } from "../../../services/userApi.jsx";
-import AOS from "aos"; // AOS-u idxal edirik
-import "aos/dist/aos.css"; // AOS CSS-ni idxal edirik
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 function Porfolio() {
     const [currentPage, setCurrentPage] = useState(1);
-    const totalPages = 5; // Müvəqqəti 5 səhifə
+    const itemsPerPage = 6; // Hər səhifədə göstəriləcək layihələrin sayı
 
     useEffect(() => {
         AOS.init({
-            duration: 1000, // animasiya müddəti, ms şəklində
-            once: true,     // element yalnız bir dəfə animasiya edilsin
+            duration: 1000,
+            once: true,
         });
     }, []);
 
@@ -24,9 +24,19 @@ function Porfolio() {
         setCurrentPage(page);
     };
 
+    // API-dən gələn bütün layihələr
     const { data: getAllProject } = useGetAllProjectQuery();
-    const projects = getAllProject?.data;
-    console.log(projects);
+    const projects = getAllProject?.data || [];
+
+    // Dinamik olaraq toplam səhifələrin sayını hesablamaq
+    const totalPages = Math.ceil(projects.length / itemsPerPage);
+
+    // Cari səhifəyə uyğun layihələri seçmək
+    const indexOfLastProject = currentPage * itemsPerPage;
+    const indexOfFirstProject = indexOfLastProject - itemsPerPage;
+    const currentProjects = projects.slice(indexOfFirstProject, indexOfLastProject);
+
+    console.log("Cari Layihələr:", currentProjects);
 
     return (
         <div id={"portfolio-page"}>
@@ -35,7 +45,7 @@ function Porfolio() {
                 style={{
                     background: `linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), url(${banner})`
                 }}
-                data-aos="fade-in" // Banner üçün animasiya əlavə edirik
+                data-aos="fade-in"
             >
                 <div className={'container'}>
                     <div className={"head"} data-aos="fade-up">
@@ -60,13 +70,12 @@ function Porfolio() {
                         </div>
                     </div>
                     <div className={"row"}>
-                        {projects && projects.map((project, index) => (
-                            // Hər bir layihə kartı üçün delay ilə animasiya əlavə edə bilərsiniz
+                        {currentProjects.map((project, index) => (
                             <ProjectCardPage
                                 key={project.id}
                                 project={project}
-                                dataAos="zoom-in"  // Project card üçün animasiya növü
-                                dataAosDelay={index * 100} // Delay, ardıcıllığa görə
+                                dataAos="zoom-in"
+                                dataAosDelay={index * 100}
                             />
                         ))}
                     </div>
