@@ -4,7 +4,7 @@ import banner from "/src/assets/ContactBanner.jpeg";
 import { Link } from "react-router-dom";
 import CircleText from "../../../components/UserComponents/CircleText/index.jsx";
 import { usePostContactMutation } from "../../../services/userApi.jsx";
-import AOS from "aos";                 // AOS idxal edilir
+import AOS from "aos";
 import "aos/dist/aos.css";
 import showToast from "../../../components/ToastMessage.js";
 import { ToastContainer } from "react-toastify";
@@ -21,6 +21,9 @@ function Contact() {
     const [phoneNumber, setPhone] = useState("");
     const [description, setNote] = useState("");
 
+    // Validasiya error state-i
+    const [errors, setErrors] = useState({});
+
     // AOS initializasiyası
     useEffect(() => {
         AOS.init({
@@ -29,9 +32,44 @@ function Contact() {
         });
     }, []);
 
+    // Validasiya funksiyası: hər bir sahəni required kimi yoxlayır və əlavə validasiyaları da aparır
+    const validate = () => {
+        const newErrors = {};
+        if (!name.trim()) {
+            newErrors.name = t("contact.form.errors.firstNameRequired") || "Adınızı daxil edin";
+        }
+        if (!surname.trim()) {
+            newErrors.surname = t("contact.form.errors.lastNameRequired") || "Soyadınızı daxil edin";
+        }
+        if (!email.trim()) {
+            newErrors.email = t("contact.form.errors.emailRequired") || "Emailinizi daxil edin";
+        } else if (!/\S+@\S+\.\S+/.test(email)) {
+            newErrors.email = t("contact.form.errors.emailInvalid") || "Düzgün email daxil edin";
+        }
+        if (!phoneNumber.trim()) {
+            newErrors.phoneNumber = t("contact.form.errors.phoneRequired") || "Telefon nömrənizi daxil edin";
+        } else if (!/^\d+$/.test(phoneNumber)) {
+            newErrors.phoneNumber = t("contact.form.errors.phoneInvalid") || "Telefon nömrəniz yalnız rəqəmlərdən ibarət olmalıdır";
+        }
+        if (!description.trim()) {
+            newErrors.description = t("contact.form.errors.descriptionRequired") || "Mesajınızı daxil edin";
+        }
+        return newErrors;
+    };
+
     // Form submit funksiyası
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const validationErrors = validate();
+        if (Object.keys(validationErrors).length > 0) {
+            setErrors(validationErrors);
+            // Konsola JSON şəklində xətaları yazdırırıq
+            console.error("Validasiya xətaları:", JSON.stringify(validationErrors, null, 2));
+            showToast(t("contact.form.validationErrors") || "Xahiş olunur bütün xanalari düzgün doldurun", "error");
+            return;
+        }
+        setErrors({});
+
         const formData = {
             name,
             surname,
@@ -62,7 +100,7 @@ function Contact() {
                 style={{
                     background: `linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), url(${banner})`,
                 }}
-                data-aos="fade-in"       // Banner üçün fade-in animasiya
+                data-aos="fade-in"
             >
                 <div className={'container'} data-aos="fade-up">
                     <div className={"head"} data-aos="fade-up">
@@ -101,7 +139,9 @@ function Contact() {
                                                     placeholder={t("contact.form.placeholders.firstName")}
                                                     value={name}
                                                     onChange={(e) => setFirstName(e.target.value)}
+                                                    required
                                                 />
+                                                {errors.name && <span className="error-message">{errors.name}</span>}
                                             </div>
                                             <div className={"col-6 col-md-12 col-sm-12 col-xs-12"}>
                                                 <label>{t("contact.form.labels.lastName")}</label> <br />
@@ -109,7 +149,9 @@ function Contact() {
                                                     placeholder={t("contact.form.placeholders.lastName")}
                                                     value={surname}
                                                     onChange={(e) => setLastName(e.target.value)}
+                                                    required
                                                 />
+                                                {errors.surname && <span className="error-message">{errors.surname}</span>}
                                             </div>
                                             <div className={"col-12"}>
                                                 <label>{t("contact.form.labels.email")}</label> <br />
@@ -118,7 +160,9 @@ function Contact() {
                                                     placeholder={t("contact.form.placeholders.email")}
                                                     value={email}
                                                     onChange={(e) => setEmail(e.target.value)}
+                                                    required
                                                 />
+                                                {errors.email && <span className="error-message">{errors.email}</span>}
                                             </div>
                                             <div className={"col-12"}>
                                                 <label>{t("contact.form.labels.phone")}</label> <br />
@@ -127,7 +171,9 @@ function Contact() {
                                                     placeholder={t("contact.form.placeholders.phone")}
                                                     value={phoneNumber}
                                                     onChange={(e) => setPhone(e.target.value)}
+                                                    required
                                                 />
+                                                {errors.phoneNumber && <span className="error-message">{errors.phoneNumber}</span>}
                                             </div>
                                             <div className={"col-12"}>
                                                 <label>{t("contact.form.labels.note")}</label> <br />
@@ -135,13 +181,22 @@ function Contact() {
                                                     rows={5}
                                                     value={description}
                                                     onChange={(e) => setNote(e.target.value)}
+                                                    required
                                                 />
+                                                {errors.description && <span className="error-message">{errors.description}</span>}
                                             </div>
                                             <div className={"col-12"}>
                                                 <button type="submit">{t("contact.form.submitButton")}</button>
                                             </div>
                                         </div>
                                     </form>
+                                    {/* JSON şəklində validasiya xətaları */}
+                                    {Object.keys(errors).length > 0 && (
+                                        <div className="error-json">
+                                            <h3>{t("contact.form.validationJsonTitle") || "Xətalar (JSON):"}</h3>
+                                            <pre>{JSON.stringify(errors, null, 2)}</pre>
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                         </div>
