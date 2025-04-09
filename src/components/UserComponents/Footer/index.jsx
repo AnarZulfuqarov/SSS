@@ -39,7 +39,7 @@ function Footer() {
                                     <li><Link to={"/"}>Ana səhifə</Link></li>
                                     <li><Link to={"/portfolio"}>Portfolio</Link></li>
                                     <li><Link to={"/services"}>Xidmətlər</Link></li>
-                                    <li><Link to={"/"}>Haqqımızda</Link></li>
+                                    <li><Link to={"/about"}>Haqqımızda</Link></li>
                                     <li><Link to={"/contact"}>Əlaqə</Link></li>
                                 </div>
                             </div>
