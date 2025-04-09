@@ -61,7 +61,9 @@ function PortfolioDetail() {
                                 <div className="head-left" data-aos="fade-right">
                                     <div className="title-row">
                                         <hr />
-                                        <h4>{project ? project.title : t("portfolioDetail.details.projectNameFallback")}</h4>
+                                        <h4>
+                                            {project ? project.title : t("portfolioDetail.details.projectNameFallback")}
+                                        </h4>
                                     </div>
                                     <h1 data-aos="fade-right">{t("portfolioDetail.introTitle")}</h1>
                                     <p data-aos="fade-right" data-aos-delay="100">
@@ -81,51 +83,61 @@ function PortfolioDetail() {
                                         <h3>{t("portfolioDetail.details.header")}</h3>
                                     </div>
                                     <ul className="details-list">
-                                        <li className="detail-item" data-aos="fade-left" data-aos-delay="100">
-                                            <div className="detail-label">
-                                                <span className="dot"></span>
-                                                <span>{t("portfolioDetail.details.label.projectName")}</span>
-                                            </div>
-                                            <div className="detail-value">
-                                                {project ? project.title : "-"}
-                                            </div>
-                                        </li>
-                                        <li className="detail-item" data-aos="fade-left" data-aos-delay="150">
-                                            <div className="detail-label">
-                                                <span className="dot"></span>
-                                                <span>{t("portfolioDetail.details.label.repairYear")}</span>
-                                            </div>
-                                            <div className="detail-value">
-                                                {project ? project.repairYear : "-"}
-                                            </div>
-                                        </li>
-                                        <li className="detail-item" data-aos="fade-left" data-aos-delay="200">
-                                            <div className="detail-label">
-                                                <span className="dot"></span>
-                                                <span>{t("portfolioDetail.details.label.client")}</span>
-                                            </div>
-                                            <div className="detail-value">
-                                                {project ? project.client : "-"}
-                                            </div>
-                                        </li>
-                                        <li className="detail-item" data-aos="fade-left" data-aos-delay="250">
-                                            <div className="detail-label">
-                                                <span className="dot"></span>
-                                                <span>{t("portfolioDetail.details.label.projectManager")}</span>
-                                            </div>
-                                            <div className="detail-value">
-                                                {project ? project.projectManager : "-"}
-                                            </div>
-                                        </li>
-                                        <li className="detail-item" data-aos="fade-left" data-aos-delay="300">
-                                            <div className="detail-label">
-                                                <span className="dot"></span>
-                                                <span>{t("portfolioDetail.details.label.contractor")}</span>
-                                            </div>
-                                            <div className="detail-value">
-                                                {project ? project.contractor : "-"}
-                                            </div>
-                                        </li>
+                                        {project?.title && (
+                                            <li className="detail-item" data-aos="fade-left" data-aos-delay="100">
+                                                <div className="detail-label">
+                                                    <span className="dot"></span>
+                                                    <span>{t("portfolioDetail.details.label.projectName")}</span>
+                                                </div>
+                                                <div className="detail-value">
+                                                    {project.title}
+                                                </div>
+                                            </li>
+                                        )}
+                                        {project?.repairYear && (
+                                            <li className="detail-item" data-aos="fade-left" data-aos-delay="150">
+                                                <div className="detail-label">
+                                                    <span className="dot"></span>
+                                                    <span>{t("portfolioDetail.details.label.repairYear")}</span>
+                                                </div>
+                                                <div className="detail-value">
+                                                    {project.repairYear}
+                                                </div>
+                                            </li>
+                                        )}
+                                        {project?.client && (
+                                            <li className="detail-item" data-aos="fade-left" data-aos-delay="200">
+                                                <div className="detail-label">
+                                                    <span className="dot"></span>
+                                                    <span>{t("portfolioDetail.details.label.client")}</span>
+                                                </div>
+                                                <div className="detail-value">
+                                                    {project.client}
+                                                </div>
+                                            </li>
+                                        )}
+                                        {project?.projectManager && (
+                                            <li className="detail-item" data-aos="fade-left" data-aos-delay="250">
+                                                <div className="detail-label">
+                                                    <span className="dot"></span>
+                                                    <span>{t("portfolioDetail.details.label.projectManager")}</span>
+                                                </div>
+                                                <div className="detail-value">
+                                                    {project.projectManager}
+                                                </div>
+                                            </li>
+                                        )}
+                                        {project?.contractor && (
+                                            <li className="detail-item" data-aos="fade-left" data-aos-delay="300">
+                                                <div className="detail-label">
+                                                    <span className="dot"></span>
+                                                    <span>{t("portfolioDetail.details.label.contractor")}</span>
+                                                </div>
+                                                <div className="detail-value">
+                                                    {project.contractor}
+                                                </div>
+                                            </li>
+                                        )}
                                     </ul>
                                 </div>
                             </div>

@@ -50,10 +50,21 @@
       "placeholders": {
         "firstName": "Enter your first name",
         "lastName": "Enter your last name",
-        "email": "youremail@example.com",
-        "phone": "+1 234 567 8900"
+        "email": "example@gmail.com",
+        "phone": "+994 99 999 99 99"
+      },
+      "errors": {
+        "firstNameRequired": "Please enter your first name",
+        "lastNameRequired": "Please enter your last name",
+        "emailRequired": "Please enter your email",
+        "emailInvalid": "Please enter a valid email address",
+        "phoneRequired": "Please enter your phone number",
+        "phoneInvalid": "Phone number should contain digits only",
+        "descriptionRequired": "Please enter your message"
       },
       "submitButton": "Submit",
+      "validationErrors": "Please fill all required fields correctly",
+      "validationJsonTitle": "Errors (JSON):",
       "successMessage": "Contact successful!",
       "errorMessage": "An error occurred while sending the message!"
     }

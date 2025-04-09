@@ -27,12 +27,12 @@ function Contact() {
     // AOS initializasiyası
     useEffect(() => {
         AOS.init({
-            duration: 1000,  // Animasiya müddəti (ms)
-            once: true       // Hər element yalnız bir dəfə animasiya edilsin
+            duration: 1000, // Animasiya müddəti (ms)
+            once: true      // Hər element yalnız bir dəfə animasiya edilsin
         });
     }, []);
 
-    // Validasiya funksiyası: hər bir sahəni required kimi yoxlayır və əlavə validasiyaları da aparır
+    // Validasiya funksiyası: hər bir sahəni required kimi yoxlayır
     const validate = () => {
         const newErrors = {};
         if (!name.trim()) {
@@ -48,8 +48,6 @@ function Contact() {
         }
         if (!phoneNumber.trim()) {
             newErrors.phoneNumber = t("contact.form.errors.phoneRequired") || "Telefon nömrənizi daxil edin";
-        } else if (!/^\d+$/.test(phoneNumber)) {
-            newErrors.phoneNumber = t("contact.form.errors.phoneInvalid") || "Telefon nömrəniz yalnız rəqəmlərdən ibarət olmalıdır";
         }
         if (!description.trim()) {
             newErrors.description = t("contact.form.errors.descriptionRequired") || "Mesajınızı daxil edin";
@@ -63,7 +61,6 @@ function Contact() {
         const validationErrors = validate();
         if (Object.keys(validationErrors).length > 0) {
             setErrors(validationErrors);
-            // Konsola JSON şəklində xətaları yazdırırıq
             console.error("Validasiya xətaları:", JSON.stringify(validationErrors, null, 2));
             showToast(t("contact.form.validationErrors") || "Xahiş olunur bütün xanalari düzgün doldurun", "error");
             return;
@@ -190,7 +187,6 @@ function Contact() {
                                             </div>
                                         </div>
                                     </form>
-                                    {/* JSON şəklində validasiya xətaları */}
                                     {Object.keys(errors).length > 0 && (
                                         <div className="error-json">
                                             <h3>{t("contact.form.validationJsonTitle") || "Xətalar (JSON):"}</h3>

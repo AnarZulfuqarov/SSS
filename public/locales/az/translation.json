@@ -50,10 +50,21 @@
       "placeholders": {
         "firstName": "Adınızı daxil edin",
         "lastName": "Soyadınızı daxil edin",
-        "email": "sssogluinsaat@gmail.com",
-        "phone": "+994 55 643 25 88"
+        "email": "example@gmail.com",
+        "phone": "+994 99 99 99 99"
+      },
+      "errors": {
+        "firstNameRequired": "Please enter your first name",
+        "lastNameRequired": "Please enter your last name",
+        "emailRequired": "Please enter your email",
+        "emailInvalid": "Please enter a valid email address",
+        "phoneRequired": "Please enter your phone number",
+        "phoneInvalid": "Phone number should contain digits only",
+        "descriptionRequired": "Please enter your message"
       },
       "submitButton": "Göndər",
+      "validationErrors": "Xahiş olunur bütün xanalari düzgün doldurun",
+      "validationJsonTitle": "Xətalar (JSON):",
       "successMessage": "Əlaqə uğurlu oldu!",
       "errorMessage": "Mesaj göndərilərkən xəta baş verdi!"
     }

@@ -26,7 +26,7 @@ function Navbar() {
     };
 
     // Başlangıçta tarayıcı veya cookies’den bir değer yoksa fallback olarak 'az' kullan
-    const [selectedLanguage, setSelectedLanguage] = useState('az');
+    const [selectedLanguage, setSelectedLanguage] = useState(Cookies.get('appLanguage'));
     const [langDropdown, setLangDropdown] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
