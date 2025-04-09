@@ -1,72 +1,82 @@
-import './index.scss';
-import { useState, useRef, useEffect } from "react";
-import image1 from "/src/assets/logo.png";
-import { useLocation, Link, useNavigate } from "react-router-dom";
-import { MdOutlineLocationOn } from "react-icons/md";
-import { FiMenu, FiX } from "react-icons/fi";
-import image2 from "/src/assets/az.png";
-import image3 from "/src/assets/en.png";
-import image4 from "/src/assets/ru.png";
-import { useTranslation } from "react-i18next";
+import './index.scss'; // scss dosyanız
+import React, { useState, useRef, useEffect } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { MdOutlineLocationOn } from 'react-icons/md';
+import { FiMenu, FiX } from 'react-icons/fi';
+import { useTranslation } from 'react-i18next';
+import Cookies from 'js-cookie';
+
+// Resim importları (Vite ise /src/... yolları genelde çalışır)
+// CRA'de genelde import logo from '../assets/logo.png' gibi kullandığımızı unutmayın
+import logo from '/src/assets/logo.png';
+import flagAZ from '/src/assets/az.png';
+import flagEN from '/src/assets/en.png';
+import flagRU from '/src/assets/ru.png';
 
 function Navbar() {
     const { t, i18n } = useTranslation();
     const navigate = useNavigate();
     const { pathname } = useLocation();
-    const [langDropdown, setLangDropdown] = useState(false);
-    const [selectedLanguage, setSelectedLanguage] = useState('AZ');
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-    const flagMapping = {
-        'az': image2,
-        'en': image3,
-        'ru': image4
+    // Diller için tek bir obje:
+    const languages = {
+        az: { label: 'AZ', flag: flagAZ },
+        en: { label: 'EN', flag: flagEN },
+        ru: { label: 'RU', flag: flagRU },
     };
+
+    // Başlangıçta tarayıcı veya cookies’den bir değer yoksa fallback olarak 'az' kullan
+    const [selectedLanguage, setSelectedLanguage] = useState('az');
+    const [langDropdown, setLangDropdown] = useState(false);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const dropdownRef = useRef(null);
     const buttonRef = useRef(null);
 
-    const toggleLangDropdown = () => {
-        setLangDropdown(prev => !prev);
-    };
-
-    const handleLanguageSelect = (lang) => {
-        setSelectedLanguage(lang);
-        setLangDropdown(false);
-        // Dili i18n və localStorage vasitəsilə yenilə
-        i18n.changeLanguage(lang);
-        localStorage.setItem("appLanguage", lang);
-    };
-
-    const toggleMenu = () => {
-        setIsMenuOpen(prev => !prev);
-    };
-
-    // Komponent yükləndikdə saxlanılmış dili yoxla və təyin et
     useEffect(() => {
-        const storedLang = localStorage.getItem("appLanguage");
-        if (storedLang) {
+        // Cookies'ten language çek
+        const storedLang = Cookies.get('appLanguage');
+        if (storedLang && languages[storedLang]) {
+            // Eğer storedLang 'az','en','ru' dışında bir şeyse set etme
             setSelectedLanguage(storedLang);
             i18n.changeLanguage(storedLang);
         }
     }, [i18n]);
 
+    const toggleLangDropdown = () => {
+        setLangDropdown((prev) => !prev);
+    };
+
+    const handleLanguageSelect = (lang) => {
+        setSelectedLanguage(lang);     // 'az' | 'en' | 'ru'
+        setLangDropdown(false);
+        i18n.changeLanguage(lang);
+        Cookies.set('appLanguage', lang, { expires: 30 });
+    };
+
+    const toggleMenu = () => {
+        setIsMenuOpen((prev) => !prev);
+    };
+
+    // Dropdown dışına tıklanınca kapatmak için
     useEffect(() => {
-        const handleClickOutside = (event) => {
+        function handleClickOutside(event) {
             if (
-                dropdownRef.current && !dropdownRef.current.contains(event.target) &&
-                buttonRef.current && !buttonRef.current.contains(event.target)
+                dropdownRef.current &&
+                !dropdownRef.current.contains(event.target) &&
+                buttonRef.current &&
+                !buttonRef.current.contains(event.target)
             ) {
                 setLangDropdown(false);
             }
-        };
-        document.addEventListener("mousedown", handleClickOutside);
+        }
+        document.addEventListener('mousedown', handleClickOutside);
         return () => {
-            document.removeEventListener("mousedown", handleClickOutside);
+            document.removeEventListener('mousedown', handleClickOutside);
         };
     }, []);
 
-    // Navigasiya dəyişdikdə mobil menyunu avtomatik bağla
+    // route değişince mobil menü kapanacak
     useEffect(() => {
         setIsMenuOpen(false);
     }, [pathname]);
@@ -76,73 +86,128 @@ function Navbar() {
             <div className="container">
                 <nav>
                     <div className="img">
-                        <img src={image1} alt="Logo" onClick={() => navigate('/')} />
+                        {/* Logo üzerine tıklayınca anasayfaya dönsün */}
+                        <img
+                            src={logo}
+                            alt="Logo"
+                            onClick={() => navigate('/')}
+                            style={{ cursor: 'pointer' }}
+                        />
                     </div>
+
+                    {/* Masaüstü Linkler */}
                     <div className="links">
-                        {/* Menyu elementləri üçün i18n istifadə olunur */}
-                        <Link to="/" className={`link ${pathname === '/' ? 'selected' : ''}`}>
+                        <Link
+                            to="/"
+                            className={`link ${pathname === '/' ? 'selected' : ''}`}
+                        >
                             {t('menu.home')}
                         </Link>
-                        <Link to="/services" className={`link ${pathname === '/services' ? 'selected' : ''}`}>
+                        <Link
+                            to="/services"
+                            className={`link ${pathname === '/services' ? 'selected' : ''}`}
+                        >
                             {t('menu.services')}
                         </Link>
-                        <Link to="/portfolio" className={`link ${pathname === '/portfolio' ? 'selected' : ''}`}>
+                        <Link
+                            to="/portfolio"
+                            className={`link ${pathname === '/portfolio' ? 'selected' : ''}`}
+                        >
                             {t('menu.portfolio')}
                         </Link>
-                        <Link to="/about" className={`link ${pathname === '/about' ? 'selected' : ''}`}>
+                        <Link
+                            to="/about"
+                            className={`link ${pathname === '/about' ? 'selected' : ''}`}
+                        >
                             {t('menu.about')}
                         </Link>
-                        <Link to="/contact" className={`link ${pathname === '/contact' ? 'selected' : ''}`}>
+                        <Link
+                            to="/contact"
+                            className={`link ${pathname === '/contact' ? 'selected' : ''}`}
+                        >
                             {t('menu.contact')}
                         </Link>
                     </div>
+
                     <div className="location-wrapper">
-                        <div onClick={toggleLangDropdown} ref={buttonRef} className="selectedLanguage">
-                            <img src={flagMapping[selectedLanguage]} alt={`${selectedLanguage} Bayrağı`} className="flag-icon" />
-                            <span className="span">{selectedLanguage}</span>
+                        {/* Dil Seçme Butonu */}
+                        <div
+                            onClick={toggleLangDropdown}
+                            ref={buttonRef}
+                            className="selectedLanguage"
+                        >
+                            <img
+                                src={languages[selectedLanguage].flag}
+                                alt={`${languages[selectedLanguage].label} bayrağı`}
+                                className="flag-icon"
+                            />
+                            <span className="span">{languages[selectedLanguage].label}</span>
                         </div>
+
+                        {/* Lokasyon ikonu (örnek) */}
                         <div className="location">
                             <MdOutlineLocationOn className="icon" />
                         </div>
-                        <div className={`language-dropdown ${langDropdown ? 'open' : ''}`} ref={dropdownRef}>
-                            <ul>
-                                <li onClick={() => handleLanguageSelect('az')}>
-                                    <img src={image2} alt="AZ Bayrağı" />
-                                    <span className="span">AZ</span>
-                                </li>
-                                <li onClick={() => handleLanguageSelect('en')}>
-                                    <img src={image3} alt="EN Bayrağı" />
-                                    <span className="span">EN</span>
-                                </li>
-                                <li onClick={() => handleLanguageSelect('ru')}>
-                                    <img src={image4} alt="RU Bayrağı" />
-                                    <span className="span">RU</span>
-                                </li>
-                            </ul>
-                        </div>
-                        {/* Burger menyu ikonu mobil görünüş üçün */}
+
+                        {/* Dropdown */}
+                        {langDropdown && (
+                            <div
+                                className="language-dropdown open"
+                                ref={dropdownRef}
+                            >
+                                <ul>
+                                    {Object.keys(languages).map((langKey) => (
+                                        <li key={langKey} onClick={() => handleLanguageSelect(langKey)}>
+                                            <img
+                                                src={languages[langKey].flag}
+                                                alt={`${languages[langKey].label} Bayrağı`}
+                                            />
+                                            <span className="span">{languages[langKey].label}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        )}
+
+                        {/* Burger Menü (Mobil görünümde aç/kapa) */}
                         <div className="burger-menu" onClick={toggleMenu}>
                             {isMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
                         </div>
                     </div>
                 </nav>
             </div>
-            {/* Fullscreen overlay olaraq açılan mobil menyu */}
+
+            {/* Mobil menü overlay */}
             {isMenuOpen && (
                 <div className="mobile-menu">
-                    <Link to="/" className={`mobile-link ${pathname === '/' ? 'selected' : ''}`}>
+                    <Link
+                        to="/"
+                        className={`mobile-link ${pathname === '/' ? 'selected' : ''}`}
+                    >
                         {t('menu.home')}
                     </Link>
-                    <Link to="/services" className={`mobile-link ${pathname === '/services' ? 'selected' : ''}`}>
+                    <Link
+                        to="/services"
+                        className={`mobile-link ${pathname === '/services' ? 'selected' : ''}`}
+                    >
                         {t('menu.services')}
                     </Link>
-                    <Link to="/portfolio" className={`mobile-link ${pathname === '/portfolio' ? 'selected' : ''}`}>
+                    <Link
+                        to="/portfolio"
+                        className={`mobile-link ${pathname === '/portfolio' ? 'selected' : ''}`}
+                    >
                         {t('menu.portfolio')}
                     </Link>
-                    <Link to="/about" className={`mobile-link ${pathname === '/about' ? 'selected' : ''}`}>
+                    <Link
+                        to="/about"
+                        className={`mobile-link ${pathname === '/about' ? 'selected' : ''}`}
+                    >
                         {t('menu.about')}
                     </Link>
-                    <Link to="/contact" className={`mobile-link ${pathname === '/contact' ? 'selected' : ''}`}>
+                    <Link
+                        to="/contact"
+                        className={`mobile-link ${pathname === '/contact' ? 'selected' : ''}`}
+                    >
                         {t('menu.contact')}
                     </Link>
                 </div>

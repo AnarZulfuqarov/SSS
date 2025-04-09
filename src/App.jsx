@@ -11,6 +11,12 @@ function App() {
     if (!token) {
         Cookies.set("sssToken", "null");
     }
+
+    const lang = Cookies.get("appLanguage");
+
+    if (!lang) {
+        Cookies.set("appLanguage", "az");
+    }
     const routes = createBrowserRouter(ROUTES);
 
     return (
