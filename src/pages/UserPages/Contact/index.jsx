@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "./index.scss";
 import banner from "/src/assets/ContactBanner.jpeg";
 import { Link } from "react-router-dom";
 import CircleText from "../../../components/UserComponents/CircleText/index.jsx";
 import { usePostContactMutation } from "../../../services/userApi.jsx";
 import AOS from "aos";                 // AOS idxal edilir
-import "aos/dist/aos.css";            // AOS stil faylı idxal olunur
+import "aos/dist/aos.css";
+import showToast from "../../../components/ToastMessage.js";
+import { ToastContainer } from "react-toastify";
 
 function Contact() {
     const [postContact] = usePostContactMutation();
@@ -37,11 +39,17 @@ function Contact() {
         };
 
         try {
-            const response = await postContact(formData).unwrap();
-            console.log("Mesaj uğurla göndərildi:", response);
-            // Uğurlu əməliyyat sonrası formu təmizləmək və ya bildiriş göstərmək olar
+            await postContact(formData).unwrap();
+            showToast("Əlaqə uğurlu oldu!", "success");
+            // Form reset edirik
+            setFirstName("");
+            setLastName("");
+            setEmail("");
+            setPhone("");
+            setNote("");
         } catch (error) {
             console.error("Mesaj göndərilərkən xəta baş verdi:", error);
+            showToast("Mesaj göndərilərkən xəta baş verdi!", "error");
         }
     };
 
@@ -151,6 +159,7 @@ function Contact() {
                     </div>
                 </div>
             </div>
+            <ToastContainer />
         </div>
     );
 }
