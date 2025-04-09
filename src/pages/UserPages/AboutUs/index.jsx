@@ -1,12 +1,14 @@
-import './index.scss'
+import React, { useState, useEffect } from "react";
+import "./index.scss";
 import banner from "../../../assets/ContactBanner.jpeg";
-import image from "/src/assets/aboutUsImage1.jpeg"
-import {Link} from "react-router-dom";
+import image from "/src/assets/aboutUsImage1.jpeg";
+import { Link } from "react-router-dom";
 import CircleText from "../../../components/UserComponents/CircleText/index.jsx";
 import Sponsor from "../../../components/UserComponents/Sponsor/index.jsx";
 import CardCertificate from "../../../components/UserComponents/Cards/index.jsx";
-import {useState} from "react";
 import Pagination from "../../../components/UserComponents/Pagination/index.jsx";
+import AOS from "aos";                // AOS idxal edilir
+import "aos/dist/aos.css";           // AOS stil faylı idxal olunur
 
 function AboutUs() {
     const cardsData = [
@@ -23,6 +25,15 @@ function AboutUs() {
         console.log("Səhifə dəyişdi:", page);
         setCurrentPage(page);
     };
+
+    // AOS initializasiyası
+    useEffect(() => {
+        AOS.init({
+            duration: 1000,  // Animasiya müddəti (ms)
+            once: true       // Hər element yalnız bir dəfə animasiya edilsin
+        });
+    }, []);
+
     return (
         <div id={"aboutUs"}>
             <div
@@ -30,66 +41,73 @@ function AboutUs() {
                 style={{
                     background: `linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), url(${banner})`,
                 }}
+                data-aos="fade-in"  // Banner fade-in animasiya ilə görünəcək
             >
-                <div className={'container'}>
-                    <div className={"head"}>
+                <div className={'container'} data-aos="fade-up">
+                    <div className={"head"} data-aos="fade-up" data-aos-delay="50">
                         <h1>Haqqımızda</h1>
                     </div>
-                    <p>
+                    <p data-aos="fade-up" data-aos-delay="100">
                         <Link to={"/"}>Ana səhifə</Link>
                         <div className={"dot"}></div>
                         <Link to={"/about"}>Haqqımızda</Link>
                     </p>
                 </div>
             </div>
+
             <div className={"aboutUs"}>
                 <div className={"section1"}>
                     <div className={"container"}>
                         <div className={"row"}>
-                            <div className={"col-6"}>
+                            <div className={"col-6"} data-aos="fade-right">
                                 <div className={"image"}>
-                                    <img src={image} alt=""/>
+                                    <img src={image} alt="Haqqımızda Şəkili" />
                                 </div>
                             </div>
-                            <div className={"col-6"}>
+                            <div className={"col-6"} data-aos="fade-left">
                                 <div className={"text"}>
                                     <h2>Tikintidə Etibara və Keyfiyyətə Söykənən Yolçuluğumuz</h2>
-                                    <p>Şirkətimiz tikinti və layihələndirmə sahəsində fəaliyyət göstərən, etibarlılığı və
+                                    <p>
+                                        Şirkətimiz tikinti və layihələndirmə sahəsində fəaliyyət göstərən, etibarlılığı və
                                         keyfiyyəti ilə seçilən peşəkar komandadır. Uğurla tamamladığımız layihələr və məmnun
                                         müştərilərimiz bizim üçün ən böyük göstəricidir. Hər bir işə məsuliyyətlə yanaşır,
-                                        modern texnologiyalar və təcrübə ilə dayanıqlı həllər təqdim edirik.</p>
+                                        modern texnologiyalar və təcrübə ilə dayanıqlı həllər təqdim edirik.
+                                    </p>
                                 </div>
                             </div>
                         </div>
-                        <div className={"circleText"}>
-                            <CircleText/>
+                        <div className={"circleText"} data-aos="zoom-in" data-aos-delay="150">
+                            <CircleText />
                         </div>
                     </div>
-                    <div className={"back"}></div>
+                    <div className={"back"} data-aos="fade-in"></div>
                 </div>
+
                 <div className={"card-section"}>
                     <div className={"container"}>
-                        <div className={"head"}>
-                            <div className={"head-left"}>
+                        <div className={"head"} data-aos="fade-up">
+                            <div className={"head-left"} data-aos="fade-right">
                                 <hr/>
                                 <h4>Etibar və Keyfiyyət</h4>
                             </div>
-                            <div className={"head-right"}>
+                            <div className={"head-right"} data-aos="fade-left">
                                 <h1>Keyfiyyəti Təsdiqləyən Sertifikatlar</h1>
                             </div>
                         </div>
-                        <div className={"row"} style={{padding:"0 16px"}}>
-                            {cardsData.map((card,index) => (
+                        <div className={"row"} style={{ padding:"0 16px" }}>
+                            {cardsData.map((card, index) => (
                                 <CardCertificate
                                     key={card.id}
                                     index={index}
                                     image={card.image}
                                     number={card.number}
                                     text={card.text}
+                                    data-aos="zoom-in"
+                                    data-aos-delay={index * 100}
                                 />
                             ))}
                         </div>
-                        <div style={{display:"flex",justifyContent:"end",marginTop:"30px"}}>
+                        <div style={{ display:"flex", justifyContent:"end", marginTop:"30px" }} data-aos="fade-up">
                             <Pagination
                                 currentPage={currentPage}
                                 totalPages={totalPages}
@@ -99,16 +117,17 @@ function AboutUs() {
                     </div>
                 </div>
             </div>
-            <div className={"brand"}>
+
+            <div className={"brand"} data-aos="fade-in">
                 <div className={"container"}>
-                    <div className={"head"}>
-                        <div className={"head-left"}>
+                    <div className={"head"} data-aos="fade-up">
+                        <div className={"head-left"} data-aos="fade-right">
                             <hr/>
                             <h4>Tərəfdaşlarımız kimlərdir?</h4>
                         </div>
                     </div>
                 </div>
-                <Sponsor/>
+                <Sponsor data-aos="zoom-in" data-aos-delay="100"/>
             </div>
         </div>
     );
