@@ -18,7 +18,7 @@ function ProjectCardPage({ project }) {
     }
 
     return (
-        <section id="projectsCard" className={"col-6 col-md-6 col-sm-12 col-xs-12"}>
+        <section id="projectsCard" className={"col-6 col-md-6 col-sm-12 col-xs-12"} onClick={() => navigate(`/portfolio/${project.id}`)}>
             <div className={"wrapper"}>
                 <img src={PROJECT_CARD_IMAGES + project.cardImage} alt="Project Card Image" />
                 <div className={"title"}>

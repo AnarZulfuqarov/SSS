@@ -32,7 +32,6 @@
       img {
         width: 100%;
         aspect-ratio: 16/9;
-
         object-fit: contain;
       }
     }
@@ -49,5 +48,35 @@
   }
   100% {
     transform: translateX(-50%);
+  }
+}
+
+/* Tablet cihazlar üçün */
+@media (max-width: 768px) {
+  #logoScrollHome {
+    padding: 20px 0;
+    .wrapper {
+      gap: 15px;
+      .box {
+        width: 150px;
+        height: 60px;
+        padding: 0 24px;
+      }
+    }
+  }
+}
+
+/* Mobil cihazlar üçün */
+@media (max-width: 480px) {
+  #logoScrollHome {
+    padding: 15px 0;
+    .wrapper {
+      gap: 10px;
+      .box {
+        width: 120px;
+        height: 50px;
+        padding: 0 16px;
+      }
+    }
   }
 }

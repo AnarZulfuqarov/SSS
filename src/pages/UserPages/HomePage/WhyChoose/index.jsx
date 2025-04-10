@@ -27,7 +27,7 @@ function WhyChoose() {
                     <div className={"head-right"} data-aos="fade-left" data-aos-delay="100">
                         <h1>{t("whyChoose.head.right")}</h1>
                     </div>
-                    <img src={kran} alt={t("whyChoose.head.kranAlt")} data-aos="zoom-in" data-aos-delay="200" />
+                    {/*<img src={kran} alt={t("whyChoose.head.kranAlt")} data-aos="zoom-in" data-aos-delay="200" />*/}
                 </div>
             </div>
             <div className={"whyChoose"}>

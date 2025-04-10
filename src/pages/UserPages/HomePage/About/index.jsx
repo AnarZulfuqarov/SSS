@@ -36,7 +36,7 @@ function AboutHome() {
                         <div className={"text"}>
                             <h4>{t("aboutHome.text.title")}</h4>
                             <p>{t("aboutHome.text.description")}</p>
-                            <div className={"more"} data-aos="fade-up" data-aos-delay="200">
+                            <div className={"more"} onClick={() => navigate('/about')} data-aos="fade-up" data-aos-delay="200">
                                 {t("aboutHome.more.buttonText")}
                                 <button onClick={() => navigate('/about')}>
                                     <RiArrowRightUpLine />

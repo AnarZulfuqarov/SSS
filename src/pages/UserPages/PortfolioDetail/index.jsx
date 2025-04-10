@@ -159,7 +159,7 @@ function PortfolioDetail() {
                             <ProjectsCard />
                         </div>
                         <div style={{ display: "flex", justifyContent: "center" }} data-aos="zoom-in" data-aos-delay="200">
-                            <div className="more">
+                            <div className="more" onClick={() => navigate("/portfolio")}>
                                 {t("portfolioDetail.main.moreButton")}
                                 <button onClick={() => navigate("/portfolio")}>
                                     <RiArrowRightUpLine />

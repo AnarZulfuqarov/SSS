@@ -10,7 +10,9 @@ function ProjectsCard() {
                 <img src={image1} alt={"Image"}/>
                 <div className={"title"}>
                     <span>Port Baku</span>
-                    <span><IoMdArrowUp className={"icon"}/></span>
+                    <span><IoMdArrowUp className={"icon"}
+                                       // onClick={() => navigate(`/portfolio/${project.id}`)}
+                    /></span>
                 </div>
             </div>
         </section>

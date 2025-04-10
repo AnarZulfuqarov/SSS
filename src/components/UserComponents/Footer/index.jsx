@@ -2,7 +2,7 @@ import './index.scss'
 import { FaPhone } from "react-icons/fa6";
 import { FiMail } from "react-icons/fi";
 import { Link } from "react-router-dom";
-import { useTranslation } from "react-i18next";
+import {Trans, useTranslation} from "react-i18next";
 
 function Footer() {
     const { t } = useTranslation();
@@ -64,6 +64,30 @@ function Footer() {
                                     <h3>{t('footer.contactInfo')}</h3>
                                     <li><a href={"tel:994552999555"}>+994 55 299 95 55</a></li>
                                     <li><a href={"mailto:info.sssinsaat@gmail.com"}>info.sssinsaat@gmail.com</a></li>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className={"col-12"}>
+                        <div className={"row created"}>
+                            <div className={"col-6 col-md-12 col-sm-12 col-xs-12"}>
+                                <div className={"permision"}>
+                                    {t('footer.rightsText')}
+                                </div>
+                            </div>
+                            <div className={"col-6 col-md-12 col-sm-12 col-xs-12"}>
+                                <div className={"createdBy"}>
+                                    <Trans
+                                        i18nKey="footer.createdBy"
+                                        components={[
+                                            <a
+                                                href="https://qavo.codes"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                key="qavo"
+                                            ></a>
+                                        ]}
+                                    />
                                 </div>
                             </div>
                         </div>

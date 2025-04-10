@@ -78,4 +78,21 @@
       }
     }
   }
+  .created{
+    color: #CDCDCD;
+    font-size: 14px;
+    .createdBy{
+      text-align: end;
+      a{
+        color: white;
+        font-weight: 500;
+        cursor: pointer;
+      }
+    }
+    @media (max-width: 768px) {
+      .createdBy{
+        text-align: start;
+      }
+    }
+  }
 }

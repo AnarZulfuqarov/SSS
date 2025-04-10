@@ -271,12 +271,14 @@
           margin-bottom: 60px;
 
           .title-row {
-            flex: none;
+            width: 100%;
             hr {
-              width: 30%;
+              width: 25%;
+              margin-bottom: 15px;
             }
             .subtitle {
               font-size: 18px;
+              margin-bottom: 15px;
             }
           }
 
@@ -291,7 +293,7 @@
         }
 
         .more {
-          padding: 10px 28px;
+          padding: 10px 35px;
 
           button {
             width: 35px;
@@ -369,11 +371,14 @@
         .header {
           margin-bottom: 40px;
           .title-row {
+            width: 100%;
             hr {
-              width: 35%;
+              width: 25%;
+              margin-bottom: 15px;
             }
             .subtitle {
               font-size: 16px;
+              margin-bottom: 15px;
             }
           }
           .main-title {
@@ -387,7 +392,7 @@
         }
 
         .more {
-          padding: 8px 20px;
+          padding: 8px 30px 8px 20px;
 
           button {
             width: 30px;

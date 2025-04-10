@@ -41,7 +41,7 @@ function ServiceHome() {
                     ))}
                 </div>
                 <div data-aos="fade-up" data-aos-delay="300">
-                    <div className={"more"}>
+                    <div className={"more"} onClick={() => navigate("/services")}>
                         {t("serviceHome.moreButton")}
                         <button onClick={() => navigate("/services")}>
                             <RiArrowRightUpLine />

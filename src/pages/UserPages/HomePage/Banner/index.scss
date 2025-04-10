@@ -89,7 +89,14 @@
       align-items: center;
       padding-left: 16px;
       padding-right: 16px;
-
+      @media (max-width: 768px) {
+        gap: 10px;
+        width: 100%;
+      }
+      @media (max-width: 480px) {
+        gap: 10px;
+        width: 100%;
+      }
       p {
         font-weight: 600;
         font-size: 16px;

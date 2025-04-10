@@ -31,3 +31,29 @@
     transform: rotate(360deg);
   }
 }
+
+/* Tablet üçün */
+@media (max-width: 768px) {
+  .circle-text-wrapper {
+    width: 120px;
+    height: 120px;
+    margin: 40px auto;
+  }
+
+  .center-arrow {
+    font-size: 24px;
+  }
+}
+
+/* Mobil cihazlar üçün */
+@media (max-width: 480px) {
+  .circle-text-wrapper {
+    width: 100px;
+    height: 100px;
+    margin: 30px auto;
+  }
+
+  .center-arrow {
+    font-size: 18px;
+  }
+}

@@ -247,7 +247,7 @@
         line-height: 42px;
       }
       .circle {
-        bottom: -60%;
+        bottom: -50%;
       }
     }
 
@@ -288,6 +288,11 @@
               padding: 10px 14px;
               font-size: 14px;
             }
+          }
+        }
+        .map {
+          iframe {
+            height: 350px;
           }
         }
       }

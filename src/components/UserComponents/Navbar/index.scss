@@ -302,19 +302,8 @@
       flex: 1; // allows the content to scroll if needed
       overflow-y: auto;
 
-      h3 {
-        font-size: 20px;
-        margin-top: 0;
-        margin-bottom: 8px;
-        font-weight: 600;
-      }
 
-      p {
-        margin: 0 0 16px;
-        color: #666;
-        line-height: 1.4;
-        font-size: 14px;
-      }
+
 
       .sidebar-image {
         width: 100%;
@@ -329,10 +318,17 @@
         font-style: normal; // remove italic default style
         line-height: 1.4;
 
+
         p {
-          margin: 4px 0;
-          font-size: 14px;
-          color: #333;
+          color: #666;
+          line-height: 1.4;
+          font-size: 16px;
+          margin-bottom: 15px;
+
+
+          a{
+            color: black;
+          }
         }
       }
 
