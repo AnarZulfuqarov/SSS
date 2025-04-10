@@ -5,7 +5,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import Slider from "../../../components/UserComponents/Slider/index.jsx";
 import ProjectsCard from "../../../components/UserComponents/ProjectsCard/index.jsx";
 import { RiArrowRightUpLine } from "react-icons/ri";
-import { useGetProjectByIdQuery } from "../../../services/userApi.jsx";
+import {useGetAllProjectQuery, useGetProjectByIdQuery} from "../../../services/userApi.jsx";
 import AOS from "aos";              // AOS kitabxanasını idxal edirik
 import "aos/dist/aos.css";         // AOS stil faylını idxal edirik
 import { useTranslation } from "react-i18next";
@@ -16,6 +16,8 @@ function PortfolioDetail() {
     const { id } = useParams();
     const { data: getProjectById } = useGetProjectByIdQuery(id);
     const project = getProjectById?.data;
+    const {data :getAllProject} = useGetAllProjectQuery()
+    const projects = getAllProject?.data.slice(0,3)
     console.log(project);
 
     useEffect(() => {
@@ -154,9 +156,11 @@ function PortfolioDetail() {
                             </h2>
                         </div>
                         <div className="row" data-aos="fade-up" data-aos-delay="150">
-                            <ProjectsCard />
-                            <ProjectsCard />
-                            <ProjectsCard />
+                            {
+                                projects && projects.map((item, index) => (
+                                    <ProjectsCard  key={item.id} project={item} index={index} />
+                                ))
+                            }
                         </div>
                         <div style={{ display: "flex", justifyContent: "center" }} data-aos="zoom-in" data-aos-delay="200">
                             <div className="more" onClick={() => navigate("/portfolio")}>
