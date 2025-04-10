@@ -52,15 +52,6 @@ function Footer() {
                             </div>
                             <div className={"col-4 col-md-12 col-sm-12 col-xs-12"}>
                                 <div className={"services"}>
-                                    <h3>{t('footer.termsTitle')}</h3>
-                                    <li>{t('footer.terms.item1')}</li>
-                                    <li>{t('footer.terms.item2')}</li>
-                                    <li>{t('footer.terms.item3')}</li>
-                                    <li>{t('footer.terms.item4')}</li>
-                                </div>
-                            </div>
-                            <div className={"col-4 col-md-12 col-sm-12 col-xs-12"}>
-                                <div className={"services"}>
                                     <h3>{t('footer.contactInfo')}</h3>
                                     <li><a href={"tel:994552999555"}>+994 55 299 95 55</a></li>
                                     <li><a href={"mailto:info.sssinsaat@gmail.com"}>info.sssinsaat@gmail.com</a></li>

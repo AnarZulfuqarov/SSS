@@ -131,7 +131,7 @@ const PortfolioTable = () => {
             render: (text, record, index) => <div>{index + 1}</div>,
         },
         {
-            title: "Image",
+            title: "Şəkil",
             dataIndex: "cardImage",
             key: "cardImage",
             render: (cardImage) => (
@@ -143,37 +143,37 @@ const PortfolioTable = () => {
             ),
         },
         {
-            title: "Title (AZ)",
+            title: "Başlıq (AZ)",
             dataIndex: "title",
             key: "title",
         },
         {
-            title: "Sub Title (AZ)",
+            title: "Alt Başlıq (AZ)",
             dataIndex: "subTitle",
             key: "subTitle",
         },
         {
-            title: "Repair Year",
+            title: "Təmir ili",
             dataIndex: "repairYear",
             key: "repairYear",
         },
         {
-            title: "Client",
+            title: "Klient",
             dataIndex: "client",
             key: "client",
         },
         {
-            title: "Project Manager",
+            title: "Layihə Meneceri",
             dataIndex: "projectManager",
             key: "projectManager",
         },
         {
-            title: "Contractor",
+            title: "Podratçı",
             dataIndex: "contractor",
             key: "contractor",
         },
         {
-            title: "Actions",
+            title: "Fəaliyyətlər",
             key: "actions",
             render: (text, record) => (
                 <>
@@ -183,10 +183,10 @@ const PortfolioTable = () => {
                         style={{ marginRight: 8 }}
                     />
                     <Popconfirm
-                        title="Are you sure to delete this project?"
+                        title="Bu layihəni siləcəyinizə əminsiniz?"
                         onConfirm={() => handleDelete(record)}
-                        okText="Yes"
-                        cancelText="No"
+                        okText="Bəli"
+                        cancelText="Xeyr"
                     >
                         <Button icon={<DeleteOutlined />} danger />
                     </Popconfirm>
@@ -199,27 +199,27 @@ const PortfolioTable = () => {
         <div>
             {record.titleEng && record.titleEng !== record.title && (
                 <p>
-                    <strong>Title (EN):</strong> {record.titleEng}
+                    <strong>Başlıq (EN):</strong> {record.titleEng}
                 </p>
             )}
             {record.titleRu && record.titleRu !== record.title && (
                 <p>
-                    <strong>Title (RU):</strong> {record.titleRu}
+                    <strong>Başlıq (RU):</strong> {record.titleRu}
                 </p>
             )}
             {record.subTitleEng && (
                 <p>
-                    <strong>Sub Title (EN):</strong> {record.subTitleEng}
+                    <strong>Alt Başlıq (EN):</strong> {record.subTitleEng}
                 </p>
             )}
             {record.subTitleRu && (
                 <p>
-                    <strong>Sub Title (RU):</strong> {record.subTitleRu}
+                    <strong>Alt Başlıq (RU):</strong> {record.subTitleRu}
                 </p>
             )}
             {record.images && record.images.length > 0 && (
                 <div style={{ marginTop: "10px" }}>
-                    <strong>Images:</strong>
+                    <strong>Şəkillər:</strong>
                     <div
                         style={{
                             display: "flex",
@@ -398,7 +398,7 @@ const PortfolioTable = () => {
         <div>
             <div style={{ marginBottom: "16px" }}>
                 <Button type="primary" icon={<PlusOutlined />} onClick={showModal}>
-                    Add New Project
+                    Yeni Portfolio Əlavə et
                 </Button>
             </div>
 
@@ -410,9 +410,9 @@ const PortfolioTable = () => {
                 expandedRowRender={expandedRowRender}
             />
 
-            {/* Add New Project Modal */}
+            {/* Yeni Portfolio Əlavə et" Modal */}
             <Modal
-                title="Add New Project"
+                title="Yeni Portfolio Əlavə et"
                 visible={isModalVisible}
                 onOk={handlePost}
                 onCancel={handleCancel}
@@ -424,33 +424,33 @@ const PortfolioTable = () => {
                         {/* Sol sütun */}
                         <Col span={12}>
                             <Form.Item
-                                label="Title (AZ)"
+                                label="Başlıq (AZ)"
                                 name="title"
                                 rules={[{ required: true, message: "Please input the title!" }]}
                             >
                                 <Input />
                             </Form.Item>
-                            <Form.Item label="Title (ENG)" name="titleEng">
+                            <Form.Item label="Başlıq (ENG)" name="titleEng" rules={[{ required: true, message: "Please input the title!" }]}>
                                 <Input />
                             </Form.Item>
-                            <Form.Item label="Title (RU)" name="titleRu">
+                            <Form.Item label="Başlıq (RU)" name="titleRu" rules={[{ required: true, message: "Please input the title!" }]}>
                                 <Input />
                             </Form.Item>
                             <Form.Item
-                                label="Sub Title (AZ)"
+                                label="Alt Başlıq (AZ)"
                                 name="subTitle"
                                 rules={[{ required: true, message: "Please input the subtitle!" }]}
                             >
                                 <Input />
                             </Form.Item>
-                            <Form.Item label="Sub Title (ENG)" name="subTitleEng">
+                            <Form.Item label="Alt Başlıq (ENG)" name="subTitleEng" rules={[{ required: true, message: "Please input the title!" }]}>
                                 <Input />
                             </Form.Item>
-                            <Form.Item label="Sub Title (RU)" name="subTitleRu">
+                            <Form.Item label="Alt Başlıq (RU)" name="subTitleRu" rules={[{ required: true, message: "Please input the title!" }]}>
                                 <Input />
                             </Form.Item>
                             <Form.Item
-                                label="Repair Year"
+                                label="Təmir ili"
                                 name="repairYear"
                                 rules={[{ required: true, message: "Please input the repair year!" }]}
                             >
@@ -460,28 +460,25 @@ const PortfolioTable = () => {
                         {/* Sağ sütun */}
                         <Col span={12}>
                             <Form.Item
-                                label="Client"
+                                label="Klient"
                                 name="client"
-                                rules={[{ required: true, message: "Please input the client name!" }]}
                             >
                                 <Input />
                             </Form.Item>
                             <Form.Item
-                                label="Project Manager"
+                                label="Layihə meneceri"
                                 name="projectManager"
-                                rules={[{ required: true, message: "Please input the project manager!" }]}
                             >
                                 <Input />
                             </Form.Item>
                             <Form.Item
-                                label="Contractor"
+                                label="Podratçı"
                                 name="contractor"
-                                rules={[{ required: true, message: "Please input the contractor!" }]}
                             >
                                 <Input />
                             </Form.Item>
                             <Form.Item
-                                label="Card Image"
+                                label="Kart şəkli"
                                 name="cardImage"
                                 rules={[{ required: true, message: "Please select the card image!" }]}
                                 valuePropName="fileList"
@@ -505,7 +502,7 @@ const PortfolioTable = () => {
                                 </Upload>
                             </Form.Item>
                             <Form.Item
-                                label="Additional Images"
+                                label="Əlavə Şəkillər"
                                 name="images"
                                 valuePropName="fileList"
                                 getValueFromEvent={(e) =>
@@ -542,33 +539,33 @@ const PortfolioTable = () => {
                         {/* Sol sütun */}
                         <Col span={12}>
                             <Form.Item
-                                label="Title (AZ)"
+                                label="Başlıq (AZ)"
                                 name="title"
                                 rules={[{ required: true, message: "Please input the title!" }]}
                             >
                                 <Input />
                             </Form.Item>
-                            <Form.Item label="Title (ENG)" name="titleEng">
+                            <Form.Item label="Başlıq (ENG)" name="titleEng">
                                 <Input />
                             </Form.Item>
-                            <Form.Item label="Title (RU)" name="titleRu">
+                            <Form.Item label="Başlıq (RU)" name="titleRu">
                                 <Input />
                             </Form.Item>
                             <Form.Item
-                                label="Sub Title (AZ)"
+                                label="Alt Başlıq (AZ)"
                                 name="subTitle"
                                 rules={[{ required: true, message: "Please input the subtitle!" }]}
                             >
                                 <Input />
                             </Form.Item>
-                            <Form.Item label="Sub Title (ENG)" name="subTitleEng">
+                            <Form.Item label="Alt Başlıq (ENG)" name="subTitleEng">
                                 <Input />
                             </Form.Item>
-                            <Form.Item label="Sub Title (RU)" name="subTitleRu">
+                            <Form.Item label="Alt Başlıq (RU)" name="subTitleRu">
                                 <Input />
                             </Form.Item>
                             <Form.Item
-                                label="Repair Year"
+                                label="Təmir ili"
                                 name="repairYear"
                                 rules={[{ required: true, message: "Please input the repair year!" }]}
                             >
@@ -578,21 +575,21 @@ const PortfolioTable = () => {
                         {/* Sağ sütun */}
                         <Col span={12}>
                             <Form.Item
-                                label="Client"
+                                label="Klient"
                                 name="client"
                                 rules={[{ required: true, message: "Please input the client name!" }]}
                             >
                                 <Input />
                             </Form.Item>
                             <Form.Item
-                                label="Project Manager"
+                                label="Layihə Meneceri"
                                 name="projectManager"
                                 rules={[{ required: true, message: "Please input the project manager!" }]}
                             >
                                 <Input />
                             </Form.Item>
                             <Form.Item
-                                label="Contractor"
+                                label="Podratçı"
                                 name="contractor"
                                 rules={[{ required: true, message: "Please input the contractor!" }]}
                             >
@@ -601,7 +598,7 @@ const PortfolioTable = () => {
 
                             {/* Edit Modal üçün Card Image Upload */}
                             <Form.Item
-                                label="Card Image"
+                                label="Kart şəkli"
                                 name="cardImage"
                                 valuePropName="fileList"
                                 getValueFromEvent={(e) =>
@@ -622,7 +619,7 @@ const PortfolioTable = () => {
 
                             {/* Edit Modal üçün Additional Images Upload */}
                             <Form.Item
-                                label="Additional Images"
+                                label="Əlavə Şəkillər"
                                 name="images"
                                 valuePropName="fileList"
                                 getValueFromEvent={(e) =>

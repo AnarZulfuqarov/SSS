@@ -1,6 +1,6 @@
 import "./index.scss";
 
-function Pagination({currentPage, totalPages, onPageChange}) {
+function Pagination({ currentPage, totalPages, onPageChange }) {
     // Səhifələrin siyahısını yaratmaq
     const pages = [];
     for (let i = 1; i <= totalPages; i++) {
@@ -14,8 +14,22 @@ function Pagination({currentPage, totalPages, onPageChange}) {
         }
     };
 
+    // Əvvəlki səhifəyə keçmək üçün funksiya
+    const handlePrev = () => {
+        if (currentPage > 1) {
+            onPageChange(currentPage - 1);
+        }
+    };
+
     return (
         <div className="pagination-container">
+            <button
+                className="pagination-btn"
+                onClick={handlePrev}
+                disabled={currentPage === 1}
+            >
+                &lt;
+            </button>
             {pages.map((page) => (
                 <button
                     key={page}

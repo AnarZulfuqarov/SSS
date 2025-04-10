@@ -187,7 +187,7 @@ function Navbar() {
                     >
                         {/* Header with title & close button */}
                         <div className="sidebar-header">
-                            <h2>CONTACT US</h2>
+                            <h2> {t('menu.headerTitle')}</h2>
                             <button className="close-btn" onClick={closeSidebar}>
                                 <FiX size={24} />
                             </button>

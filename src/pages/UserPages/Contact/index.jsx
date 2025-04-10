@@ -136,6 +136,7 @@ function Contact() {
                                                     placeholder={t("contact.form.placeholders.firstName")}
                                                     value={name}
                                                     onChange={(e) => setFirstName(e.target.value)}
+                                                    maxLength={50}
                                                     required
                                                 />
                                                 {errors.name && <span className="error-message">{errors.name}</span>}
@@ -146,6 +147,7 @@ function Contact() {
                                                     placeholder={t("contact.form.placeholders.lastName")}
                                                     value={surname}
                                                     onChange={(e) => setLastName(e.target.value)}
+                                                    maxLength={50}
                                                     required
                                                 />
                                                 {errors.surname && <span className="error-message">{errors.surname}</span>}
@@ -157,6 +159,7 @@ function Contact() {
                                                     placeholder={t("contact.form.placeholders.email")}
                                                     value={email}
                                                     onChange={(e) => setEmail(e.target.value)}
+                                                    maxLength={100}
                                                     required
                                                 />
                                                 {errors.email && <span className="error-message">{errors.email}</span>}
@@ -168,6 +171,7 @@ function Contact() {
                                                     placeholder={t("contact.form.placeholders.phone")}
                                                     value={phoneNumber}
                                                     onChange={(e) => setPhone(e.target.value)}
+                                                    maxLength={20}
                                                     required
                                                 />
                                                 {errors.phoneNumber && <span className="error-message">{errors.phoneNumber}</span>}
@@ -178,6 +182,7 @@ function Contact() {
                                                     rows={5}
                                                     value={description}
                                                     onChange={(e) => setNote(e.target.value)}
+                                                    maxLength={700}
                                                     required
                                                 />
                                                 {errors.description && <span className="error-message">{errors.description}</span>}

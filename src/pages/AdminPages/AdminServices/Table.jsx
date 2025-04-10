@@ -9,7 +9,6 @@ import {
     Input,
     Row,
     Col,
-    Select,
     Avatar,
 } from "antd";
 import {
@@ -43,42 +42,55 @@ const convertImageToFile = async (imgSrc, fileName) => {
     return new File([blob], fileName, { type: blob.type });
 };
 
-// Yeni versiya: ImagePickerGallery komponenti – İndi seçim dropdown kimi işləyir
-const ImagePickerGallery = ({ value, onChange }) => {
+// Alternativ ImagePickerGallery komponenti – clickable kartlardan ibarət seçim UI-dur.
+const ImagePickerGalleryAlternative = ({ value, onChange }) => {
+    const handleClick = (imgName) => {
+        onChange(imgName);
+    };
+
     return (
-        <Select
-            value={value}
-            placeholder="Şəkil seçin"
-            onChange={onChange}
-            style={{ width: "100%" }}
-            optionLabelProp="label"
+        <div
+            className="image-picker-gallery-alternative"
+            style={{
+                display: "flex",
+                flexWrap: "wrap",
+                gap: "10px",
+                maxHeight: "250px",       // Maksimum hündürlük təyin edirik
+                overflowY: "auto",        // Vertical scroll təmin edirik
+                padding: "5px",
+            }}
         >
             {availableServiceCardImages.map((imgObj) => (
-                <Select.Option
+                <div
                     key={imgObj.name}
-                    value={imgObj.name}
-                    label={
-                        <div style={{ display: "flex", alignItems: "center" }}>
-                            <Avatar
-                                src={imgObj.src}
-                                size="small"
-                                style={{ marginRight: 8 }}
-                            />
-                            <span>{imgObj.name}</span>
-                        </div>
-                    }
+                    onClick={() => handleClick(imgObj.name)}
+                    className={`image-card ${value === imgObj.name ? "selected" : ""}`}
+                    style={{
+                        width: "100px",
+                        height: "100px",
+                        border: value === imgObj.name ? "2px solid #1890ff" : "1px solid #ccc",
+                        borderRadius: "4px",
+                        cursor: "pointer",
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        padding: "4px",
+                    }}
                 >
-                    <div style={{ display: "flex", alignItems: "center" }}>
-                        <Avatar
-                            src={imgObj.src}
-                            size="small"
-                            style={{ marginRight: 8 }}
-                        />
-                        <span>{imgObj.name}</span>
-                    </div>
-                </Select.Option>
+                    <img
+                        src={imgObj.src}
+                        alt={imgObj.name}
+                        style={{
+                            width: "100%",
+                            height: "100%",
+                            objectFit: "contain",
+                        }}
+                    />
+
+                </div>
             ))}
-        </Select>
+        </div>
     );
 };
 
@@ -108,7 +120,7 @@ const ServicesTable = () => {
             render: (text, record, index) => <div>{index + 1}</div>,
         },
         {
-            title: "Image",
+            title: "Şəkil",
             dataIndex: "cardImage",
             key: "cardImage",
             render: (cardImage) => (
@@ -121,17 +133,17 @@ const ServicesTable = () => {
             ),
         },
         {
-            title: "Title (AZ)",
+            title: "Başlıq (AZ)",
             dataIndex: "title",
             key: "title",
         },
         {
-            title: "Sub Title (AZ)",
+            title: "Alt Başlıq (AZ)",
             dataIndex: "subTitle",
             key: "subTitle",
         },
         {
-            title: "Actions",
+            title: "Fəaliyyətlər",
             key: "actions",
             render: (text, record) => (
                 <>
@@ -141,10 +153,10 @@ const ServicesTable = () => {
                         style={{ marginRight: 8 }}
                     />
                     <Popconfirm
-                        title="Are you sure to delete this service?"
+                        title="Bu xidməti siləcəyinizə əminsiniz?"
                         onConfirm={() => handleDelete(record)}
-                        okText="Yes"
-                        cancelText="No"
+                        okText="Bəli"
+                        cancelText="Xeyr"
                     >
                         <Button icon={<DeleteOutlined />} danger />
                     </Popconfirm>
@@ -158,22 +170,22 @@ const ServicesTable = () => {
         <div>
             {record.titleEng && record.titleEng !== record.title && (
                 <p>
-                    <strong>Title (EN):</strong> {record.titleEng}
+                    <strong>Başlıq (EN):</strong> {record.titleEng}
                 </p>
             )}
             {record.titleRu && record.titleRu !== record.title && (
                 <p>
-                    <strong>Title (RU):</strong> {record.titleRu}
+                    <strong>Başlıq (RU):</strong> {record.titleRu}
                 </p>
             )}
             {record.subTitleEng && record.subTitleEng !== record.subTitle && (
                 <p>
-                    <strong>Sub Title (EN):</strong> {record.subTitleEng}
+                    <strong>Alt Başlıq (EN):</strong> {record.subTitleEng}
                 </p>
             )}
             {record.subTitleRu && record.subTitleRu !== record.subTitle && (
                 <p>
-                    <strong>Sub Title (RU):</strong> {record.subTitleRu}
+                    <strong>Alt Başlıq (RU):</strong> {record.subTitleRu}
                 </p>
             )}
         </div>
@@ -327,7 +339,7 @@ const ServicesTable = () => {
         <div>
             <div style={{ marginBottom: "16px" }}>
                 <Button type="primary" icon={<PlusOutlined />} onClick={showModal}>
-                    Add New Service
+                    Yeni Servis Əlavə edin
                 </Button>
             </div>
 
@@ -339,9 +351,9 @@ const ServicesTable = () => {
                 expandedRowRender={expandedRowRender}
             />
 
-            {/* Add New Service Modal */}
+            {/* Yeni Servis Əlavə edin Modal */}
             <Modal
-                title="Add New Service"
+                title="Yeni Servis Əlavə edin"
                 visible={isModalVisible}
                 onOk={handlePost}
                 onCancel={handleCancel}
@@ -352,40 +364,43 @@ const ServicesTable = () => {
                     <Row gutter={16}>
                         <Col span={12}>
                             <Form.Item
-                                label="Title (AZ)"
+                                label="Başlıq (AZ)"
                                 name="title"
                                 rules={[{ required: true, message: "Please input the title!" }]}
                             >
                                 <Input />
                             </Form.Item>
-                            <Form.Item label="Title (ENG)" name="titleEng">
+                            <Form.Item label="Başlıq (ENG)" name="titleEng">
                                 <Input />
                             </Form.Item>
-                            <Form.Item label="Title (RU)" name="titleRu">
+                            <Form.Item label="Başlıq (RU)" name="titleRu">
                                 <Input />
                             </Form.Item>
                         </Col>
                         <Col span={12}>
                             <Form.Item
-                                label="Sub Title (AZ)"
+                                label="Alt Başlıq (AZ)"
                                 name="subTitle"
                                 rules={[{ required: true, message: "Please input the subtitle!" }]}
                             >
                                 <Input />
                             </Form.Item>
-                            <Form.Item label="Sub Title (ENG)" name="subTitleEng">
+                            <Form.Item label="Alt Başlıq (ENG)" name="subTitleEng">
                                 <Input />
                             </Form.Item>
-                            <Form.Item label="Sub Title (RU)" name="subTitleRu">
+                            <Form.Item label="Alt Başlıq (RU)" name="subTitleRu">
                                 <Input />
                             </Form.Item>
                             <Form.Item
-                                label="Card Image"
+                                label="Kart Şəkli"
                                 name="cardImage"
                                 rules={[{ required: true, message: "Please select the card image!" }]}
                             >
-                                {/* Yeni seçimin dropdown ilə təqdim olunması */}
-                                <ImagePickerGallery />
+                                {/* Alternativ seçim – ImagePickerGalleryAlternative */}
+                                <ImagePickerGalleryAlternative
+                                    onChange={(value) => addForm.setFieldsValue({ cardImage: value })}
+                                    value={addForm.getFieldValue("cardImage")}
+                                />
                             </Form.Item>
                         </Col>
                     </Row>
@@ -405,35 +420,38 @@ const ServicesTable = () => {
                     <Row gutter={16}>
                         <Col span={12}>
                             <Form.Item
-                                label="Title (AZ)"
+                                label="Başlıq (AZ)"
                                 name="title"
                                 rules={[{ required: true, message: "Please input the title!" }]}
                             >
                                 <Input />
                             </Form.Item>
-                            <Form.Item label="Title (ENG)" name="titleEng">
+                            <Form.Item label="Başlıq (ENG)" name="titleEng">
                                 <Input />
                             </Form.Item>
-                            <Form.Item label="Title (RU)" name="titleRu">
+                            <Form.Item label="Başlıq (RU)" name="titleRu">
                                 <Input />
                             </Form.Item>
                         </Col>
                         <Col span={12}>
                             <Form.Item
-                                label="Sub Title (AZ)"
+                                label="Alt Başlıq (AZ)"
                                 name="subTitle"
                                 rules={[{ required: true, message: "Please input the subtitle!" }]}
                             >
                                 <Input />
                             </Form.Item>
-                            <Form.Item label="Sub Title (ENG)" name="subTitleEng">
+                            <Form.Item label="Alt Başlıq (ENG)" name="subTitleEng">
                                 <Input />
                             </Form.Item>
-                            <Form.Item label="Sub Title (RU)" name="subTitleRu">
+                            <Form.Item label="Alt Başlıq (RU)" name="subTitleRu">
                                 <Input />
                             </Form.Item>
-                            <Form.Item label="Card Image" name="cardImage">
-                                <ImagePickerGallery />
+                            <Form.Item label="Kart Şəkli" name="cardImage">
+                                <ImagePickerGalleryAlternative
+                                    onChange={(value) => editForm.setFieldsValue({ cardImage: value })}
+                                    value={editForm.getFieldValue("cardImage")}
+                                />
                             </Form.Item>
                         </Col>
                     </Row>
