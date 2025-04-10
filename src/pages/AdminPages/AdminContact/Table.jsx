@@ -4,6 +4,7 @@ import {
 
 
 import {useGetAllContactQuery} from "../../../services/userApi.jsx";
+import React from "react";
 
 const ContactTable = () => {
     const {data: getAllContact} = useGetAllContactQuery();
@@ -36,20 +37,24 @@ const ContactTable = () => {
             key: "phoneNumber",
 
         },
-        {
-            title: "Not",
-            dataIndex: "description",
-            key: "description",
-        },
+        // {
+        //     title: "Not",
+        //     dataIndex: "description",
+        //     key: "description",
+        // },
     ];
-
+    const expandedRowRender = (record) => (
+        <div>
+            <p><strong>Not:</strong> {record.description}</p>
+        </div>
+    );
     return (
         <div>
             <Table
                 rowKey="id"
                 columns={columns}
                 dataSource={contact}
-
+                expandedRowRender={expandedRowRender}
                 pagination={{pageSize: 5}}
             />
 
