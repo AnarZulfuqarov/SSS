@@ -87,12 +87,11 @@ const BannerHome = () => {
                                 gap: "5px",
                                 marginBottom: "5px"
                             }}>
-                                {/* Burada ulduzlar və ya digər dekorativ elementlər yerləşə bilər */}
                             </div>
                             <p>{t("bannerHome.experience")}</p>
                         </div>
                     </div>
-                    <div className={"more"}>
+                    <div className={"more"} onClick={() => navigate("/portfolio")}>
                         {t("bannerHome.moreButton")}
                         <button onClick={() => navigate("/portfolio")}>
                             <RiArrowRightUpLine />

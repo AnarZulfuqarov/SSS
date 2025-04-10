@@ -2,21 +2,23 @@
   .row {
     display: flex;
     overflow: hidden;
-    height: 400px;
+
     transition: all 0.4s ease;
 
     .card {
+      cursor: pointer;
       padding: 0;
       position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
-      transition: flex .5s ease-in-out;
+      height: 400px !important;
+      transition: flex 0.5s ease-in-out;
       flex: 0 0 25%;
 
       img {
-        filter: grayscale(20%) brightness(.7);
+        filter: grayscale(20%) brightness(0.7);
         width: 100%;
         height: 100%;
         object-fit: cover;
@@ -33,12 +35,14 @@
         margin-top: 30%;
         z-index: 9;
         color: #FDFDFD;
-        h3{
+
+        h3 {
           font-weight: 600;
           font-size: 32px;
           line-height: 100%;
         }
-        button{
+
+        button {
           border: none;
           background-color: #FFFFFF73;
           color: #FFFFFF;
@@ -50,26 +54,61 @@
           justify-content: center;
           align-items: center;
           transform: rotate(-45deg);
+          transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+          cursor: pointer;
         }
       }
     }
 
-    &:hover .card {
+    // Ümumi hover effektləri (yalnız desktop üçün)
+    &:hover .card:not(:hover) {
       flex: 0 0 23%;
-      .content{
-        h3{
+    }
+
+    &:hover .card:hover {
+      flex: 0 0 31%;
+      img {
+        filter: grayscale(0) brightness(1);
+      }
+      .content {
+        h3 {
           visibility: hidden;
         }
-        button{
+        button {
           background-color: #EE9026;
           transform: rotate(0);
         }
       }
     }
-
-    &:hover .card:hover {
-      flex: 0 0 31%;
-    }
   }
 
+  /* ----------- MOBILE RESPONSIVE ----------- */
+  @media (max-width: 768px) {
+    .row {
+      flex-direction: column;
+    }
+
+    .card {
+      flex: 0 0 100%;      // Hər kart tam eni tutsun
+      transition: none;    // Mobil hover effektləri istəyə bağlı olaraq deaktiv edilir
+      height: 400px;        // Kart hündürlüyü avtomatik olsun
+      //margin-bottom: 20px; // Kartlar arasında boşluq (istəyə görə)
+
+      img {
+        height: auto;      // Şəkil hündürlüyü avtomatik olsun
+        // object-fit: cover;  // Lazım olsa açıq qala bilər
+      }
+
+      .content {
+        position: static;   // Mobil üçün normal axına daxil edirik
+        margin-top: 0;      // Yuxarı boşluğu sıfırlayırıq
+        height: auto;       // Avtomatik hündürlük
+        padding: 10px;      // Lazım gəlsə əlavə padding verə bilərsiniz
+
+        h3 {
+          font-size: 24px; // Mobil üçün daha kiçik font-size
+        }
+      }
+    }
+  }
 }

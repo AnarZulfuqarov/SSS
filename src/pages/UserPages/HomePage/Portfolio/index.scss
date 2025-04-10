@@ -1,0 +1,191 @@
+#portfolioHome {
+  padding: 80px 0;
+  background-color: #1A1A1A;
+
+  .container {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 90px;
+    padding: 0 16px;
+
+    &__left {
+      flex: 0.8;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+
+      hr {
+        width: 30%;
+        border: 1px solid #EE9026;
+      }
+
+      h4 {
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 30px;
+        color: #EE9026;
+      }
+    }
+
+    &__right {
+      h1 {
+        font-size: 40px;
+        font-weight: 700;
+        line-height: 60px;
+        color: #FFFFFF;
+        width: 80%;
+      }
+    }
+  }
+
+  .slider-wrapper {
+    position: relative;
+
+    // Yarım kartların kənarı kəsilməməsi üçün
+    .slick-list {
+      overflow: visible !important;
+      margin: 0 -10px;
+    }
+
+    .slick-slide {
+      padding: 0 10px;
+      outline: none;
+    }
+
+    // Naviqasiya düymələrinin yerləşdiyi konteyner
+    .slider-nav {
+      display: flex;
+      gap: 16px;
+      margin-top: 20px; // Slider-dən aşağıda məsafə
+      justify-content: flex-start; // Sol hizalama
+
+      .nav-button {
+        background-color: #E080407D;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        color: #fff;
+        padding: 10px 10px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background-color: #ff9f3e;
+        }
+      }
+    }
+    .more {
+      width: max-content;
+      position: relative;
+      border: 1px solid #EE9026;
+      color: #EE9026;
+      border-radius: 25px;
+      padding: 12.5px 36px 12.5px 16px;
+      cursor: pointer;
+      button {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: -15px;
+        border-radius: 50%;
+        border: none;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #EE9026;
+        cursor: pointer;
+        color: #FFFFFF;
+        font-size: 18px;
+        transition: all 0.3s ease-in-out;
+      }
+    }
+  }
+}
+
+/* RESPONSIVE QAYDALAR */
+@media (max-width: 1024px) {
+  #portfolioHome {
+    .head {
+      &__right h1 {
+        font-size: 32px;
+        line-height: 48px;
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  #portfolioHome {
+    padding: 60px 0;
+
+    .head {
+      flex-direction: column;
+      text-align: center;
+      margin-bottom: 60px;
+      &__left, &__right {
+        width: 100%;
+      }
+
+      &__left {
+        margin-bottom: 20px;
+        hr {
+          width: 40%;
+        }
+      }
+    }
+
+    .slider-wrapper {
+      .slider-nav {
+        flex-direction: row;
+        gap: 12px;
+        margin-top: 15px;
+
+        .nav-button {
+          padding: 8px 16px;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  #portfolioHome {
+    .head {
+      &__left {
+        hr {
+          width: 50%;
+        }
+      }
+
+      &__right h1 {
+        font-size: 28px;
+        line-height: 40px;
+      }
+    }
+
+    .slider-wrapper {
+      .slider-nav {
+
+        gap: 10px;
+
+        .nav-button {
+          padding: 10px;
+          font-size: 14px;
+          max-width: 200px;
+        }
+      }
+    }
+  }
+}

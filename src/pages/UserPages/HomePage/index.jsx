@@ -7,6 +7,7 @@ import Sponsor from "../../../components/UserComponents/Sponsor/index.jsx";
 import './index.scss'
 import React from "react";
 import {useTranslation} from "react-i18next";
+import PortfolioHome from "./Portfolio/index.jsx";
 function HomePage() {
     const { t } = useTranslation();
     return (
@@ -15,7 +16,7 @@ function HomePage() {
             <AboutHome />
             <CardsContainer/>
             <WhyChoose/>
-            {/*<AboutHome/>*/}
+            <PortfolioHome/>
             <ServiceHome/>
             <div className={"brand"} data-aos="fade-in">
                 <div className={"container"}>

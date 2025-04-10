@@ -8,8 +8,8 @@
     "headerTitle": "ƏLAQƏ"
   },
   "footer": {
-    "company": "SSS Constraction",
-    "rightsText": "© 2025 SSS Constraction. Bütün hüquqlar qorunur.",
+    "company": "SSS Construction",
+    "rightsText": "© 2025 SSS Construction. Bütün hüquqlar qorunur.",
     "createdBy": "Yaradılıb <0>Qavo Codes</0> tərəfindən",
     "call": "Bizə zəng edin",
     "mail": "Bizə mail yazın",
@@ -173,6 +173,17 @@
       "item5": "Güvənli Əməkdaşlıq",
       "item6": "Əla Müştəri Xidməti"
     }
+  },
+  "portfolioHome": {
+    "projects": "Layihələrimiz",
+    "title": "Bizimlə Daha Etibarlı, Daha Keyfiyyətli",
+    "viewAll": "Hamısına bax"
+  },
+  "cardsContainer": {
+    "project": "Layihə",
+    "repair": "Təmir",
+    "design": "Dizayn",
+    "construction": "İnşaat"
   }
 
 }

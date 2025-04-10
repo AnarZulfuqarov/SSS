@@ -8,8 +8,8 @@
     "headerTitle": "CONTACT US"
   },
   "footer": {
-    "company": "SSS Constraction",
-    "rightsText": "© 2025 SSS Constraction. All rights reserved.",
+    "company": "SSS Construction",
+    "rightsText": "© 2025 SSS Construction. All rights reserved.",
     "createdBy": "Created by <0>Qavo Codes</0>",
     "call": "Call Us",
     "mail": "Email Us",
@@ -173,5 +173,16 @@
       "item5": "Trusted Partnership",
       "item6": "Excellent Customer Service"
     }
+  },
+  "portfolioHome": {
+    "projects": "Our Projects",
+    "title": "More Reliable, More Quality With Us",
+    "viewAll": "View All"
+  },
+  "cardsContainer": {
+    "project": "Project",
+    "repair": "Renovation",
+    "design": "Design",
+    "construction": "Construction"
   }
 }

@@ -8,8 +8,8 @@
     "headerTitle": "СВЯЗАТЬСЯ С НАМИ"
   },
   "footer": {
-    "company": "SSS Constraction",
-    "rightsText": "© 2025 SSS Constraction. Все права защищены.",
+    "company": "SSS Construction",
+    "rightsText": "© 2025 SSS Construction. Все права защищены.",
     "createdBy": "Создано <0>Qavo Codes</0>",
     "call": "Позвоните нам",
     "mail": "Напишите нам",
@@ -173,5 +173,16 @@
       "item5": "Надёжное сотрудничество",
       "item6": "Отличное обслуживание клиентов"
     }
+  },
+  "portfolioHome": {
+    "projects": "Наши проекты",
+    "title": "Более надежно, более качественно с нами",
+    "viewAll": "Смотреть все"
+  },
+  "cardsContainer": {
+    "project": "Проект",
+    "repair": "Ремонт",
+    "design": "Дизайн",
+    "construction": "Строительство"
   }
 }
