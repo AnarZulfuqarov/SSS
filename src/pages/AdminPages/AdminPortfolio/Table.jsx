@@ -545,10 +545,10 @@ const PortfolioTable = () => {
                             >
                                 <Input />
                             </Form.Item>
-                            <Form.Item label="Başlıq (ENG)" name="titleEng">
+                            <Form.Item label="Başlıq (ENG)" name="titleEng" rules={[{ required: true, message: "Please input the repair year!" }]}>
                                 <Input />
                             </Form.Item>
-                            <Form.Item label="Başlıq (RU)" name="titleRu">
+                            <Form.Item label="Başlıq (RU)" name="titleRu" rules={[{ required: true, message: "Please input the repair year!" }]}>
                                 <Input />
                             </Form.Item>
                             <Form.Item
@@ -558,10 +558,10 @@ const PortfolioTable = () => {
                             >
                                 <Input />
                             </Form.Item>
-                            <Form.Item label="Alt Başlıq (ENG)" name="subTitleEng">
+                            <Form.Item label="Alt Başlıq (ENG)" name="subTitleEng" rules={[{ required: true, message: "Please input the repair year!" }]}>
                                 <Input />
                             </Form.Item>
-                            <Form.Item label="Alt Başlıq (RU)" name="subTitleRu">
+                            <Form.Item label="Alt Başlıq (RU)" name="subTitleRu" rules={[{ required: true, message: "Please input the repair year!" }]}>
                                 <Input />
                             </Form.Item>
                             <Form.Item
@@ -577,21 +577,18 @@ const PortfolioTable = () => {
                             <Form.Item
                                 label="Klient"
                                 name="client"
-                                rules={[{ required: true, message: "Please input the client name!" }]}
                             >
                                 <Input />
                             </Form.Item>
                             <Form.Item
                                 label="Layihə Meneceri"
                                 name="projectManager"
-                                rules={[{ required: true, message: "Please input the project manager!" }]}
                             >
                                 <Input />
                             </Form.Item>
                             <Form.Item
                                 label="Podratçı"
                                 name="contractor"
-                                rules={[{ required: true, message: "Please input the contractor!" }]}
                             >
                                 <Input />
                             </Form.Item>

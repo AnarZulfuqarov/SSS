@@ -2,12 +2,12 @@ import React, { useEffect } from "react";
 import "./index.scss";
 import banner from "../../../assets/DetailBanner.jpeg";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import Slider from "../../../components/UserComponents/Slider/index.jsx";
-import ProjectsCard from "../../../components/UserComponents/ProjectsCard/index.jsx";
+import Slider from "../../../components/UserComponents/Slider";
+import ProjectsCard from "../../../components/UserComponents/ProjectsCard";
 import { RiArrowRightUpLine } from "react-icons/ri";
-import {useGetAllProjectQuery, useGetProjectByIdQuery} from "../../../services/userApi.jsx";
-import AOS from "aos";              // AOS kitabxanasını idxal edirik
-import "aos/dist/aos.css";         // AOS stil faylını idxal edirik
+import { useGetAllProjectQuery, useGetProjectByIdQuery } from "../../../services/userApi";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import { useTranslation } from "react-i18next";
 
 function PortfolioDetail() {
@@ -16,14 +16,17 @@ function PortfolioDetail() {
     const { id } = useParams();
     const { data: getProjectById } = useGetProjectByIdQuery(id);
     const project = getProjectById?.data;
-    const {data :getAllProject} = useGetAllProjectQuery()
-    const projects = getAllProject?.data.slice(0,3)
+    const { data: getAllProject } = useGetAllProjectQuery();
+    const projects = getAllProject?.data.slice(0, 3);
+
+    // Example: if your project data contains images
+    const sliderImages = project?.images;  // Ensure your API returns an array of URLs
     console.log(project);
 
     useEffect(() => {
         AOS.init({
-            duration: 1000, // Animasiya müddəti (ms)
-            once: true,     // Element yalnız bir dəfə animasiya edilsin
+            duration: 1000,
+            once: true,
         });
     }, []);
 
@@ -36,7 +39,7 @@ function PortfolioDetail() {
                     backgroundRepeat: "no-repeat",
                     backgroundSize: "cover",
                 }}
-                data-aos="fade-in" // Banner üçün fade-in animasiya
+                data-aos="fade-in"
             >
                 <div className="container" data-aos="fade-up">
                     <div className="head">
@@ -75,7 +78,8 @@ function PortfolioDetail() {
                             </div>
                             <div className="col-4 col-md-12 col-sm-12 col-xs-12">
                                 <div className="head-center" data-aos="zoom-in">
-                                    <Slider />
+                                    {/* Pass sliderImages to the Slider component */}
+                                    <Slider images={sliderImages} />
                                 </div>
                             </div>
                             <div className="col-4 col-md-12 col-sm-12 col-xs-12">
@@ -158,7 +162,7 @@ function PortfolioDetail() {
                         <div className="row" data-aos="fade-up" data-aos-delay="150">
                             {
                                 projects && projects.map((item, index) => (
-                                    <ProjectsCard  key={item.id} project={item} index={index} />
+                                    <ProjectsCard key={item.id} project={item} index={index} />
                                 ))
                             }
                         </div>

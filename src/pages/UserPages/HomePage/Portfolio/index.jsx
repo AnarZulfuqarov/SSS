@@ -8,11 +8,14 @@ import "slick-carousel/slick/slick-theme.css";
 import { HiArrowLeft, HiArrowRight } from "react-icons/hi2";
 import { RiArrowRightUpLine } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
+import { useGetAllProjectQuery } from "../../../../services/userApi.jsx";
 
 const PortfolioHome = () => {
     const { t } = useTranslation();
     const sliderRef = useRef(null);
     const navigate = useNavigate();
+    const { data: getAllProject } = useGetAllProjectQuery();
+    const projects = getAllProject?.data; // Ensure your project data is inside .data
 
     const sliderSettings = {
         dots: false,
@@ -29,8 +32,7 @@ const PortfolioHome = () => {
                 }
             },
             {
-                // 600px-dən kiçik ekranlarda 1.2 kimi dəyər
-                // kartların nisbətən daha böyük görünməsinə səbəb olur
+                // For screens smaller than 600px, show 1.2 slides for larger card appearance
                 breakpoint: 600,
                 settings: {
                     slidesToShow: 1.2
@@ -45,7 +47,7 @@ const PortfolioHome = () => {
                 <header className="head">
                     <div className="head__left" data-aos="fade-right">
                         <hr />
-                        {/* i18next JSON açarını istifadə edirik */}
+                        {/* Using i18next JSON key */}
                         <h4>{t('portfolioHome.projects')}</h4>
                     </div>
                     <div className="head__right" data-aos="fade-left" data-aos-delay="100">
@@ -55,14 +57,18 @@ const PortfolioHome = () => {
 
                 <div className="slider-wrapper" data-aos="fade-up">
                     <Slider ref={sliderRef} {...sliderSettings}>
-                        <ProjectsCardTest />
-                        <ProjectsCardTest />
-                        <ProjectsCardTest />
-                        <ProjectsCardTest />
-                        <ProjectsCardTest />
+                        {projects && projects.length > 0
+                            ? projects.map((project) => (
+                                <ProjectsCardTest key={project.id} project={project} />
+                            ))
+                            : (
+                                // Optionally render a placeholder or nothing when no data is available
+                                <p>{t('portfolioHome.noProjects')}</p>
+                            )
+                        }
                     </Slider>
 
-                    {/* Naviqasiya düymələri slider-in altında, sola hizalı */}
+                    {/* Navigation buttons placed below the slider aligned to the left */}
                     <div className="slider-nav">
                         <button
                             onClick={() => sliderRef.current.slickPrev()}
@@ -77,7 +83,7 @@ const PortfolioHome = () => {
                             <HiArrowRight />
                         </button>
                     </div>
-                    <div style={{display: "flex", justifyContent: "end"}}>
+                    <div style={{ display: "flex", justifyContent: "end" }}>
                         <div className="more" onClick={() => navigate('/portfolio')} data-aos="fade-up" data-aos-delay="200">
                             {t('portfolioHome.viewAll')}
                             <button onClick={() => navigate('/portfolio')}>

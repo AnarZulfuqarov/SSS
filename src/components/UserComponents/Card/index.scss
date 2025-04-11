@@ -1,11 +1,8 @@
 #cardsContainer {
   .row {
-    display: flex;
-    overflow: hidden;
-
     transition: all 0.4s ease;
 
-    .card {
+    .carda {
       cursor: pointer;
       padding: 0;
       position: relative;
@@ -13,7 +10,8 @@
       align-items: center;
       justify-content: center;
       overflow: hidden;
-      height: 400px !important;
+      height: 400px ;
+      min-height: 300px;
       transition: flex 0.5s ease-in-out;
       flex: 0 0 25%;
 
@@ -21,7 +19,9 @@
         filter: grayscale(20%) brightness(0.7);
         width: 100%;
         height: 100%;
+        min-height: 300px;
         object-fit: cover;
+        transition: 0.3s ease-in-out;
       }
 
       .content {
@@ -60,12 +60,11 @@
       }
     }
 
-    // Ümumi hover effektləri (yalnız desktop üçün)
-    &:hover .card:not(:hover) {
+    &:hover .carda:not(:hover) {
       flex: 0 0 23%;
     }
 
-    &:hover .card:hover {
+    &:hover .carda:hover {
       flex: 0 0 31%;
       img {
         filter: grayscale(0) brightness(1);
@@ -82,31 +81,29 @@
     }
   }
 
-  /* ----------- MOBILE RESPONSIVE ----------- */
   @media (max-width: 768px) {
     .row {
       flex-direction: column;
     }
 
-    .card {
-      flex: 0 0 100%;      // Hər kart tam eni tutsun
-      transition: none;    // Mobil hover effektləri istəyə bağlı olaraq deaktiv edilir
-      height: 400px;        // Kart hündürlüyü avtomatik olsun
-      //margin-bottom: 20px; // Kartlar arasında boşluq (istəyə görə)
+    .carda {
+      flex: 0 0 100%;
+      transition: none;
+      height: 300px !important;
 
       img {
-        height: auto;      // Şəkil hündürlüyü avtomatik olsun
-        // object-fit: cover;  // Lazım olsa açıq qala bilər
+        height: 100%;
+         object-fit: cover;
       }
 
       .content {
-        position: static;   // Mobil üçün normal axına daxil edirik
-        margin-top: 0;      // Yuxarı boşluğu sıfırlayırıq
-        height: auto;       // Avtomatik hündürlük
-        padding: 10px;      // Lazım gəlsə əlavə padding verə bilərsiniz
+        position: static;
+        margin-top: 0;
+        height: auto;
+        padding: 10px;
 
         h3 {
-          font-size: 24px; // Mobil üçün daha kiçik font-size
+          font-size: 24px;
         }
       }
     }
