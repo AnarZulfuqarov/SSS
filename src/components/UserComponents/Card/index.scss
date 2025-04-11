@@ -22,6 +22,8 @@
         min-height: 300px;
         object-fit: cover;
         transition: 0.3s ease-in-out;
+        position: relative;
+        z-index: 10;
       }
 
       .content {
@@ -33,7 +35,7 @@
         width: 100%;
         height: 50%;
         margin-top: 30%;
-        z-index: 9;
+        z-index: 99;
         color: #FDFDFD;
 
         h3 {
