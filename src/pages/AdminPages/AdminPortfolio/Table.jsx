@@ -3,7 +3,6 @@ import {
     Table,
     Button,
     Popconfirm,
-    message,
     Modal,
     Form,
     Input,
@@ -24,6 +23,8 @@ import {
     usePutProjectMutation,
 } from "../../../services/userApi.jsx";
 import { PROJECT_CARD_IMAGES, PROJECT_IMAGES } from "../../../contants.js";
+import showToast from "../../../components/ToastMessage.js";
+// Özəl Toastify komponenti
 
 const PortfolioTable = () => {
     // API hooks və data
@@ -116,11 +117,12 @@ const PortfolioTable = () => {
     const handleDelete = async (record) => {
         try {
             await deleteProject(record.id).unwrap();
-            message.success("Project deleted successfully!");
+            showToast("Project deleted successfully!", "success");
             getAllProjectRefetch();
         } catch (error) {
             console.error("Delete Error:", error);
-            message.error("Error deleting project!");
+            const errorMsg = error?.data?.error || "Error deleting project!";
+            showToast(errorMsg, "error");
         }
     };
 
@@ -291,14 +293,15 @@ const PortfolioTable = () => {
                 }
                 try {
                     await postProject(formData).unwrap();
-                    message.success("Project added successfully!");
+                    showToast("Project added successfully!", "success");
                     setIsModalVisible(false);
                     addForm.resetFields();
                     setCardImageFileList([]);
                     getAllProjectRefetch();
                 } catch (error) {
                     console.error("POST Error:", error);
-                    message.error("Error adding project!");
+                    const errorMsg = error?.data?.error || "Error adding project!";
+                    showToast(errorMsg, "error");
                 }
             })
             .catch((errorInfo) => {
@@ -377,7 +380,7 @@ const PortfolioTable = () => {
 
                 try {
                     await putProject(formData).unwrap();
-                    message.success("Project updated successfully!");
+                    showToast("Project updated successfully!", "success");
                     setIsEditModalVisible(false);
                     editForm.resetFields();
                     setEditingRecord(null);
@@ -386,7 +389,8 @@ const PortfolioTable = () => {
                     getAllProjectRefetch();
                 } catch (error) {
                     console.error("PUT Error:", error);
-                    message.error("Error updating project!");
+                    const errorMsg = error?.data?.error || "Error updating project!";
+                    showToast(errorMsg, "error");
                 }
             })
             .catch((errorInfo) => {
@@ -410,7 +414,7 @@ const PortfolioTable = () => {
                 expandedRowRender={expandedRowRender}
             />
 
-            {/* Yeni Portfolio Əlavə et" Modal */}
+            {/* Yeni Portfolio Əlavə et Modal */}
             <Modal
                 title="Yeni Portfolio Əlavə et"
                 visible={isModalVisible}
@@ -545,10 +549,10 @@ const PortfolioTable = () => {
                             >
                                 <Input />
                             </Form.Item>
-                            <Form.Item label="Başlıq (ENG)" name="titleEng" rules={[{ required: true, message: "Please input the repair year!" }]}>
+                            <Form.Item label="Başlıq (ENG)" name="titleEng" rules={[{ required: true, message: "Please input the title!" }]}>
                                 <Input />
                             </Form.Item>
-                            <Form.Item label="Başlıq (RU)" name="titleRu" rules={[{ required: true, message: "Please input the repair year!" }]}>
+                            <Form.Item label="Başlıq (RU)" name="titleRu" rules={[{ required: true, message: "Please input the title!" }]}>
                                 <Input />
                             </Form.Item>
                             <Form.Item
@@ -558,10 +562,10 @@ const PortfolioTable = () => {
                             >
                                 <Input />
                             </Form.Item>
-                            <Form.Item label="Alt Başlıq (ENG)" name="subTitleEng" rules={[{ required: true, message: "Please input the repair year!" }]}>
+                            <Form.Item label="Alt Başlıq (ENG)" name="subTitleEng" rules={[{ required: true, message: "Please input the title!" }]}>
                                 <Input />
                             </Form.Item>
-                            <Form.Item label="Alt Başlıq (RU)" name="subTitleRu" rules={[{ required: true, message: "Please input the repair year!" }]}>
+                            <Form.Item label="Alt Başlıq (RU)" name="subTitleRu" rules={[{ required: true, message: "Please input the title!" }]}>
                                 <Input />
                             </Form.Item>
                             <Form.Item

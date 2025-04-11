@@ -281,6 +281,9 @@
 /* Mobil cihazlar üçün */
 @media (max-width: 480px) {
   #aboutUs {
+    .aboutUs{
+      padding: 80px 0;
+    }
     .banner {
       height: 200px;
 
@@ -309,7 +312,7 @@
       }
       .circleText {
         position: absolute;
-        top:-175px;
+        top:-110px;
         right: 0;
       }
       .back {

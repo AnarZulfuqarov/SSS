@@ -52,14 +52,16 @@
       // Mobil tənzimləmələr
       @media (max-width: 992px) {
         margin-bottom: 20px;
-
+        width: 100%;
         hr {
           width: 25%;
         }
       }
 
       @media (max-width: 576px) {
+        width: 100%;
         h4 {
+          width: 100%;
           font-size: 18px;
         }
         hr {
@@ -200,7 +202,6 @@
 
         @media (max-width: 576px) {
           padding-right: 0;
-          margin-bottom: 20px;
         }
       }
 

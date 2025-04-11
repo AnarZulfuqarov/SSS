@@ -3,13 +3,11 @@ import {
     Table,
     Button,
     Popconfirm,
-    message,
     Modal,
     Form,
     Input,
     Row,
     Col,
-    Avatar,
 } from "antd";
 import {
     EditOutlined,
@@ -26,13 +24,15 @@ import { SERVICE_CARD_IMAGES } from "../../../contants.js";
 import image1 from "/src/assets/404.png";
 import image2 from "/src/assets/kran.png";
 import image3 from "/src/assets/why.jpeg";
+import showToast from "../../../components/ToastMessage.js";
+// Import your custom toast component
 
-// Seçilə bilən şəkillər (hazır 3 şəkil, bu siyahıya 10 və ya daha çox şəkil əlavə etmək olar)
+// Seçilə bilən şəkillər (hazır 3 şəkil, bu siyahıya daha çox şəkil əlavə etmək olar)
 const availableServiceCardImages = [
     { name: "404.png", src: image1 },
     { name: "kran.png", src: image2 },
     { name: "why.jpeg", src: image3 },
-    // Buraya əlavə şəkillər əlavə etmək olar...
+    // Əlavə şəkillər əlavə etmək olar...
 ];
 
 // Köməkçi funksiya: verilmiş URL-dən File obyektinə çevirir
@@ -55,8 +55,8 @@ const ImagePickerGalleryAlternative = ({ value, onChange }) => {
                 display: "flex",
                 flexWrap: "wrap",
                 gap: "10px",
-                maxHeight: "250px",       // Maksimum hündürlük təyin edirik
-                overflowY: "auto",        // Vertical scroll təmin edirik
+                maxHeight: "250px",
+                overflowY: "auto",
                 padding: "5px",
             }}
         >
@@ -87,7 +87,6 @@ const ImagePickerGalleryAlternative = ({ value, onChange }) => {
                             objectFit: "contain",
                         }}
                     />
-
                 </div>
             ))}
         </div>
@@ -95,7 +94,6 @@ const ImagePickerGalleryAlternative = ({ value, onChange }) => {
 };
 
 const ServicesTable = () => {
-    // Xidmətləri (Service) gətiririk
     const { data: getAllProject, refetch: getAllProjectRefetch } =
         useGetAllServicesQuery();
     const dataSource = getAllProject?.data;
@@ -125,7 +123,6 @@ const ServicesTable = () => {
             key: "cardImage",
             render: (cardImage) => (
                 <img
-                    // Backend-dən gələn fayl adını SERVICE_CARD_IMAGES ilə birləşdiririk
                     src={SERVICE_CARD_IMAGES + cardImage}
                     alt="Card"
                     style={{ width: 80, height: 80, objectFit: "cover" }}
@@ -191,21 +188,22 @@ const ServicesTable = () => {
         </div>
     );
 
+    // Delete əməliyyatı: backend-dən gələn error mesajını showToast vasitəsilə göstəririk
     const handleDelete = async (record) => {
         try {
             await deleteProject(record.id).unwrap();
-            message.success("Service deleted successfully!");
+            showToast("Service deleted successfully!", "success");
             getAllProjectRefetch();
         } catch (error) {
             console.error("Delete Error:", error);
-            message.error("Error deleting service!");
+            const errorMsg = error?.data?.error || "Error deleting service!";
+            showToast(errorMsg, "error");
         }
     };
 
     // Edit butonuna tıklayınca
     const handleEdit = (record) => {
         setEditingRecord(record);
-        // Form-u doldururuq; backend-dən gələn cardImage dəyəri sadəcə fayl adı (string) kimi gəldiyi üçün
         editForm.setFieldsValue({
             title: record.title,
             titleEng: record.titleEng,
@@ -228,7 +226,7 @@ const ServicesTable = () => {
         addForm.resetFields();
     };
 
-    // Yeni Service POST
+    // Yeni Service POST əməliyyatı: backend-dən gələn error mesajını showToast ilə göstəririk
     const handlePost = () => {
         addForm
             .validateFields()
@@ -247,7 +245,6 @@ const ServicesTable = () => {
                         formData.append(field, values[field]);
                     }
                 });
-                // Seçilmiş cardImage dəyəri string (fayl adı) kimi gəlir, onu File obyektinə çeviririk
                 if (values.cardImage) {
                     const imgObj = availableServiceCardImages.find(
                         (item) => item.name === values.cardImage
@@ -263,13 +260,14 @@ const ServicesTable = () => {
                 }
                 try {
                     await postProject(formData).unwrap();
-                    message.success("Service added successfully!");
+                    showToast("Service added successfully!", "success");
                     setIsModalVisible(false);
                     addForm.resetFields();
                     getAllProjectRefetch();
                 } catch (error) {
                     console.error("POST Error:", error);
-                    message.error("Error adding service!");
+                    const errorMsg = error?.data?.error || "Error adding service!";
+                    showToast(errorMsg, "error");
                 }
             })
             .catch((errorInfo) => {
@@ -277,13 +275,14 @@ const ServicesTable = () => {
             });
     };
 
-    // Edit Service PUT
+    // Edit Modal cancel əməliyyatı
     const handleEditCancel = () => {
         setIsEditModalVisible(false);
         editForm.resetFields();
         setEditingRecord(null);
     };
 
+    // Edit Service PUT əməliyyatı: backend-dən gələn error mesajını showToast vasitəsilə göstəririk
     const handleEditSubmit = () => {
         editForm
             .validateFields()
@@ -320,14 +319,15 @@ const ServicesTable = () => {
                 }
                 try {
                     await putService(formData).unwrap();
-                    message.success("Service updated successfully!");
+                    showToast("Service updated successfully!", "success");
                     setIsEditModalVisible(false);
                     editForm.resetFields();
                     setEditingRecord(null);
                     getAllProjectRefetch();
                 } catch (error) {
                     console.error("PUT Error:", error);
-                    message.error("Error updating service!");
+                    const errorMsg = error?.data?.error || "Error updating service!";
+                    showToast(errorMsg, "error");
                 }
             })
             .catch((errorInfo) => {
@@ -370,10 +370,10 @@ const ServicesTable = () => {
                             >
                                 <Input />
                             </Form.Item>
-                            <Form.Item label="Başlıq (ENG)" name="titleEng">
+                            <Form.Item label="Başlıq (ENG)" name="titleEng" rules={[{ required: true, message: "Please input the title!" }]}>
                                 <Input />
                             </Form.Item>
-                            <Form.Item label="Başlıq (RU)" name="titleRu">
+                            <Form.Item label="Başlıq (RU)" name="titleRu" rules={[{ required: true, message: "Please input the title!" }]}>
                                 <Input />
                             </Form.Item>
                         </Col>
@@ -385,10 +385,10 @@ const ServicesTable = () => {
                             >
                                 <Input />
                             </Form.Item>
-                            <Form.Item label="Alt Başlıq (ENG)" name="subTitleEng">
+                            <Form.Item label="Alt Başlıq (ENG)" name="subTitleEng" rules={[{ required: true, message: "Please input the title!" }]}>
                                 <Input />
                             </Form.Item>
-                            <Form.Item label="Alt Başlıq (RU)" name="subTitleRu">
+                            <Form.Item label="Alt Başlıq (RU)" name="subTitleRu" rules={[{ required: true, message: "Please input the title!" }]}>
                                 <Input />
                             </Form.Item>
                             <Form.Item
@@ -396,7 +396,6 @@ const ServicesTable = () => {
                                 name="cardImage"
                                 rules={[{ required: true, message: "Please select the card image!" }]}
                             >
-                                {/* Alternativ seçim – ImagePickerGalleryAlternative */}
                                 <ImagePickerGalleryAlternative
                                     onChange={(value) => addForm.setFieldsValue({ cardImage: value })}
                                     value={addForm.getFieldValue("cardImage")}
