@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import "./index.scss";
 import { SERVICE_CARD_IMAGES } from "../../../contants.js";
 import { useTranslation } from "react-i18next";
 
-function ServicesCard({ service, index }) {
-    const { t,i18n } = useTranslation();
+function ServicesCard({ service, index, activeCard, setActiveCard }) {
+    const { t, i18n } = useTranslation();
     const currentLanguage = i18n.language;
-    const [expanded, setExpanded] = useState(false);
+    const isExpanded = activeCard === index;
 
     // Xidmət başlığı üçün çoxdilli seçim
     let serviceTitle = service.title;
@@ -20,8 +20,8 @@ function ServicesCard({ service, index }) {
         serviceSubTitle = service.subTitleRu || service.subTitle;
     }
 
-    // Inline style: 4 sətir ellipsis
-    const subtitleStyle = expanded
+    // Inline style: 4 sətir ellipsis (əgər açıq deyilsə)
+    const subtitleStyle = isExpanded
         ? {} // Tam mətni göstərmək üçün heç bir məhdudiyyət yoxdur
         : {
             display: "-webkit-box",
@@ -29,6 +29,11 @@ function ServicesCard({ service, index }) {
             WebkitBoxOrient: "vertical",
             overflow: "hidden",
         };
+
+    // Toggle funksiyası: eyni kart kliklənibsə bağla, fərqli olsa həmin kartı aç
+    const toggleExpand = () => {
+        setActiveCard(isExpanded ? null : index);
+    };
 
     return (
         <div className={"col-3 col-md-6 col-sm-12 col-xs-12"}>
@@ -49,20 +54,20 @@ function ServicesCard({ service, index }) {
                     <p style={subtitleStyle}>
                         {serviceSubTitle}
                     </p>
-                    {!expanded ? (
+                    {!isExpanded ? (
                         <span
-                            onClick={() => setExpanded(true)}
+                            onClick={toggleExpand}
                             style={{ cursor: "pointer", color: "#EE9026" }}
                         >
-              ... {/* Burada "read more" funksionallığı üçün vizual işarə */}
-            </span>
+                            ... {/* "Read More" vizual işarə */}
+                        </span>
                     ) : (
                         <span
-                            onClick={() => setExpanded(false)}
-                            style={{ cursor: "pointer", color: "#EE9026" }}
+                            onClick={toggleExpand}
+                            style={{ cursor: "pointer", color: "#EE9026",marginTop:"10px",display:"inline-block" }}
                         >
-              {t("about.show")}
-            </span>
+                            {t("about.show")}
+                        </span>
                     )}
                 </div>
             </div>

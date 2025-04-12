@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, {useEffect, useState} from 'react';
 import banner from "../../../assets/ServicesBanner.jpeg";
 import { Link } from "react-router-dom";
 import "./index.scss";
@@ -12,7 +12,7 @@ function Services() {
     const { t } = useTranslation();
     const { data: getAllServices } = useGetAllServicesQuery();
     const services = getAllServices?.data;
-
+    const [activeCard, setActiveCard] = useState(null);
     useEffect(() => {
         AOS.init({
             duration: 1000, // animasiya müddəti (ms ilə)
@@ -69,7 +69,8 @@ function Services() {
                                 key={service.id}
                                 service={service}
                                 index={index}
-                                // Hər bir xidmət kartına animasiya əlavə edirik
+                                activeCard={activeCard}
+                                setActiveCard={setActiveCard}
                                 data-aos="zoom-in"
                                 data-aos-delay={index * 100} // kartlar arasında gecikmə
                             />

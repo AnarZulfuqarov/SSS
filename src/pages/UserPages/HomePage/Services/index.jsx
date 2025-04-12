@@ -5,7 +5,7 @@ import { RiArrowRightUpLine } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 import ServicesCardHome from "../../../../components/UserComponents/ServicesCardHome/index.jsx";
 import { useGetAllServicesQuery } from "../../../../services/userApi.jsx";
-import { useEffect } from "react";
+import {useEffect, useState} from "react";
 import AOS from "aos";                // AOS idxal edilir
 import "aos/dist/aos.css";           // AOS stil faylı idxal olunur
 import { useTranslation } from "react-i18next";
@@ -15,7 +15,7 @@ function ServiceHome() {
     const navigate = useNavigate();
     const { data: getAllServices } = useGetAllServicesQuery();
     const services = getAllServices?.data;
-
+    const [activeCard, setActiveCard] = useState(null);
     useEffect(() => {
         AOS.init({
             duration: 1000,   // Animasiya müddəti (ms)
@@ -37,7 +37,7 @@ function ServiceHome() {
                 </div>
                 <div className={"row"} data-aos="fade-up" data-aos-delay="200">
                     {services && services.map((service, index) => (
-                        <ServicesCard key={service.id} service={service} index={index} />
+                        <ServicesCard key={service.id} service={service} index={index} activeCard={activeCard} setActiveCard={setActiveCard}/>
                     ))}
                 </div>
                 <div data-aos="fade-up" data-aos-delay="300">
