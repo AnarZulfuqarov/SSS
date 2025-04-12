@@ -372,7 +372,8 @@ const ServicesTable = () => {
                 visible={isModalVisible}
                 onOk={handlePost}
                 onCancel={handleCancel}
-                okText="Submit"
+                cancelText="Ləğv et"
+                okText="Əlavə Et"
                 width={800}
             >
                 <Form form={addForm} layout="vertical">
@@ -427,7 +428,8 @@ const ServicesTable = () => {
                 visible={isEditModalVisible}
                 onOk={handleEditSubmit}
                 onCancel={handleEditCancel}
-                okText="Update"
+                cancelText="Ləğv et"
+                okText="Yenilə"
                 width={800}
             >
                 <Form form={editForm} layout="vertical">

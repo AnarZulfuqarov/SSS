@@ -1,10 +1,10 @@
 import React from "react";
 import "./index.scss";
-import { SERVICE_CARD_IMAGES } from "../../../contants.js";
-import { useTranslation } from "react-i18next";
+import {SERVICE_CARD_IMAGES} from "../../../contants.js";
+import {useTranslation} from "react-i18next";
 
-function ServicesCard({ service, index, activeCard, setActiveCard }) {
-    const { t, i18n } = useTranslation();
+function ServicesCard({service, index, activeCard, setActiveCard}) {
+    const {t, i18n} = useTranslation();
     const currentLanguage = i18n.language;
     const isExpanded = activeCard === index;
 
@@ -57,14 +57,14 @@ function ServicesCard({ service, index, activeCard, setActiveCard }) {
                     {!isExpanded ? (
                         <span
                             onClick={toggleExpand}
-                            style={{ cursor: "pointer", color: "#EE9026" }}
+                            style={{cursor: "pointer", color: "#EE9026"}}
                         >
                             ... {/* "Read More" vizual işarə */}
                         </span>
                     ) : (
                         <span
                             onClick={toggleExpand}
-                            style={{ cursor: "pointer", color: "#EE9026",marginTop:"10px",display:"inline-block" }}
+                            style={{cursor: "pointer", color: "#EE9026", marginTop: "10px", display: "inline-block"}}
                         >
                             {t("about.show")}
                         </span>

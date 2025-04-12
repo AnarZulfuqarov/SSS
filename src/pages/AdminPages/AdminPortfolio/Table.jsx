@@ -420,7 +420,8 @@ const PortfolioTable = () => {
                 visible={isModalVisible}
                 onOk={handlePost}
                 onCancel={handleCancel}
-                okText="Submit"
+                okText="Əlavə et"
+                cancelText="Ləğv et"
                 width={800}
             >
                 <Form form={addForm} layout="vertical">
@@ -535,7 +536,8 @@ const PortfolioTable = () => {
                 visible={isEditModalVisible}
                 onOk={handleEditSubmit}
                 onCancel={handleEditCancel}
-                okText="Update"
+                okText="Yenilə"
+                cancelText="Ləğv et"
                 width={800}
             >
                 <Form form={editForm} layout="vertical">
