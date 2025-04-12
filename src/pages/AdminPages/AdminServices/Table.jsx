@@ -37,16 +37,16 @@ import showToast from "../../../components/ToastMessage.js";
 
 // Seçilə bilən şəkillər (hazır 3 şəkil, bu siyahıya daha çox şəkil əlavə etmək olar)
 const availableServiceCardImages = [
-    { name: "404.png", src: serv1 },
-    { name: "kran.png", src: serv2 },
-    { name: "why.jpeg", src: serv3 },
-    { name: "why.jpeg", src: serv4 },
-    { name: "why.jpeg", src: serv5 },
-    { name: "why.jpeg", src: serv6 },
-    { name: "why.jpeg", src: serv7 },
-    { name: "why.jpeg", src: serv8 },
-    { name: "why.jpeg", src: serv9 },
-    { name: "why.jpeg", src: serv10 }
+    { name: "1.png", src: serv1 },
+    { name: "2.png", src: serv2 },
+    { name: "3.jpeg", src: serv3 },
+    { name: "4.jpeg", src: serv4 },
+    { name: "5.jpeg", src: serv5 },
+    { name: "6.jpeg", src: serv6 },
+    { name: "7.jpeg", src: serv7 },
+    { name: "8.jpeg", src: serv8 },
+    { name: "9.jpeg", src: serv9 },
+    { name: "10.jpeg", src: serv10 }
     // Əlavə şəkillər əlavə etmək olar...
 ];
 
