@@ -10,17 +10,23 @@ import Pagination from "../../../components/UserComponents/Pagination/index.jsx"
 import AOS from "aos";                // AOS idxal edilir
 import "aos/dist/aos.css";           // AOS stil faylı idxal olunur
 import { useTranslation } from "react-i18next";
-
+import sert1 from "/src/assets/Sertifikat/1.png"
+import sert2 from "/src/assets/Sertifikat/2.png"
+import sert3 from "/src/assets/Sertifikat/3.png"
+import sert4 from "/src/assets/Sertifikat/4.png"
+import sert5 from "/src/assets/Sertifikat/5.png"
+import sert6 from "/src/assets/Sertifikat/6.png"
 function AboutUs() {
     const { t } = useTranslation();
 
     // Kartların məlumatları, burada "text" sahəsi artıq tərcümə vasitəsi ilə göstəriləcək
     const cardsData = [
-        { id: 1, image: banner, number: '01' },
-        { id: 2, image: image, number: '02' },
-        { id: 3, image: banner, number: '03' },
-        { id: 4, image: image, number: '04' },
-        { id: 5, image: image, number: '05' }
+        { id: 1, image: sert1, number: '01' },
+        { id: 2, image: sert2, number: '02' },
+        { id: 3, image: sert3, number: '03' },
+        { id: 4, image: sert4, number: '04' },
+        { id: 5, image: sert5, number: '05' },
+        { id: 5, image: sert6, number: '06' }
         // İstədiyiniz qədər əlavə kart məlumatı əlavə oluna bilər...
     ];
 

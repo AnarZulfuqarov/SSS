@@ -21,17 +21,32 @@ import {
     usePutServiceMutation,
 } from "../../../services/userApi.jsx";
 import { SERVICE_CARD_IMAGES } from "../../../contants.js";
-import image1 from "/src/assets/404.png";
-import image2 from "/src/assets/kran.png";
-import image3 from "/src/assets/why.jpeg";
+import serv1 from "/src/assets/services/1.png"
+import serv2 from "/src/assets/services/2.png"
+import serv3 from "/src/assets/services/3.png"
+import serv4 from "/src/assets/services/4.png"
+import serv5 from "/src/assets/services/5.png"
+import serv6 from "/src/assets/services/6.png"
+import serv7 from "/src/assets/services/7.png"
+import serv8 from "/src/assets/services/8.png"
+import serv9 from "/src/assets/services/9.png"
+import serv10 from "/src/assets/services/10.png"
+
 import showToast from "../../../components/ToastMessage.js";
 // Import your custom toast component
 
 // Seçilə bilən şəkillər (hazır 3 şəkil, bu siyahıya daha çox şəkil əlavə etmək olar)
 const availableServiceCardImages = [
-    { name: "404.png", src: image1 },
-    { name: "kran.png", src: image2 },
-    { name: "why.jpeg", src: image3 },
+    { name: "404.png", src: serv1 },
+    { name: "kran.png", src: serv2 },
+    { name: "why.jpeg", src: serv3 },
+    { name: "why.jpeg", src: serv4 },
+    { name: "why.jpeg", src: serv5 },
+    { name: "why.jpeg", src: serv6 },
+    { name: "why.jpeg", src: serv7 },
+    { name: "why.jpeg", src: serv8 },
+    { name: "why.jpeg", src: serv9 },
+    { name: "why.jpeg", src: serv10 }
     // Əlavə şəkillər əlavə etmək olar...
 ];
 

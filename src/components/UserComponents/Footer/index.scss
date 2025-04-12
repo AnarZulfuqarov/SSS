@@ -11,7 +11,35 @@
       color: #EE9026;
       margin-bottom: 24px;
     }
+    p{
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 35px;
+      width:80% ;
+    }
 
+  }
+
+  .services {
+    h3 {
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 100%;
+      margin-bottom: 20px;
+    }
+
+    li {
+      margin-bottom: 16px;
+
+      a {
+        color: #FFFFFF;
+        transition: color 0.2s ease;
+
+        &:hover {
+          color: #EE9026;
+        }
+      }
+    }
     .foot-contact {
       display: flex;
       align-items: center;
@@ -56,25 +84,34 @@
       }
     }
   }
+  .social{
+    .icons{
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      .icon{
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color:  #EBEBEB;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
-  .services {
-    h3 {
-      font-weight: 600;
-      font-size: 16px;
-      line-height: 100%;
-      margin-bottom: 20px;
-    }
+        cursor: pointer;
 
-    li {
-      margin-bottom: 16px;
-
-      a {
-        color: #FFFFFF;
-        transition: color 0.2s ease;
-
-        &:hover {
-          color: #EE9026;
+        a{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: #2F2F2F;
+          font-size: 20px;
+          transition: all 0.2s ease;
+          &:hover{
+            color: #EE9026;
+          }
         }
+
       }
     }
   }
