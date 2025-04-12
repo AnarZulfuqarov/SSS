@@ -26,7 +26,7 @@ function AboutUs() {
         { id: 3, image: sert3, number: '03' },
         { id: 4, image: sert4, number: '04' },
         { id: 5, image: sert5, number: '05' },
-        { id: 5, image: sert6, number: '06' }
+        { id: 6, image: sert6, number: '06' }
         // İstədiyiniz qədər əlavə kart məlumatı əlavə oluna bilər...
     ];
 
@@ -37,6 +37,7 @@ function AboutUs() {
     const handlePageChange = (page) => {
         console.log("Səhifə dəyişdi:", page);
         setCurrentPage(page);
+        setSearchParams({ page })
     };
 
     // Cari səhifə üçün göstəriləcək kartların alt-massivi
@@ -51,6 +52,7 @@ function AboutUs() {
             once: true       // Hər element yalnız bir dəfə animasiya edilsin
         });
     }, []);
+
 
     return (
         <div id={"aboutUs"}>

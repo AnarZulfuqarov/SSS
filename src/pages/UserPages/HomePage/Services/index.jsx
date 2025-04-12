@@ -37,7 +37,7 @@ function ServiceHome() {
                 </div>
                 <div className={"row"} data-aos="fade-up" data-aos-delay="200">
                     {services && services.map((service, index) => (
-                        <ServicesCardHome key={service.id} service={service} index={index} />
+                        <ServicesCard key={service.id} service={service} index={index} />
                     ))}
                 </div>
                 <div data-aos="fade-up" data-aos-delay="300">
