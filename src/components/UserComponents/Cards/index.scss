@@ -76,9 +76,7 @@
     }
   }
 
-  // Mobil görünüşdə indeksə görə ədədlər və mətnlərin yerləri əks istiqamətdə olsun:
   .layout1 {
-    // Çift index: text solda, number sağda
     .text {
       position: absolute;
       top: 20px;
@@ -94,7 +92,6 @@
   }
 
   .layout2 {
-    // Tek index: text sağda, number solda
     .text {
       position: absolute;
       top: 20px;
