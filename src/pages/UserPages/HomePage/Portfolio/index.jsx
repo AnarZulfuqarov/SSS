@@ -69,26 +69,28 @@ const PortfolioHome = () => {
                     </Slider>
 
                     {/* Navigation buttons placed below the slider aligned to the left */}
-                    <div className="slider-nav">
-                        <button
-                            onClick={() => sliderRef.current.slickPrev()}
-                            className="nav-button prev"
-                        >
-                            <HiArrowLeft />
-                        </button>
-                        <button
-                            onClick={() => sliderRef.current.slickNext()}
-                            className="nav-button next"
-                        >
-                            <HiArrowRight />
-                        </button>
-                    </div>
-                    <div style={{ display: "flex", justifyContent: "end" }}>
-                        <div className="more" onClick={() => navigate('/portfolio')} data-aos="fade-up" data-aos-delay="200">
-                            {t('portfolioHome.viewAll')}
-                            <button onClick={() => navigate('/portfolio')}>
-                                <RiArrowRightUpLine />
+                    <div style={{display:"flex", justifyContent:"space-between",alignItems:"center"}}>
+                        <div className="slider-nav">
+                            <button
+                                onClick={() => sliderRef.current.slickPrev()}
+                                className="nav-button prev"
+                            >
+                                <HiArrowLeft />
                             </button>
+                            <button
+                                onClick={() => sliderRef.current.slickNext()}
+                                className="nav-button next"
+                            >
+                                <HiArrowRight />
+                            </button>
+                        </div>
+                        <div style={{ display: "flex", justifyContent: "end" }}>
+                            <div className="more" onClick={() => navigate('/portfolio')} data-aos="fade-up" data-aos-delay="200">
+                                {t('portfolioHome.viewAll')}
+                                <button onClick={() => navigate('/portfolio')}>
+                                    <RiArrowRightUpLine />
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>

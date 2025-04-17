@@ -72,10 +72,11 @@
         justify-content: center;
         border: none;
         color: #fff;
-        padding: 10px 10px;
+        padding: 15px 15px;
         font-size: 16px;
         cursor: pointer;
         transition: background-color 0.3s ease;
+        border-radius: 50%;
 
         &:hover {
           background-color: #ff9f3e;
@@ -87,6 +88,7 @@
       position: relative;
       border: 1px solid #EE9026;
       color: #EE9026;
+      margin-top: 20px;
       border-radius: 25px;
       padding: 12.5px 36px 12.5px 16px;
       cursor: pointer;
