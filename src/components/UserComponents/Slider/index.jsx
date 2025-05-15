@@ -3,16 +3,15 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import PropTypes from "prop-types";
 import "./index.scss";
 import { PROJECT_IMAGES, PROJECT_VIDEOS } from "../../../contants.js";
+import { Image } from "antd";
 
 function Slider({ images = [], openModal }) {
-    // Default images for when no images are passed
     const defaultImages = [
         "/src/assets/DetailBanner.jpeg",
         "/src/assets/ContactBanner.jpeg",
         "/src/assets/ServicesBanner.jpeg",
     ];
 
-    // Use provided images or fallback to default images
     const slides = images.length > 0 ? images : defaultImages;
 
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -29,7 +28,6 @@ function Slider({ images = [], openModal }) {
         );
     };
 
-    // Determine if the current slide is a video and get the correct source
     const currentSlide = slides[currentIndex];
     const isVideo = currentSlide.endsWith(".webm") || currentSlide.endsWith(".mp4");
     const isDefaultImage = defaultImages.includes(currentSlide);
@@ -39,8 +37,10 @@ function Slider({ images = [], openModal }) {
             ? PROJECT_VIDEOS + currentSlide
             : PROJECT_IMAGES + currentSlide;
 
-    const handleMediaClick = () => {
-        openModal({ src, isVideo });
+    const handleVideoClick = () => {
+        if (isVideo && openModal) {
+            openModal(src);
+        }
     };
 
     return (
@@ -54,23 +54,24 @@ function Slider({ images = [], openModal }) {
                     autoPlay
                     muted
                     loop
-                    onClick={handleMediaClick}
+                    onClick={handleVideoClick}
                     style={{ cursor: "pointer" }}
                 />
             ) : (
-                <img
-                    src={src}
-                    alt={`Slide ${currentIndex}`}
-                    className="slider-image"
-                    onClick={handleMediaClick}
-                    style={{ cursor: "pointer" }}
-                />
+                <div className="image-wrapper">
+                    <Image
+                        src={src}
+                        alt={`Slide ${currentIndex}`}
+                        className="slider-image"
+                        preview={{
+                            mask: <div>Click to Preview</div>,
+                        }}
+                    />
+                </div>
             )}
-            {/* Left Arrow */}
             <button className="slider-btn slider-btn-left" onClick={handlePrev}>
                 <IoIosArrowBack />
             </button>
-            {/* Right Arrow */}
             <button className="slider-btn slider-btn-right" onClick={handleNext}>
                 <IoIosArrowForward />
             </button>

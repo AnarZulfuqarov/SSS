@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import "./index.scss";
 import banner from "../../../assets/DetailBanner.jpeg";
 import { Link, useNavigate, useParams } from "react-router-dom";
@@ -9,7 +9,6 @@ import { useGetAllProjectQuery, useGetProjectByIdQuery } from "../../../services
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useTranslation } from "react-i18next";
-import { FaSearchPlus, FaSearchMinus, FaRedo } from "react-icons/fa"; // İkonlar için
 
 function PortfolioDetail() {
     const { t, i18n } = useTranslation();
@@ -22,32 +21,7 @@ function PortfolioDetail() {
         ?.filter((item) => item.id !== id)
         .slice(0, 3);
 
-    // Modal state
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [selectedMedia, setSelectedMedia] = useState(null);
-    const [zoomLevel, setZoomLevel] = useState(1); // Büyütme seviyesi
-    const [rotation, setRotation] = useState(0); // Çevirme açısı
-
     const sliderImages = project?.images;
-
-    const openModal = (media) => {
-        setSelectedMedia(media);
-        setIsModalOpen(true);
-        setZoomLevel(1); // Modal açıldığında büyütmeyi sıfırla
-        setRotation(0); // Modal açıldığında çevirmeyi sıfırla
-    };
-
-    const closeModal = () => {
-        setIsModalOpen(false);
-        setSelectedMedia(null);
-        setZoomLevel(1);
-        setRotation(0);
-    };
-
-    // Büyütme ve Küçültme Fonksiyonları
-    const zoomIn = () => setZoomLevel((prev) => Math.min(prev + 0.1, 3)); // Maksimum 3x
-    const zoomOut = () => setZoomLevel((prev) => Math.max(prev - 0.1, 0.5)); // Minimum 0.5x
-    const rotate = () => setRotation((prev) => prev + 90); // 90 derece çevir
 
     const getLocalizedTitle = (project) => {
         if (!project) return t("portfolioDetail.projectFallback");
@@ -128,7 +102,7 @@ function PortfolioDetail() {
                             </div>
                             <div className="col-4 col-md-12 col-sm-12 col-xs-12">
                                 <div className="head-center" data-aos="zoom-in">
-                                    <Slider images={sliderImages} openModal={openModal} />
+                                    <Slider images={sliderImages} />
                                 </div>
                             </div>
                             <div className="col-4 col-md-12 col-sm-12 col-xs-12">
@@ -225,53 +199,6 @@ function PortfolioDetail() {
                     </div>
                 </div>
             </div>
-
-            {/* Modal */}
-            {isModalOpen && (
-                <div className="modal-overlayy" onClick={closeModal}>
-                    <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-                        <button className="modal-close-btn" onClick={closeModal}>
-                            ×
-                        </button>
-                        {/* Büyütme ve Çevirme Kontrolleri */}
-                        <div className="modal-controls">
-                            <button onClick={zoomIn} title="Zoom In">
-                                <FaSearchPlus />
-                            </button>
-                            <button onClick={zoomOut} title="Zoom Out">
-                                <FaSearchMinus />
-                            </button>
-                            <button onClick={rotate} title="Rotate">
-                                <FaRedo />
-                            </button>
-                        </div>
-                        {selectedMedia?.isVideo ? (
-                            <video
-                                src={selectedMedia.src}
-                                className="modal-media"
-                                controls
-                                autoPlay
-                                muted
-                                loop
-                                style={{
-                                    transform: `scale(${zoomLevel}) rotate(${rotation}deg)`,
-                                    transition: "transform 0.3s ease",
-                                }}
-                            />
-                        ) : (
-                            <img
-                                src={selectedMedia?.src}
-                                alt="Modal media"
-                                className="modal-media"
-                                style={{
-                                    transform: `scale(${zoomLevel}) rotate(${rotation}deg)`,
-                                    transition: "transform 0.3s ease",
-                                }}
-                            />
-                        )}
-                    </div>
-                </div>
-            )}
         </div>
     );
 }
