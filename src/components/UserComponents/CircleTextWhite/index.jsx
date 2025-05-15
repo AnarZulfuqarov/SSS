@@ -27,7 +27,7 @@ const CircleTextWhite = () => {
 
                 {/* Mətni dairəvi göstərmək üçün textPath istifadə edirik */}
                 <text
-                    fill="#fff"
+                    fill="#ffffff"
                     fontSize={
                         localStorage.getItem("sssLanguage") === 'az' ? '13' :
                             localStorage.getItem("sssLanguage") === 'en' ? '13.5' : '11'
