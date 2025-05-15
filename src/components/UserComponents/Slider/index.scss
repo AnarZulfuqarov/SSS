@@ -15,7 +15,7 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background-color: rgba(0,0,0,0.4);
+  background-color: rgba(0, 0, 0, 0.4);
   color: #fff;
   border: none;
   width: 40px;
@@ -30,13 +30,11 @@
   justify-content: center;
 }
 
-/* Sol Ox Düyməsi */
 .slider-btn-left {
   left: 2px;
-  border-radius:50%; /* Dairəvi künclər (istəyə görə) */
+  border-radius: 50%;
 }
 
-/* Sağ Ox Düyməsi */
 .slider-btn-right {
   right: 2px;
   border-radius: 50%;

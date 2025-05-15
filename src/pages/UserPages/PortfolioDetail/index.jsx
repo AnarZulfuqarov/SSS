@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./index.scss";
 import banner from "../../../assets/DetailBanner.jpeg";
 import { Link, useNavigate, useParams } from "react-router-dom";
@@ -17,10 +17,28 @@ function PortfolioDetail() {
     const { data: getProjectById } = useGetProjectByIdQuery(id);
     const project = getProjectById?.data;
     const { data: getAllProject } = useGetAllProjectQuery();
-    const projects = getAllProject?.data.slice(0, 3);
+    // Filter out the current project by id and take the first 3
+    const projects = getAllProject?.data
+        ?.filter((item) => item.id !== id) // Exclude the current project
+        .slice(0, 3); // Limit to 3 projects
+
+    // Modal state
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedMedia, setSelectedMedia] = useState(null);
 
     // Example: if your project data contains images
     const sliderImages = project?.images; // Ensure your API returns an array of URLs
+
+    // Handlers for modal
+    const openModal = (media) => {
+        setSelectedMedia(media);
+        setIsModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+        setSelectedMedia(null);
+    };
 
     // Determine the title and subtitle based on the current language
     const getLocalizedTitle = (project) => {
@@ -102,7 +120,7 @@ function PortfolioDetail() {
                             </div>
                             <div className="col-4 col-md-12 col-sm-12 col-xs-12">
                                 <div className="head-center" data-aos="zoom-in">
-                                    <Slider images={sliderImages} />
+                                    <Slider images={sliderImages} openModal={openModal} />
                                 </div>
                             </div>
                             <div className="col-4 col-md-12 col-sm-12 col-xs-12">
@@ -135,7 +153,7 @@ function PortfolioDetail() {
                                             </li>
                                         )}
                                         {project?.client && (
-                                            <li className="detail-item" data-aos="fade-left" data-aos-delay="200">
+                                            <li className="detail-item" data-aos="fadealphabetical-left" data-aos-delay="200">
                                                 <div className="detail-label">
                                                     <span className="dot"></span>
                                                     <span>{t("portfolioDetail.details.label.client")}</span>
@@ -199,6 +217,29 @@ function PortfolioDetail() {
                     </div>
                 </div>
             </div>
+
+            {/* Modal */}
+            {isModalOpen && (
+                <div className="modal-overlay" onClick={closeModal}>
+                    <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                        <button className="modal-close-btn" onClick={closeModal}>
+                            ×
+                        </button>
+                        {selectedMedia?.isVideo ? (
+                            <video
+                                src={selectedMedia.src}
+                                className="modal-media"
+                                controls
+                                autoPlay
+                                muted
+                                loop
+                            />
+                        ) : (
+                            <img src={selectedMedia?.src} alt="Modal media" className="modal-media" />
+                        )}
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import "./index.scss";
 import { PROJECT_IMAGES, PROJECT_VIDEOS } from "../../../contants.js";
 
-function Slider({ images = [] }) {
+function Slider({ images = [], openModal }) {
     // Default images for when no images are passed
     const defaultImages = [
         "/src/assets/DetailBanner.jpeg",
@@ -31,13 +31,17 @@ function Slider({ images = [] }) {
 
     // Determine if the current slide is a video and get the correct source
     const currentSlide = slides[currentIndex];
-    const isVideo = currentSlide.endsWith(".webm") || currentSlide.endsWith(".mp4"); // Add other video extensions if needed
+    const isVideo = currentSlide.endsWith(".webm") || currentSlide.endsWith(".mp4");
     const isDefaultImage = defaultImages.includes(currentSlide);
     const src = isDefaultImage
         ? currentSlide
         : isVideo
             ? PROJECT_VIDEOS + currentSlide
             : PROJECT_IMAGES + currentSlide;
+
+    const handleMediaClick = () => {
+        openModal({ src, isVideo });
+    };
 
     return (
         <div className="slider-container">
@@ -50,12 +54,16 @@ function Slider({ images = [] }) {
                     autoPlay
                     muted
                     loop
+                    onClick={handleMediaClick}
+                    style={{ cursor: "pointer" }}
                 />
             ) : (
                 <img
                     src={src}
                     alt={`Slide ${currentIndex}`}
                     className="slider-image"
+                    onClick={handleMediaClick}
+                    style={{ cursor: "pointer" }}
                 />
             )}
             {/* Left Arrow */}
@@ -72,6 +80,7 @@ function Slider({ images = [] }) {
 
 Slider.propTypes = {
     images: PropTypes.arrayOf(PropTypes.string),
+    openModal: PropTypes.func,
 };
 
 export default Slider;
