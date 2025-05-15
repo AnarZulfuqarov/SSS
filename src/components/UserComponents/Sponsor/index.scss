@@ -1,5 +1,5 @@
 #logoScrollHome {
-  padding: 25px 0 25px;
+  padding: 20px 0 20px;
   color: white;
   display: flex;
   flex-direction: column;
@@ -14,13 +14,13 @@
     white-space: nowrap;
 
     .box {
-      width: 200px;
-      padding: 0 32px;
+      width: 270px;
+      padding: 0 16px;
       display: flex;
       align-items: center;
       justify-content: center;
       border-radius: 10px;
-      height: 70px;
+      height: 80px;
       object-fit: contain;
       transition: all 0.2s ease;
       cursor: pointer;
