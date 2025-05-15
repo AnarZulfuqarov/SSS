@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import "./index.scss";
 import { PROJECT_IMAGES, PROJECT_VIDEOS } from "../../../contants.js";
 import { Image } from "antd";
+import {useTranslation} from "react-i18next";
 
 function Slider({ images = [], openModal }) {
     const defaultImages = [
@@ -43,6 +44,8 @@ function Slider({ images = [], openModal }) {
         }
     };
 
+    const {t} = useTranslation();
+
     return (
         <div className="slider-container">
             {isVideo ? (
@@ -64,7 +67,7 @@ function Slider({ images = [], openModal }) {
                         alt={`Slide ${currentIndex}`}
                         className="slider-image"
                         preview={{
-                            mask: <div>Click to Preview</div>,
+                            mask: <div>{t('bax')}</div>,
                         }}
                     />
                 </div>

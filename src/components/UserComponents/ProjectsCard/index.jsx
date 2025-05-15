@@ -18,7 +18,7 @@ function ProjectsCard({project}) {
     }
 
     return (
-        <section id="projectsCard" className={"col-4 col-md-4 col-sm-12 col-xs-12"} onClick={() => navigate(`/portfolio/${project.id}`)}>
+        <section id="projectsCard1" className={"col-4 col-md-4 col-sm-12 col-xs-12"} onClick={() => navigate(`/portfolio/${project.id}`)}>
             <div className={"wrapper"}>
                 <img src={PROJECT_CARD_IMAGES + project?.cardImage} alt="Project Card Image" />
                 <div className={"title"}>

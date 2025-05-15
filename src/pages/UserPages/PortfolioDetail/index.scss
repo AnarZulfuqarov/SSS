@@ -250,6 +250,7 @@
 
     .detail {
       padding: 70px 0;
+      background-color: red;
 
       .head {
         margin-bottom: 80px;
@@ -412,18 +413,6 @@
   height: auto; /* Allow the container to adjust based on content */
   aspect-ratio: 9 / 9.3; /* Match the slider's aspect ratio */
   overflow: hidden;
-}
-
-/* Ensure the row and column structure supports the slider */
-.row {
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-}
-
-.col-4 {
-  flex: 0 0 33.3333%;
-  max-width: 33.3333%;
 }
 
 @media (max-width: 768px) {

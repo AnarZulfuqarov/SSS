@@ -22,12 +22,11 @@ import {
     usePostProjectMutation,
     usePutProjectMutation,
 } from "../../../services/userApi.jsx";
-import {PROJECT_CARD_IMAGES, PROJECT_IMAGES, PROJECT_VIDEOS} from "../../../contants.js";
+import { PROJECT_CARD_IMAGES, PROJECT_IMAGES, PROJECT_VIDEOS } from "../../../contants.js";
 import showToast from "../../../components/ToastMessage.js";
 
 const PortfolioTable = () => {
-    const { data: getAllProject, refetch: getAllProjectRefetch } =
-        useGetAllProjectQuery();
+    const { data: getAllProject, refetch: getAllProjectRefetch } = useGetAllProjectQuery();
     const dataSource = getAllProject?.data;
     const [postProject] = usePostProjectMutation();
     const [deleteProject] = useDeleteProjectMutation();
@@ -36,14 +35,12 @@ const PortfolioTable = () => {
     // Add Modal state
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [addForm] = Form.useForm();
-    // Add loading state for Add Modal
     const [addLoading, setAddLoading] = useState(false);
 
     // Edit Modal state
     const [isEditModalVisible, setIsEditModalVisible] = useState(false);
     const [editForm] = Form.useForm();
     const [editingRecord, setEditingRecord] = useState(null);
-    // Add loading state for Edit Modal
     const [editLoading, setEditLoading] = useState(false);
 
     // Add modal card image state
@@ -59,13 +56,12 @@ const PortfolioTable = () => {
     };
 
     // Edit modal additional images state
-    const [editAdditionalImagesFileList, setEditAdditionalImagesFileList] =
-        useState([]);
+    const [editAdditionalImagesFileList, setEditAdditionalImagesFileList] = useState([]);
     const handleEditAdditionalImagesChange = ({ fileList }) => {
-        setEditAdditionalImagesFileList(file)};
+        setEditAdditionalImagesFileList(fileList);
+    };
 
     const handleEdit = (record) => {
-        console.log("Edit record:", record);
         setEditingRecord(record);
 
         const cardImageFileList = record.cardImage
@@ -226,7 +222,7 @@ const PortfolioTable = () => {
                         }}
                     >
                         {record.images.map((fileSrc, index) => {
-                            const isVideo = fileSrc.endsWith(".webm") || fileSrc.endsWith(".mp4"); // Add other video extensions if needed
+                            const isVideo = fileSrc.endsWith(".webm") || fileSrc.endsWith(".mp4");
                             const src = isVideo ? PROJECT_VIDEOS + fileSrc : PROJECT_IMAGES + fileSrc;
                             return isVideo ? (
                                 <video
@@ -267,14 +263,14 @@ const PortfolioTable = () => {
         setIsModalVisible(false);
         addForm.resetFields();
         setCardImageFileList([]);
-        setAddLoading(false); // Reset loading state
+        setAddLoading(false);
     };
 
     const handlePost = () => {
         addForm
             .validateFields()
             .then(async (values) => {
-                setAddLoading(true); // Start loading
+                setAddLoading(true);
                 const formData = new FormData();
                 const textFields = [
                     "title",
@@ -290,15 +286,15 @@ const PortfolioTable = () => {
                 ];
                 textFields.forEach((field) => {
                     if (values[field]) {
-                        formData.append(field, values[field]);
+                        formData.append(field.charAt(0).toUpperCase() + field.slice(1), values[field]);
                     }
                 });
                 if (cardImageFileList && cardImageFileList.length > 0) {
-                    formData.append("cardImage", cardImageFileList[0].originFileObj);
+                    formData.append("CardImage", cardImageFileList[0].originFileObj);
                 }
                 if (values.images && values.images.length > 0) {
                     values.images.forEach((fileWrapper) => {
-                        formData.append("images", fileWrapper.originFileObj);
+                        formData.append("Images", fileWrapper.originFileObj);
                     });
                 }
                 try {
@@ -313,12 +309,12 @@ const PortfolioTable = () => {
                     const errorMsg = error?.data?.error || "Error adding project!";
                     showToast(errorMsg, "error");
                 } finally {
-                    setAddLoading(false); // Stop loading
+                    setAddLoading(false);
                 }
             })
             .catch((errorInfo) => {
                 console.log("Validation Failed:", errorInfo);
-                setAddLoading(false); // Stop loading on validation failure
+                setAddLoading(false);
             });
     };
 
@@ -329,15 +325,17 @@ const PortfolioTable = () => {
         setEditingRecord(null);
         setEditCardImageFileList([]);
         setEditAdditionalImagesFileList([]);
-        setEditLoading(false); // Reset loading state
+        setEditLoading(false);
     };
 
     const handleEditSubmit = () => {
         editForm
             .validateFields()
             .then(async (values) => {
-                setEditLoading(true); // Start loading
+                setEditLoading(true);
                 const formData = new FormData();
+
+                // Append text fields with capitalized names
                 const textFields = [
                     "title",
                     "titleEng",
@@ -352,23 +350,34 @@ const PortfolioTable = () => {
                 ];
                 textFields.forEach((field) => {
                     if (values[field]) {
-                        formData.append(field, values[field]);
+                        formData.append(field.charAt(0).toUpperCase() + field.slice(1), values[field]);
                     }
                 });
+
+                // Append Id
                 formData.append("Id", editingRecord.id);
+
+                // Handle CardImage
                 if (editCardImageFileList && editCardImageFileList.length > 0) {
                     const cardFile = editCardImageFileList[0];
                     if (cardFile.originFileObj) {
-                        formData.append("CardImage", cardFile.originFileObj);
+                        formData.append("CardImage", cardFile.originFileObj); // New file
+                    } else {
+                        formData.append("CardImage", cardFile.name); // Existing file name
                     }
                 }
-                if (editAdditionalImagesFileList && editAdditionalImagesFileList.length > 0) {
-                    editAdditionalImagesFileList.forEach((file) => {
-                        if (file.originFileObj) {
-                            formData.append("Images", file.originFileObj);
-                        }
+
+                // Handle Images (new uploads)
+                const newImages = editAdditionalImagesFileList
+                    .filter((file) => file.originFileObj)
+                    .map((file) => file.originFileObj);
+                if (newImages.length > 0) {
+                    newImages.forEach((file) => {
+                        formData.append("Images", file);
                     });
                 }
+
+                // Handle DeleteImageNames
                 const originalImages = editingRecord.images || [];
                 const currentExistingImageNames = editAdditionalImagesFileList
                     .filter((file) => !file.originFileObj)
@@ -378,9 +387,10 @@ const PortfolioTable = () => {
                 );
                 if (deletedImageNames.length > 0) {
                     deletedImageNames.forEach((name) => {
-                        formData.append("DeleteImageNames[]", name);
+                        formData.append("DeleteImageNames", name);
                     });
                 }
+
                 try {
                     await putProject(formData).unwrap();
                     showToast("Project updated successfully!", "success");
@@ -395,12 +405,12 @@ const PortfolioTable = () => {
                     const errorMsg = error?.data?.error || "Error updating project!";
                     showToast(errorMsg, "error");
                 } finally {
-                    setEditLoading(false); // Stop loading
+                    setEditLoading(false);
                 }
             })
             .catch((errorInfo) => {
                 console.log("Validation Failed:", errorInfo);
-                setEditLoading(false); // Stop loading on validation failure
+                setEditLoading(false);
             });
     };
 
@@ -465,21 +475,23 @@ const PortfolioTable = () => {
                             <Form.Item
                                 label="Alt Başlıq (ENG)"
                                 name="subTitleEng"
-                                rules={[{ required: true, message: "Please input the title!" }]}
+                                rules={[{ required: true, message: "Please input the subtitle!" }]}
                             >
                                 <Input />
                             </Form.Item>
                             <Form.Item
                                 label="Alt Başlıq (RU)"
                                 name="subTitleRu"
-                                rules={[{ required: true, message: "Please input the title!" }]}
+                                rules={[{ required: true, message: "Please input the subtitle!" }]}
                             >
                                 <Input />
                             </Form.Item>
                             <Form.Item
                                 label="Təmir ili"
                                 name="repairYear"
-                                rules={[{ required: true, message: "Please input the repair year!" }]}
+                                rules={[
+                                    { required: true, message: "Please input the repair year!" },
+                                ]}
                             >
                                 <Input />
                             </Form.Item>
@@ -499,9 +511,7 @@ const PortfolioTable = () => {
                                 name="cardImage"
                                 rules={[{ required: true, message: "Please select the card image!" }]}
                                 valuePropName="fileList"
-                                getValueFromEvent={(e) =>
-                                    Array.isArray(e) ? e : e && e.fileList
-                                }
+                                getValueFromEvent={(e) => (Array.isArray(e) ? e : e && e.fileList)}
                             >
                                 <Upload
                                     fileList={cardImageFileList}
@@ -509,6 +519,7 @@ const PortfolioTable = () => {
                                     beforeUpload={() => false}
                                     maxCount={1}
                                     listType="picture-card"
+                                    accept="image/*"
                                 >
                                     {cardImageFileList.length >= 1 ? null : (
                                         <div>
@@ -519,17 +530,17 @@ const PortfolioTable = () => {
                                 </Upload>
                             </Form.Item>
                             <Form.Item
-                                label="Əlavə Şəkillər"
+                                label="Əlavə Şəkillər və Videolar"
                                 name="images"
                                 valuePropName="fileList"
-                                getValueFromEvent={(e) =>
-                                    Array.isArray(e) ? e : e && e.fileList
-                                }
+                                getValueFromEvent={(e) => (Array.isArray(e) ? e : e && e.fileList)}
                             >
                                 <Upload
                                     multiple
                                     beforeUpload={() => false}
                                     listType="picture-card"
+                                    maxCount={10}
+                                    accept="image/*,video/*"
                                 >
                                     <div>
                                         <UploadOutlined />
@@ -587,21 +598,23 @@ const PortfolioTable = () => {
                             <Form.Item
                                 label="Alt Başlıq (ENG)"
                                 name="subTitleEng"
-                                rules={[{ required: true, message: "Please input the title!" }]}
+                                rules={[{ required: true, message: "Please input the subtitle!" }]}
                             >
                                 <Input />
                             </Form.Item>
                             <Form.Item
                                 label="Alt Başlıq (RU)"
                                 name="subTitleRu"
-                                rules={[{ required: true, message: "Please input the title!" }]}
+                                rules={[{ required: true, message: "Please input the subtitle!" }]}
                             >
                                 <Input />
                             </Form.Item>
                             <Form.Item
                                 label="Təmir ili"
                                 name="repairYear"
-                                rules={[{ required: true, message: "Please input the repair year!" }]}
+                                rules={[
+                                    { required: true, message: "Please input the repair year!" },
+                                ]}
                             >
                                 <Input />
                             </Form.Item>
@@ -619,17 +632,18 @@ const PortfolioTable = () => {
                             <Form.Item
                                 label="Kart şəkli"
                                 name="cardImage"
+                                rules={[{ required: true, message: "Please select the card image!" }]}
                                 valuePropName="fileList"
-                                getValueFromEvent={(e) =>
-                                    Array.isArray(e) ? e : e && e.fileList
-                                }
+                                getValueFromEvent={(e) => (Array.isArray(e) ? e : e && e.fileList)}
                             >
                                 <Upload
                                     fileList={editCardImageFileList}
+                                    pathophysiological
                                     onChange={handleEditCardImageChange}
                                     listType="picture-card"
                                     beforeUpload={() => false}
                                     maxCount={1}
+                                    accept="image/*"
                                 >
                                     {editCardImageFileList.length >= 1 ? null : (
                                         <div>
@@ -640,12 +654,10 @@ const PortfolioTable = () => {
                                 </Upload>
                             </Form.Item>
                             <Form.Item
-                                label="Əlavə Şəkillər"
+                                label="Əlavə Şəkillər və Videolar"
                                 name="images"
                                 valuePropName="fileList"
-                                getValueFromEvent={(e) =>
-                                    Array.isArray(e) ? e : e && e.fileList
-                                }
+                                getValueFromEvent={(e) => (Array.isArray(e) ? e : e && e.fileList)}
                             >
                                 <Upload
                                     fileList={editAdditionalImagesFileList}
@@ -653,6 +665,8 @@ const PortfolioTable = () => {
                                     listType="picture-card"
                                     multiple
                                     beforeUpload={() => false}
+                                    maxCount={10}
+                                    accept="image/*,video/*"
                                 >
                                     <div>
                                         <UploadOutlined />

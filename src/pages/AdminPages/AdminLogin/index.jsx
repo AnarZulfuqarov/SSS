@@ -20,11 +20,8 @@ function AdminLogin() {
             setTimeout(navigate("/admin/portfolio"), 2000);
             if (response.data && response.data.token) {
                 const token = response.data.token;
-                const expireDate = new Date(response.data.expireDate);
                 Cookies.set('sssToken', token, {
-                    expires: expireDate,
-                    secure: true,
-                    sameSite: 'strict'
+                    expires: 1,
                 });
             } else {
                 Cookies.set('sssToken', 'null');
