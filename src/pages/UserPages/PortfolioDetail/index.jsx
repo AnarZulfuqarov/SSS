@@ -11,7 +11,7 @@ import "aos/dist/aos.css";
 import { useTranslation } from "react-i18next";
 
 function PortfolioDetail() {
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
     const navigate = useNavigate();
     const { id } = useParams();
     const { data: getProjectById } = useGetProjectByIdQuery(id);
@@ -20,8 +20,32 @@ function PortfolioDetail() {
     const projects = getAllProject?.data.slice(0, 3);
 
     // Example: if your project data contains images
-    const sliderImages = project?.images;  // Ensure your API returns an array of URLs
-    console.log(project);
+    const sliderImages = project?.images; // Ensure your API returns an array of URLs
+
+    // Determine the title and subtitle based on the current language
+    const getLocalizedTitle = (project) => {
+        if (!project) return t("portfolioDetail.projectFallback");
+        switch (i18n.language) {
+            case "en":
+                return project.titleEng || project.title;
+            case "ru":
+                return project.titleRu || project.title;
+            default:
+                return project.title;
+        }
+    };
+
+    const getLocalizedSubTitle = (project) => {
+        if (!project) return "";
+        switch (i18n.language) {
+            case "en":
+                return project.subTitleEng || project.subTitle;
+            case "ru":
+                return project.subTitleRu || project.subTitle;
+            default:
+                return project.subTitle;
+        }
+    };
 
     useEffect(() => {
         AOS.init({
@@ -44,7 +68,7 @@ function PortfolioDetail() {
                 <div className="container" data-aos="fade-up">
                     <div className="head">
                         <h1 data-aos="fade-up">
-                            {project ? project.title : t("portfolioDetail.bannerFallback")}
+                            {project ? getLocalizedTitle(project) : t("portfolioDetail.bannerFallback")}
                         </h1>
                     </div>
                     <p data-aos="fade-up" data-aos-delay="100">
@@ -53,7 +77,7 @@ function PortfolioDetail() {
                         <Link to={"/services"}>{t("portfolioDetail.breadcrumb")}</Link>
                         <div className="dot"></div>
                         <Link to={""}>
-                            {project ? project.title : t("portfolioDetail.projectFallback")}
+                            {project ? getLocalizedTitle(project) : t("portfolioDetail.projectFallback")}
                         </Link>
                     </p>
                 </div>
@@ -66,19 +90,18 @@ function PortfolioDetail() {
                                 <div className="head-left" data-aos="fade-right">
                                     <div className="title-row">
                                         <hr />
-                                        <h4>
-                                            {project ? project.title : t("portfolioDetail.details.projectNameFallback")}
-                                        </h4>
+                                        <h4>{t("portfolioDetail.details.projectNameFallback")}</h4>
                                     </div>
-                                    <h1 data-aos="fade-right">{t("portfolioDetail.introTitle")}</h1>
+                                    <h1 data-aos="fade-right">
+                                        {project ? getLocalizedTitle(project) : ""}
+                                    </h1>
                                     <p data-aos="fade-right" data-aos-delay="100">
-                                        {t("portfolioDetail.introDescription")}
+                                        {project ? getLocalizedSubTitle(project) : ""}
                                     </p>
                                 </div>
                             </div>
                             <div className="col-4 col-md-12 col-sm-12 col-xs-12">
                                 <div className="head-center" data-aos="zoom-in">
-                                    {/* Pass sliderImages to the Slider component */}
                                     <Slider images={sliderImages} />
                                 </div>
                             </div>
@@ -96,7 +119,7 @@ function PortfolioDetail() {
                                                     <span>{t("portfolioDetail.details.label.projectName")}</span>
                                                 </div>
                                                 <div className="detail-value">
-                                                    {project.title}
+                                                    {getLocalizedTitle(project)}
                                                 </div>
                                             </li>
                                         )}
@@ -160,11 +183,10 @@ function PortfolioDetail() {
                             </h2>
                         </div>
                         <div className="row" data-aos="fade-up" data-aos-delay="150">
-                            {
-                                projects && projects.map((item, index) => (
+                            {projects &&
+                                projects.map((item, index) => (
                                     <ProjectsCard key={item.id} project={item} index={index} />
-                                ))
-                            }
+                                ))}
                         </div>
                         <div style={{ display: "flex", justifyContent: "center" }} data-aos="zoom-in" data-aos-delay="200">
                             <div className="more" onClick={() => navigate("/portfolio")}>

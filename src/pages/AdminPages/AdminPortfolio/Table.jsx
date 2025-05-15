@@ -22,12 +22,10 @@ import {
     usePostProjectMutation,
     usePutProjectMutation,
 } from "../../../services/userApi.jsx";
-import { PROJECT_CARD_IMAGES, PROJECT_IMAGES } from "../../../contants.js";
+import {PROJECT_CARD_IMAGES, PROJECT_IMAGES, PROJECT_VIDEOS} from "../../../contants.js";
 import showToast from "../../../components/ToastMessage.js";
-// Özəl Toastify komponenti
 
 const PortfolioTable = () => {
-    // API hooks və data
     const { data: getAllProject, refetch: getAllProjectRefetch } =
         useGetAllProjectQuery();
     const dataSource = getAllProject?.data;
@@ -38,37 +36,38 @@ const PortfolioTable = () => {
     // Add Modal state
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [addForm] = Form.useForm();
+    // Add loading state for Add Modal
+    const [addLoading, setAddLoading] = useState(false);
 
     // Edit Modal state
     const [isEditModalVisible, setIsEditModalVisible] = useState(false);
     const [editForm] = Form.useForm();
     const [editingRecord, setEditingRecord] = useState(null);
+    // Add loading state for Edit Modal
+    const [editLoading, setEditLoading] = useState(false);
 
-    // Add modal üçün Card Image state
+    // Add modal card image state
     const [cardImageFileList, setCardImageFileList] = useState([]);
     const handleCardImageChange = ({ fileList }) => {
         setCardImageFileList(fileList);
     };
 
-    // Edit modal üçün Card Image state
+    // Edit modal card image state
     const [editCardImageFileList, setEditCardImageFileList] = useState([]);
     const handleEditCardImageChange = ({ fileList }) => {
         setEditCardImageFileList(fileList);
     };
 
-    // Edit modal üçün Additional Images state
+    // Edit modal additional images state
     const [editAdditionalImagesFileList, setEditAdditionalImagesFileList] =
         useState([]);
     const handleEditAdditionalImagesChange = ({ fileList }) => {
-        setEditAdditionalImagesFileList(fileList);
-    };
+        setEditAdditionalImagesFileList(file)};
 
-    // Redaktə üçün mövcud kaydı açan funksiya
     const handleEdit = (record) => {
         console.log("Edit record:", record);
         setEditingRecord(record);
 
-        // 1) Card image üçün fileList hazırlayırıq
         const cardImageFileList = record.cardImage
             ? [
                 {
@@ -80,7 +79,6 @@ const PortfolioTable = () => {
             ]
             : [];
 
-        // 2) Additional images üçün fileList hazırlayırıq
         const additionalImagesFileList =
             record.images && record.images.length > 0
                 ? record.images.map((img, index) => ({
@@ -91,7 +89,6 @@ const PortfolioTable = () => {
                 }))
                 : [];
 
-        // 3) Form dəyərlərini doldururuq (cardImage və images sahələrini fileList kimi veririk)
         editForm.setFieldsValue({
             title: record.title,
             titleEng: record.titleEng,
@@ -107,13 +104,11 @@ const PortfolioTable = () => {
             images: additionalImagesFileList,
         });
 
-        // 4) State-lərə də eyni dəyərləri ötürürük
         setEditCardImageFileList(cardImageFileList);
         setEditAdditionalImagesFileList(additionalImagesFileList);
         setIsEditModalVisible(true);
     };
 
-    // Silmə əməliyyatı
     const handleDelete = async (record) => {
         try {
             await deleteProject(record.id).unwrap();
@@ -221,7 +216,7 @@ const PortfolioTable = () => {
             )}
             {record.images && record.images.length > 0 && (
                 <div style={{ marginTop: "10px" }}>
-                    <strong>Şəkillər:</strong>
+                    <strong>Şəkillər və Videolar:</strong>
                     <div
                         style={{
                             display: "flex",
@@ -230,25 +225,40 @@ const PortfolioTable = () => {
                             marginTop: "5px",
                         }}
                     >
-                        {record.images.map((imgSrc, index) => (
-                            <img
-                                key={index}
-                                src={PROJECT_IMAGES + imgSrc}
-                                alt={`Additional ${index}`}
-                                style={{
-                                    width: "80px",
-                                    height: "80px",
-                                    objectFit: "cover",
-                                }}
-                            />
-                        ))}
+                        {record.images.map((fileSrc, index) => {
+                            const isVideo = fileSrc.endsWith(".webm") || fileSrc.endsWith(".mp4"); // Add other video extensions if needed
+                            const src = isVideo ? PROJECT_VIDEOS + fileSrc : PROJECT_IMAGES + fileSrc;
+                            return isVideo ? (
+                                <video
+                                    key={index}
+                                    src={src}
+                                    controls
+                                    style={{
+                                        width: "120px",
+                                        height: "80px",
+                                        objectFit: "cover",
+                                    }}
+                                />
+                            ) : (
+                                <img
+                                    key={index}
+                                    src={src}
+                                    alt={`Additional ${index}`}
+                                    style={{
+                                        width: "80px",
+                                        height: "80px",
+                                        objectFit: "cover",
+                                    }}
+                                />
+                            );
+                        })}
                     </div>
                 </div>
             )}
         </div>
     );
 
-    // Add Modal funksiyaları
+    // Add Modal functions
     const showModal = () => {
         setIsModalVisible(true);
     };
@@ -257,12 +267,14 @@ const PortfolioTable = () => {
         setIsModalVisible(false);
         addForm.resetFields();
         setCardImageFileList([]);
+        setAddLoading(false); // Reset loading state
     };
 
     const handlePost = () => {
         addForm
             .validateFields()
             .then(async (values) => {
+                setAddLoading(true); // Start loading
                 const formData = new FormData();
                 const textFields = [
                     "title",
@@ -281,11 +293,9 @@ const PortfolioTable = () => {
                         formData.append(field, values[field]);
                     }
                 });
-                // Card Image əlavə edilir
                 if (cardImageFileList && cardImageFileList.length > 0) {
                     formData.append("cardImage", cardImageFileList[0].originFileObj);
                 }
-                // Additional Images əlavə edilir
                 if (values.images && values.images.length > 0) {
                     values.images.forEach((fileWrapper) => {
                         formData.append("images", fileWrapper.originFileObj);
@@ -302,29 +312,32 @@ const PortfolioTable = () => {
                     console.error("POST Error:", error);
                     const errorMsg = error?.data?.error || "Error adding project!";
                     showToast(errorMsg, "error");
+                } finally {
+                    setAddLoading(false); // Stop loading
                 }
             })
             .catch((errorInfo) => {
                 console.log("Validation Failed:", errorInfo);
+                setAddLoading(false); // Stop loading on validation failure
             });
     };
 
-    // Edit Modal funksiyaları
+    // Edit Modal functions
     const handleEditCancel = () => {
         setIsEditModalVisible(false);
         editForm.resetFields();
         setEditingRecord(null);
         setEditCardImageFileList([]);
         setEditAdditionalImagesFileList([]);
+        setEditLoading(false); // Reset loading state
     };
 
     const handleEditSubmit = () => {
         editForm
             .validateFields()
             .then(async (values) => {
+                setEditLoading(true); // Start loading
                 const formData = new FormData();
-
-                // 1. Metin sahələri əlavə edilir
                 const textFields = [
                     "title",
                     "titleEng",
@@ -342,19 +355,13 @@ const PortfolioTable = () => {
                         formData.append(field, values[field]);
                     }
                 });
-
-                // 2. Güncellenən kaydın Id'si əlavə edilir
                 formData.append("Id", editingRecord.id);
-
-                // 3. Card Image: əgər istifadəçi yeni bir şəkil yükləyibsə, göndəririk
                 if (editCardImageFileList && editCardImageFileList.length > 0) {
                     const cardFile = editCardImageFileList[0];
                     if (cardFile.originFileObj) {
                         formData.append("CardImage", cardFile.originFileObj);
                     }
                 }
-
-                // 4. Additional Images: yeni yüklənən şəkillər əlavə edilir
                 if (editAdditionalImagesFileList && editAdditionalImagesFileList.length > 0) {
                     editAdditionalImagesFileList.forEach((file) => {
                         if (file.originFileObj) {
@@ -362,10 +369,7 @@ const PortfolioTable = () => {
                         }
                     });
                 }
-
-                // 5. Silinmiş şəkillərin tespit edilməsi və DeleteImageNames sahəsinə hər birinin ayrıca əlavə olunması
                 const originalImages = editingRecord.images || [];
-                // Cari state-də, originFileObj olmayanlar artıq öncədən yüklənmiş (mövcud) şəkillərdir
                 const currentExistingImageNames = editAdditionalImagesFileList
                     .filter((file) => !file.originFileObj)
                     .map((file) => file.name);
@@ -377,7 +381,6 @@ const PortfolioTable = () => {
                         formData.append("DeleteImageNames[]", name);
                     });
                 }
-
                 try {
                     await putProject(formData).unwrap();
                     showToast("Project updated successfully!", "success");
@@ -391,10 +394,13 @@ const PortfolioTable = () => {
                     console.error("PUT Error:", error);
                     const errorMsg = error?.data?.error || "Error updating project!";
                     showToast(errorMsg, "error");
+                } finally {
+                    setEditLoading(false); // Stop loading
                 }
             })
             .catch((errorInfo) => {
                 console.log("Validation Failed:", errorInfo);
+                setEditLoading(false); // Stop loading on validation failure
             });
     };
 
@@ -414,7 +420,7 @@ const PortfolioTable = () => {
                 expandedRowRender={expandedRowRender}
             />
 
-            {/* Yeni Portfolio Əlavə et Modal */}
+            {/* Add Portfolio Modal */}
             <Modal
                 title="Yeni Portfolio Əlavə et"
                 visible={isModalVisible}
@@ -423,10 +429,10 @@ const PortfolioTable = () => {
                 okText="Əlavə et"
                 cancelText="Ləğv et"
                 width={800}
+                okButtonProps={{ loading: addLoading, disabled: addLoading }}
             >
                 <Form form={addForm} layout="vertical">
                     <Row gutter={16}>
-                        {/* Sol sütun */}
                         <Col span={12}>
                             <Form.Item
                                 label="Başlıq (AZ)"
@@ -435,10 +441,18 @@ const PortfolioTable = () => {
                             >
                                 <Input />
                             </Form.Item>
-                            <Form.Item label="Başlıq (ENG)" name="titleEng" rules={[{ required: true, message: "Please input the title!" }]}>
+                            <Form.Item
+                                label="Başlıq (ENG)"
+                                name="titleEng"
+                                rules={[{ required: true, message: "Please input the title!" }]}
+                            >
                                 <Input />
                             </Form.Item>
-                            <Form.Item label="Başlıq (RU)" name="titleRu" rules={[{ required: true, message: "Please input the title!" }]}>
+                            <Form.Item
+                                label="Başlıq (RU)"
+                                name="titleRu"
+                                rules={[{ required: true, message: "Please input the title!" }]}
+                            >
                                 <Input />
                             </Form.Item>
                             <Form.Item
@@ -448,10 +462,18 @@ const PortfolioTable = () => {
                             >
                                 <Input />
                             </Form.Item>
-                            <Form.Item label="Alt Başlıq (ENG)" name="subTitleEng" rules={[{ required: true, message: "Please input the title!" }]}>
+                            <Form.Item
+                                label="Alt Başlıq (ENG)"
+                                name="subTitleEng"
+                                rules={[{ required: true, message: "Please input the title!" }]}
+                            >
                                 <Input />
                             </Form.Item>
-                            <Form.Item label="Alt Başlıq (RU)" name="subTitleRu" rules={[{ required: true, message: "Please input the title!" }]}>
+                            <Form.Item
+                                label="Alt Başlıq (RU)"
+                                name="subTitleRu"
+                                rules={[{ required: true, message: "Please input the title!" }]}
+                            >
                                 <Input />
                             </Form.Item>
                             <Form.Item
@@ -462,24 +484,14 @@ const PortfolioTable = () => {
                                 <Input />
                             </Form.Item>
                         </Col>
-                        {/* Sağ sütun */}
                         <Col span={12}>
-                            <Form.Item
-                                label="Klient"
-                                name="client"
-                            >
+                            <Form.Item label="Klient" name="client">
                                 <Input />
                             </Form.Item>
-                            <Form.Item
-                                label="Layihə meneceri"
-                                name="projectManager"
-                            >
+                            <Form.Item label="Layihə meneceri" name="projectManager">
                                 <Input />
                             </Form.Item>
-                            <Form.Item
-                                label="Podratçı"
-                                name="contractor"
-                            >
+                            <Form.Item label="Podratçı" name="contractor">
                                 <Input />
                             </Form.Item>
                             <Form.Item
@@ -539,10 +551,10 @@ const PortfolioTable = () => {
                 okText="Yenilə"
                 cancelText="Ləğv et"
                 width={800}
+                okButtonProps={{ loading: editLoading, disabled: editLoading }}
             >
                 <Form form={editForm} layout="vertical">
                     <Row gutter={16}>
-                        {/* Sol sütun */}
                         <Col span={12}>
                             <Form.Item
                                 label="Başlıq (AZ)"
@@ -551,10 +563,18 @@ const PortfolioTable = () => {
                             >
                                 <Input />
                             </Form.Item>
-                            <Form.Item label="Başlıq (ENG)" name="titleEng" rules={[{ required: true, message: "Please input the title!" }]}>
+                            <Form.Item
+                                label="Başlıq (ENG)"
+                                name="titleEng"
+                                rules={[{ required: true, message: "Please input the title!" }]}
+                            >
                                 <Input />
                             </Form.Item>
-                            <Form.Item label="Başlıq (RU)" name="titleRu" rules={[{ required: true, message: "Please input the title!" }]}>
+                            <Form.Item
+                                label="Başlıq (RU)"
+                                name="titleRu"
+                                rules={[{ required: true, message: "Please input the title!" }]}
+                            >
                                 <Input />
                             </Form.Item>
                             <Form.Item
@@ -564,10 +584,18 @@ const PortfolioTable = () => {
                             >
                                 <Input />
                             </Form.Item>
-                            <Form.Item label="Alt Başlıq (ENG)" name="subTitleEng" rules={[{ required: true, message: "Please input the title!" }]}>
+                            <Form.Item
+                                label="Alt Başlıq (ENG)"
+                                name="subTitleEng"
+                                rules={[{ required: true, message: "Please input the title!" }]}
+                            >
                                 <Input />
                             </Form.Item>
-                            <Form.Item label="Alt Başlıq (RU)" name="subTitleRu" rules={[{ required: true, message: "Please input the title!" }]}>
+                            <Form.Item
+                                label="Alt Başlıq (RU)"
+                                name="subTitleRu"
+                                rules={[{ required: true, message: "Please input the title!" }]}
+                            >
                                 <Input />
                             </Form.Item>
                             <Form.Item
@@ -578,28 +606,16 @@ const PortfolioTable = () => {
                                 <Input />
                             </Form.Item>
                         </Col>
-                        {/* Sağ sütun */}
                         <Col span={12}>
-                            <Form.Item
-                                label="Klient"
-                                name="client"
-                            >
+                            <Form.Item label="Klient" name="client">
                                 <Input />
                             </Form.Item>
-                            <Form.Item
-                                label="Layihə Meneceri"
-                                name="projectManager"
-                            >
+                            <Form.Item label="Layihə Meneceri" name="projectManager">
                                 <Input />
                             </Form.Item>
-                            <Form.Item
-                                label="Podratçı"
-                                name="contractor"
-                            >
+                            <Form.Item label="Podratçı" name="contractor">
                                 <Input />
                             </Form.Item>
-
-                            {/* Edit Modal üçün Card Image Upload */}
                             <Form.Item
                                 label="Kart şəkli"
                                 name="cardImage"
@@ -609,18 +625,20 @@ const PortfolioTable = () => {
                                 }
                             >
                                 <Upload
+                                    fileList={editCardImageFileList}
                                     onChange={handleEditCardImageChange}
                                     listType="picture-card"
                                     beforeUpload={() => false}
+                                    maxCount={1}
                                 >
-                                    <div>
-                                        <UploadOutlined />
-                                        <div style={{ marginTop: 8 }}>Upload</div>
-                                    </div>
+                                    {editCardImageFileList.length >= 1 ? null : (
+                                        <div>
+                                            <UploadOutlined />
+                                            <div style={{ marginTop: 8 }}>Upload</div>
+                                        </div>
+                                    )}
                                 </Upload>
                             </Form.Item>
-
-                            {/* Edit Modal üçün Additional Images Upload */}
                             <Form.Item
                                 label="Əlavə Şəkillər"
                                 name="images"
@@ -630,6 +648,7 @@ const PortfolioTable = () => {
                                 }
                             >
                                 <Upload
+                                    fileList={editAdditionalImagesFileList}
                                     onChange={handleEditAdditionalImagesChange}
                                     listType="picture-card"
                                     multiple

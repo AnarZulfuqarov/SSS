@@ -91,7 +91,7 @@
     "projectFallback": "Project",
     "details": {
       "header": "Details",
-      "projectNameFallback": "Project Name",
+      "projectNameFallback": "Our project",
       "label": {
         "projectName": "Project Name",
         "repairYear": "Repair Year",

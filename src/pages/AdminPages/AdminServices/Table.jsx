@@ -21,21 +21,19 @@ import {
     usePutServiceMutation,
 } from "../../../services/userApi.jsx";
 import { SERVICE_CARD_IMAGES } from "../../../contants.js";
-import serv1 from "/src/assets/services/1.png"
-import serv2 from "/src/assets/services/2.png"
-import serv3 from "/src/assets/services/3.png"
-import serv4 from "/src/assets/services/4.png"
-import serv5 from "/src/assets/services/5.png"
-import serv6 from "/src/assets/services/6.png"
-import serv7 from "/src/assets/services/7.png"
-import serv8 from "/src/assets/services/8.png"
-import serv9 from "/src/assets/services/9.png"
-import serv10 from "/src/assets/services/10.png"
-
+import serv1 from "/src/assets/services/1.png";
+import serv2 from "/src/assets/services/2.png";
+import serv3 from "/src/assets/services/3.png";
+import serv4 from "/src/assets/services/4.png";
+import serv5 from "/src/assets/services/5.png";
+import serv6 from "/src/assets/services/6.png";
+import serv7 from "/src/assets/services/7.png";
+import serv8 from "/src/assets/services/8.png";
+import serv9 from "/src/assets/services/9.png";
+import serv10 from "/src/assets/services/10.png";
 import showToast from "../../../components/ToastMessage.js";
-// Import your custom toast component
 
-// Seçilə bilən şəkillər (hazır 3 şəkil, bu siyahıya daha çox şəkil əlavə etmək olar)
+// Available service card images
 const availableServiceCardImages = [
     { name: "1.png", src: serv1 },
     { name: "2.png", src: serv2 },
@@ -46,18 +44,17 @@ const availableServiceCardImages = [
     { name: "7.jpeg", src: serv7 },
     { name: "8.jpeg", src: serv8 },
     { name: "9.jpeg", src: serv9 },
-    { name: "10.jpeg", src: serv10 }
-    // Əlavə şəkillər əlavə etmək olar...
+    { name: "10.jpeg", src: serv10 },
 ];
 
-// Köməkçi funksiya: verilmiş URL-dən File obyektinə çevirir
+// Helper function to convert image URL to File object
 const convertImageToFile = async (imgSrc, fileName) => {
     const res = await fetch(imgSrc);
     const blob = await res.blob();
     return new File([blob], fileName, { type: blob.type });
 };
 
-// Alternativ ImagePickerGallery komponenti – clickable kartlardan ibarət seçim UI-dur.
+// ImagePickerGallery component for selecting images
 const ImagePickerGalleryAlternative = ({ value, onChange }) => {
     const handleClick = (imgName) => {
         onChange(imgName);
@@ -109,23 +106,25 @@ const ImagePickerGalleryAlternative = ({ value, onChange }) => {
 };
 
 const ServicesTable = () => {
-    const { data: getAllProject, refetch: getAllProjectRefetch } =
+    const { data: getAllServices, refetch: getAllServicesRefetch } =
         useGetAllServicesQuery();
-    const dataSource = getAllProject?.data;
-    const [postProject] = usePostServiceMutation();
-    const [deleteProject] = useDeleteServiceMutation();
+    const dataSource = getAllServices?.data;
+    const [postService] = usePostServiceMutation();
+    const [deleteService] = useDeleteServiceMutation();
     const [putService] = usePutServiceMutation();
 
     // Add Modal state
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [addForm] = Form.useForm();
+    const [addLoading, setAddLoading] = useState(false); // Loading state for Add Modal
 
     // Edit Modal state
     const [isEditModalVisible, setIsEditModalVisible] = useState(false);
     const [editForm] = Form.useForm();
     const [editingRecord, setEditingRecord] = useState(null);
+    const [editLoading, setEditLoading] = useState(false); // Loading state for Edit Modal
 
-    // Tablo sütunları
+    // Table columns
     const columns = [
         {
             title: "#",
@@ -177,7 +176,7 @@ const ServicesTable = () => {
         },
     ];
 
-    // Expanded row – digər dillərdəki dəyərlər göstərilir
+    // Expanded row for additional language fields
     const expandedRowRender = (record) => (
         <div>
             {record.titleEng && record.titleEng !== record.title && (
@@ -203,12 +202,12 @@ const ServicesTable = () => {
         </div>
     );
 
-    // Delete əməliyyatı: backend-dən gələn error mesajını showToast vasitəsilə göstəririk
+    // Delete operation
     const handleDelete = async (record) => {
         try {
-            await deleteProject(record.id).unwrap();
+            await deleteService(record.id).unwrap();
             showToast("Service deleted successfully!", "success");
-            getAllProjectRefetch();
+            getAllServicesRefetch();
         } catch (error) {
             console.error("Delete Error:", error);
             const errorMsg = error?.data?.error || "Error deleting service!";
@@ -216,12 +215,12 @@ const ServicesTable = () => {
         }
     };
 
-    // Edit butonuna tıklayınca
+    // Edit button click handler
     const handleEdit = (record) => {
         setEditingRecord(record);
         editForm.setFieldsValue({
             title: record.title,
-            titleEng: record.titleEng,
+            titleheme: record.titleEng,
             titleRu: record.titleRu,
             subTitle: record.subTitle,
             subTitleEng: record.subTitleEng,
@@ -231,21 +230,24 @@ const ServicesTable = () => {
         setIsEditModalVisible(true);
     };
 
-    // Add Modal açmaq
+    // Show Add Modal
     const showModal = () => {
         setIsModalVisible(true);
     };
 
+    // Cancel Add Modal
     const handleCancel = () => {
         setIsModalVisible(false);
         addForm.resetFields();
+        setAddLoading(false); // Reset loading state
     };
 
-    // Yeni Service POST əməliyyatı: backend-dən gələn error mesajını showToast ilə göstəririk
+    // Add Service POST operation
     const handlePost = () => {
         addForm
             .validateFields()
             .then(async (values) => {
+                setAddLoading(true); // Start loading
                 const formData = new FormData();
                 const textFields = [
                     "title",
@@ -270,38 +272,46 @@ const ServicesTable = () => {
                             formData.append("cardImage", file);
                         } catch (error) {
                             console.error("Image conversion error:", error);
+                            showToast("Error converting image!", "error");
+                            setAddLoading(false);
+                            return;
                         }
                     }
                 }
                 try {
-                    await postProject(formData).unwrap();
+                    await postService(formData).unwrap();
                     showToast("Service added successfully!", "success");
                     setIsModalVisible(false);
                     addForm.resetFields();
-                    getAllProjectRefetch();
+                    getAllServicesRefetch();
                 } catch (error) {
                     console.error("POST Error:", error);
                     const errorMsg = error?.data?.error || "Error adding service!";
                     showToast(errorMsg, "error");
+                } finally {
+                    setAddLoading(false); // Stop loading
                 }
             })
             .catch((errorInfo) => {
                 console.log("Validation Failed:", errorInfo);
+                setAddLoading(false); // Stop loading on validation failure
             });
     };
 
-    // Edit Modal cancel əməliyyatı
+    // Cancel Edit Modal
     const handleEditCancel = () => {
         setIsEditModalVisible(false);
         editForm.resetFields();
         setEditingRecord(null);
+        setEditLoading(false); // Reset loading state
     };
 
-    // Edit Service PUT əməliyyatı: backend-dən gələn error mesajını showToast vasitəsilə göstəririk
+    // Edit Service PUT operation
     const handleEditSubmit = () => {
         editForm
             .validateFields()
             .then(async (values) => {
+                setEditLoading(true); // Start loading
                 const formData = new FormData();
                 const textFields = [
                     "title",
@@ -329,6 +339,9 @@ const ServicesTable = () => {
                             formData.append("cardImage", file);
                         } catch (error) {
                             console.error("Image conversion error:", error);
+                            showToast("Error converting image!", "error");
+                            setEditLoading(false);
+                            return;
                         }
                     }
                 }
@@ -338,15 +351,18 @@ const ServicesTable = () => {
                     setIsEditModalVisible(false);
                     editForm.resetFields();
                     setEditingRecord(null);
-                    getAllProjectRefetch();
+                    getAllServicesRefetch();
                 } catch (error) {
                     console.error("PUT Error:", error);
                     const errorMsg = error?.data?.error || "Error updating service!";
                     showToast(errorMsg, "error");
+                } finally {
+                    setEditLoading(false); // Stop loading
                 }
             })
             .catch((errorInfo) => {
                 console.log("Validation Failed:", errorInfo);
+                setEditLoading(false); // Stop loading on validation failure
             });
     };
 
@@ -366,7 +382,7 @@ const ServicesTable = () => {
                 expandedRowRender={expandedRowRender}
             />
 
-            {/* Yeni Servis Əlavə edin Modal */}
+            {/* Add Service Modal */}
             <Modal
                 title="Yeni Servis Əlavə edin"
                 visible={isModalVisible}
@@ -375,6 +391,7 @@ const ServicesTable = () => {
                 cancelText="Ləğv et"
                 okText="Əlavə Et"
                 width={800}
+                okButtonProps={{ loading: addLoading, disabled: addLoading }}
             >
                 <Form form={addForm} layout="vertical">
                     <Row gutter={16}>
@@ -386,10 +403,18 @@ const ServicesTable = () => {
                             >
                                 <Input />
                             </Form.Item>
-                            <Form.Item label="Başlıq (ENG)" name="titleEng" rules={[{ required: true, message: "Please input the title!" }]}>
+                            <Form.Item
+                                label="Başlıq (ENG)"
+                                name="titleEng"
+                                rules={[{ required: true, message: "Please input the title!" }]}
+                            >
                                 <Input />
                             </Form.Item>
-                            <Form.Item label="Başlıq (RU)" name="titleRu" rules={[{ required: true, message: "Please input the title!" }]}>
+                            <Form.Item
+                                label="Başlıq (RU)"
+                                name="titleRu"
+                                rules={[{ required: true, message: "Please input the title!" }]}
+                            >
                                 <Input />
                             </Form.Item>
                         </Col>
@@ -401,10 +426,18 @@ const ServicesTable = () => {
                             >
                                 <Input />
                             </Form.Item>
-                            <Form.Item label="Alt Başlıq (ENG)" name="subTitleEng" rules={[{ required: true, message: "Please input the title!" }]}>
+                            <Form.Item
+                                label="Alt Başlıq (ENG)"
+                                name="subTitleEng"
+                                rules={[{ required: true, message: "Please input the subtitle!" }]}
+                            >
                                 <Input />
                             </Form.Item>
-                            <Form.Item label="Alt Başlıq (RU)" name="subTitleRu" rules={[{ required: true, message: "Please input the title!" }]}>
+                            <Form.Item
+                                label="Alt Başlıq (RU)"
+                                name="subTitleRu"
+                                rules={[{ required: true, message: "Please input the subtitle!" }]}
+                            >
                                 <Input />
                             </Form.Item>
                             <Form.Item
@@ -431,6 +464,7 @@ const ServicesTable = () => {
                 cancelText="Ləğv et"
                 okText="Yenilə"
                 width={800}
+                okButtonProps={{ loading: editLoading, disabled: editLoading }}
             >
                 <Form form={editForm} layout="vertical">
                     <Row gutter={16}>
@@ -442,10 +476,18 @@ const ServicesTable = () => {
                             >
                                 <Input />
                             </Form.Item>
-                            <Form.Item label="Başlıq (ENG)" name="titleEng">
+                            <Form.Item
+                                label="Başlıq (ENG)"
+                                name="titleEng"
+                                rules={[{ required: true, message: "Please input the title!" }]}
+                            >
                                 <Input />
                             </Form.Item>
-                            <Form.Item label="Başlıq (RU)" name="titleRu">
+                            <Form.Item
+                                label="Başlıq (RU)"
+                                name="titleRu"
+                                rules={[{ required: true, message: "Please input the title!" }]}
+                            >
                                 <Input />
                             </Form.Item>
                         </Col>
@@ -457,13 +499,25 @@ const ServicesTable = () => {
                             >
                                 <Input />
                             </Form.Item>
-                            <Form.Item label="Alt Başlıq (ENG)" name="subTitleEng">
+                            <Form.Item
+                                label="Alt Başlıq (ENG)"
+                                name="subTitleEng"
+                                rules={[{ required: true, message: "Please input the subtitle!" }]}
+                            >
                                 <Input />
                             </Form.Item>
-                            <Form.Item label="Alt Başlıq (RU)" name="subTitleRu">
+                            <Form.Item
+                                label="Alt Başlıq (RU)"
+                                name="subTitleRu"
+                                rules={[{ required: true, message: "Please input the subtitle!" }]}
+                            >
                                 <Input />
                             </Form.Item>
-                            <Form.Item label="Kart Şəkli" name="cardImage">
+                            <Form.Item
+                                label="Kart Şəkli"
+                                name="cardImage"
+                                rules={[{ required: true, message: "Please select the card image!" }]}
+                            >
                                 <ImagePickerGalleryAlternative
                                     onChange={(value) => editForm.setFieldsValue({ cardImage: value })}
                                     value={editForm.getFieldValue("cardImage")}

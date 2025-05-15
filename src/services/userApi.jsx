@@ -4,7 +4,7 @@ import Cookies from "js-cookie";
 export const userApi = createApi({
     reducerPath: 'userApi',
     baseQuery: fetchBaseQuery({
-        baseUrl: 'https://ssconstweb-001-site1.qtempurl.com/api/',
+        baseUrl: 'https://api.sss-tel.az/api',
         prepareHeaders: (headers) => {
             const token = Cookies.get('sssToken');
             if (token) {

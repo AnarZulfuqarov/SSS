@@ -2,15 +2,18 @@ import { useState } from "react";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import PropTypes from "prop-types";
 import "./index.scss";
-import {PROJECT_IMAGES} from "../../../contants.js";
+import { PROJECT_IMAGES, PROJECT_VIDEOS } from "../../../contants.js";
 
 function Slider({ images = [] }) {
-    // If no images are passed, you can define some default images.
-    const slides = images.length > 0 ? images : [
+    // Default images for when no images are passed
+    const defaultImages = [
         "/src/assets/DetailBanner.jpeg",
         "/src/assets/ContactBanner.jpeg",
-        "/src/assets/ServicesBanner.jpeg"
+        "/src/assets/ServicesBanner.jpeg",
     ];
+
+    // Use provided images or fallback to default images
+    const slides = images.length > 0 ? images : defaultImages;
 
     const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -26,13 +29,35 @@ function Slider({ images = [] }) {
         );
     };
 
+    // Determine if the current slide is a video and get the correct source
+    const currentSlide = slides[currentIndex];
+    const isVideo = currentSlide.endsWith(".webm") || currentSlide.endsWith(".mp4"); // Add other video extensions if needed
+    const isDefaultImage = defaultImages.includes(currentSlide);
+    const src = isDefaultImage
+        ? currentSlide
+        : isVideo
+            ? PROJECT_VIDEOS + currentSlide
+            : PROJECT_IMAGES + currentSlide;
+
     return (
         <div className="slider-container">
-            <img
-                src={PROJECT_IMAGES + slides[currentIndex]}
-                alt={`Slide ${currentIndex}`}
-                className="slider-image"
-            />
+            {isVideo ? (
+                <video
+                    src={src}
+                    alt={`Slide ${currentIndex}`}
+                    className="slider-image"
+                    controls
+                    autoPlay
+                    muted
+                    loop
+                />
+            ) : (
+                <img
+                    src={src}
+                    alt={`Slide ${currentIndex}`}
+                    className="slider-image"
+                />
+            )}
             {/* Left Arrow */}
             <button className="slider-btn slider-btn-left" onClick={handlePrev}>
                 <IoIosArrowBack />
@@ -46,7 +71,7 @@ function Slider({ images = [] }) {
 }
 
 Slider.propTypes = {
-    images: PropTypes.arrayOf(PropTypes.string)
+    images: PropTypes.arrayOf(PropTypes.string),
 };
 
 export default Slider;
