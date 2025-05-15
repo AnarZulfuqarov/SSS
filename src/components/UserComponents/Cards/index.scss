@@ -106,16 +106,17 @@
 @media (max-width: 480px) {
   .card-certificate {
     height: 250px;
+    .overlay {
+      .number {
+        font-size: 75px;
+      }
+      .text {
+        font-size: 18px;
+      }
+    }
   }
 
-  .overlay {
-    .number {
-      font-size: 70px;
-    }
-    .text {
-      font-size: 22px;
-    }
-  }
+
 
   .layout1 {
     .text {
@@ -126,8 +127,8 @@
     }
     .number {
       position: absolute;
-      top: 60px;
-      right: -22px;
+      top: 150px;
+      right:-15px;
       left: auto;
     }
   }
@@ -141,7 +142,7 @@
     }
     .number {
       position: absolute;
-      bottom: -10px;
+      bottom: 0px;
       left: -10px;
       right: auto;
     }

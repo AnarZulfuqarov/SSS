@@ -87,7 +87,7 @@
   .image {
     height: 100%;
     aspect-ratio: 16/9;
-    background-image: url("https://s3-alpha-sig.figma.com/img/0bd9/6c15/379f8245c3c50bc47879c9c12d03822a?Expires=1745193600&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=YxEAZ6ua~HV8P~nrcQmy4wKIw5TbqSVNb1aTFAe94ZVjv2IKQBax1DQlkPLbdgSeeHnehSr-PHY73sy-0BlAJqG4MIHx~8t3Zaz3adEPWfRAJgmuh5oT6bDH~bOrBtbrFvWZNhlS4Yg9xDFJWX7i~TSm5f4edMM6WuBTmYkEN~zHLT4nXwqhRGLCcNvuqv22~tHPbHYb59olmQ-~Rxdu1m3~jR~0mjdtmTG4Rhk60yDsI8-vzW8uU7-xPqaluzpWSoyk9qK1~gaAuN~5pLsSobp7H0uxQDJeMW2vfu8RgHcNVhMvNG~JhKDJuzjvNOvnZBeUaVyel7J9kvRAp1zRKw__");
+    background-image: url("/src/assets/aboutHome.jpg");
     background-size: cover;
     position: relative;
 
@@ -164,11 +164,18 @@
         }
       }
     }
-
+    .text{
+      h4{
+        font-size: 18px;
+      }
+      p{
+        font-size: 14px;
+      }
+    }
     .head {
       flex-direction: column;
       align-items: start;
-      margin-bottom: 50px;
+      margin-bottom: 25px;
 
       .head-left {
         width: 100%;
@@ -178,7 +185,7 @@
         width: 100%;
 
         h1 {
-          font-size: 20px;
+          font-size: 24px;
           line-height: 40px;
         }
       }

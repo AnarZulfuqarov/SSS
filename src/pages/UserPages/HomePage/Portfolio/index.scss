@@ -167,13 +167,14 @@
     .head {
       &__left {
         hr {
-          width: 50%;
+          width: 30%;
         }
       }
 
       &__right h1 {
         font-size: 28px;
         line-height: 40px;
+        text-align: start;
       }
     }
 

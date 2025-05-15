@@ -154,6 +154,7 @@
         h1 {
           font-size: 32px;
           line-height: 48px;
+
         }
       }
 
@@ -171,6 +172,7 @@
       h1 {
         font-size: 32px;
         line-height: 56px;
+        padding:  0 16px;
       }
       .circle {
         /* Düzəlişlərə ehtiyac varsa burada tətbiq edin */
@@ -188,8 +190,9 @@
         .form {
           .form-head {
             flex-direction: column;
-            text-align: center;
+            align-items: start;
             gap: 12px;
+            padding: 0 16px;
 
             hr {
               width: 30%;
@@ -198,6 +201,7 @@
             h2 {
               width: 100%;
               font-size: 18px;
+              text-align: start;
             }
           }
 

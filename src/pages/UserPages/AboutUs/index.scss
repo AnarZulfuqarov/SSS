@@ -197,7 +197,7 @@
     }
 
     .section1 {
-      padding: 50px 0 70px;
+      padding: 50px 0 25px;
       .row {
         flex-direction: column;
       }
@@ -299,7 +299,7 @@
     }
 
     .section1 {
-      padding: 40px 0 50px;
+      padding: 40px 0 25px;
       .text {
         padding: 0 8px;
         h2 {
@@ -336,7 +336,9 @@
         }
         .head-right {
           h1 {
-            font-size: 28px;
+            padding: 0 8px;
+            text-align: start;
+            font-size: 24px;
             width: 100%;
           }
         }
@@ -351,7 +353,7 @@
         gap: 16px;
         .head-left {
           hr {
-            width: 40%;
+            width: 30%;
           }
           h4 {
             font-size: 16px;
@@ -359,7 +361,7 @@
         }
         .head-right {
           h1 {
-            font-size: 28px;
+            font-size: 24px;
             width: 100%;
           }
         }

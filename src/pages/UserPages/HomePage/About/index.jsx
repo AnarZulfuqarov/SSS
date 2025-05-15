@@ -46,6 +46,7 @@ function AboutHome() {
                     </div>
                     <div className={"zakir col-6 col-md-6 col-sm-12 col-xs-12"} data-aos="fade-left">
                         <div className={"image"}>
+
                             <div className={"content"}>
                                 <div className={"black box"} data-aos="zoom-in">
                                     <img src={city} alt={t("aboutHome.box.cityAlt")} />
