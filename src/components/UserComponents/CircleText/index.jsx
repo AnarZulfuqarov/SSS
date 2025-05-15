@@ -28,8 +28,8 @@ const CircleText = () => {
 
                 {/* i18n vasitəsilə çevrilmiş mətn */}
                 <text fill="#333" fontSize={
-                    localStorage.getItem("sssLanguage") === 'az' ? '12.3' :
-                    localStorage.getItem("sssLanguage") === 'en' ? '12.5' : '10'
+                    localStorage.getItem("sssLanguage") === 'az' ? '13' :
+                    localStorage.getItem("sssLanguage") === 'en' ? '13.5' : '11'
                 } letterSpacing="1.6" fontFamily="sans-serif">
                     <textPath xlinkHref="#circlePath" startOffset="50%" textAnchor="middle">
                         {t("circleText")}

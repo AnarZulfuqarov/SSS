@@ -29,8 +29,8 @@ const CircleTextWhite = () => {
                 <text
                     fill="#fff"
                     fontSize={
-                        localStorage.getItem("sssLanguage") === 'az' ? '12.3' :
-                            localStorage.getItem("sssLanguage") === 'en' ? '12.5' : '10'
+                        localStorage.getItem("sssLanguage") === 'az' ? '13' :
+                            localStorage.getItem("sssLanguage") === 'en' ? '13.5' : '11'
                     }
                     letterSpacing="1.6"
                     fontFamily="sans-serif"
