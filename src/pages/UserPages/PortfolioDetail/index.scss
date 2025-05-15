@@ -225,7 +225,7 @@
       }
     }
   }
-  .modal-overlay {
+  .modal-overlayy {
     position: fixed;
     top: 0;
     left: 0;
@@ -240,22 +240,27 @@
 
   .modal-content {
     position: relative;
-    width: 375px;
-    height: 600px;
-
+    width: 90%;
+    height: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
   }
 
   .modal-media {
-    width: 100%;
-    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
     object-fit: contain;
+    display: block;
+    margin: 0 auto;
   }
 
   .modal-close-btn {
     position: absolute;
     top: 20px;
     right: 20px;
-    background: #fff;
+    color: white;
     border: none;
     border-radius: 50%;
     width: 40px;
@@ -264,13 +269,36 @@
     line-height: 40px;
     text-align: center;
     cursor: pointer;
-    color: #000;
     z-index: 1001;
+    background: transparent;
   }
 
-  .modal-close-btn:hover {
-    background: #ddd;
+  .modal-controls {
+    position: absolute;
+    bottom: 20px;
+    left:50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 1001;
+
+    button {
+      background: transparent;
+      color: rgba(255, 255, 255, 0.58);
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      &:hover {
+        color: white;
+      }
+    }
   }
+
 }
 
 /* --- Tablet və orta ölçülü cihazlar üçün --- */

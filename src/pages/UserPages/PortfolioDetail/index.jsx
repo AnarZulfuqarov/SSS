@@ -9,6 +9,7 @@ import { useGetAllProjectQuery, useGetProjectByIdQuery } from "../../../services
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useTranslation } from "react-i18next";
+import { FaSearchPlus, FaSearchMinus, FaRedo } from "react-icons/fa"; // İkonlar için
 
 function PortfolioDetail() {
     const { t, i18n } = useTranslation();
@@ -17,30 +18,37 @@ function PortfolioDetail() {
     const { data: getProjectById } = useGetProjectByIdQuery(id);
     const project = getProjectById?.data;
     const { data: getAllProject } = useGetAllProjectQuery();
-    // Filter out the current project by id and take the first 3
     const projects = getAllProject?.data
-        ?.filter((item) => item.id !== id) // Exclude the current project
-        .slice(0, 3); // Limit to 3 projects
+        ?.filter((item) => item.id !== id)
+        .slice(0, 3);
 
     // Modal state
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedMedia, setSelectedMedia] = useState(null);
+    const [zoomLevel, setZoomLevel] = useState(1); // Büyütme seviyesi
+    const [rotation, setRotation] = useState(0); // Çevirme açısı
 
-    // Example: if your project data contains images
-    const sliderImages = project?.images; // Ensure your API returns an array of URLs
+    const sliderImages = project?.images;
 
-    // Handlers for modal
     const openModal = (media) => {
         setSelectedMedia(media);
         setIsModalOpen(true);
+        setZoomLevel(1); // Modal açıldığında büyütmeyi sıfırla
+        setRotation(0); // Modal açıldığında çevirmeyi sıfırla
     };
 
     const closeModal = () => {
         setIsModalOpen(false);
         setSelectedMedia(null);
+        setZoomLevel(1);
+        setRotation(0);
     };
 
-    // Determine the title and subtitle based on the current language
+    // Büyütme ve Küçültme Fonksiyonları
+    const zoomIn = () => setZoomLevel((prev) => Math.min(prev + 0.1, 3)); // Maksimum 3x
+    const zoomOut = () => setZoomLevel((prev) => Math.max(prev - 0.1, 0.5)); // Minimum 0.5x
+    const rotate = () => setRotation((prev) => prev + 90); // 90 derece çevir
+
     const getLocalizedTitle = (project) => {
         if (!project) return t("portfolioDetail.projectFallback");
         switch (i18n.language) {
@@ -153,7 +161,7 @@ function PortfolioDetail() {
                                             </li>
                                         )}
                                         {project?.client && (
-                                            <li className="detail-item" data-aos="fadealphabetical-left" data-aos-delay="200">
+                                            <li className="detail-item" data-aos="fade-left" data-aos-delay="200">
                                                 <div className="detail-label">
                                                     <span className="dot"></span>
                                                     <span>{t("portfolioDetail.details.label.client")}</span>
@@ -220,11 +228,23 @@ function PortfolioDetail() {
 
             {/* Modal */}
             {isModalOpen && (
-                <div className="modal-overlay" onClick={closeModal}>
+                <div className="modal-overlayy" onClick={closeModal}>
                     <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                         <button className="modal-close-btn" onClick={closeModal}>
                             ×
                         </button>
+                        {/* Büyütme ve Çevirme Kontrolleri */}
+                        <div className="modal-controls">
+                            <button onClick={zoomIn} title="Zoom In">
+                                <FaSearchPlus />
+                            </button>
+                            <button onClick={zoomOut} title="Zoom Out">
+                                <FaSearchMinus />
+                            </button>
+                            <button onClick={rotate} title="Rotate">
+                                <FaRedo />
+                            </button>
+                        </div>
                         {selectedMedia?.isVideo ? (
                             <video
                                 src={selectedMedia.src}
@@ -233,9 +253,21 @@ function PortfolioDetail() {
                                 autoPlay
                                 muted
                                 loop
+                                style={{
+                                    transform: `scale(${zoomLevel}) rotate(${rotation}deg)`,
+                                    transition: "transform 0.3s ease",
+                                }}
                             />
                         ) : (
-                            <img src={selectedMedia?.src} alt="Modal media" className="modal-media" />
+                            <img
+                                src={selectedMedia?.src}
+                                alt="Modal media"
+                                className="modal-media"
+                                style={{
+                                    transform: `scale(${zoomLevel}) rotate(${rotation}deg)`,
+                                    transition: "transform 0.3s ease",
+                                }}
+                            />
                         )}
                     </div>
                 </div>
