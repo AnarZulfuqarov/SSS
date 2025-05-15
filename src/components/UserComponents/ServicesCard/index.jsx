@@ -25,7 +25,7 @@ function ServicesCard({service, index, activeCard, setActiveCard}) {
         ? {} // Tam mətni göstərmək üçün heç bir məhdudiyyət yoxdur
         : {
             display: "-webkit-box",
-            WebkitLineClamp: 4,
+            WebkitLineClamp: 2,
             WebkitBoxOrient: "vertical",
             overflow: "hidden",
         };
